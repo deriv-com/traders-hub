@@ -9,7 +9,7 @@ function App() {
                 <img src={derivLogo} className='h-[100px] w-[100px]' alt='Deriv logo' />
             </a>
             <h1 className='text-5xl font-bold'>Deriv V2</h1>
-            <button>Click me 💅</button>
+            <button>Click meyh 💅</button>
             <p>
                 Edit <code>src/App.tsx</code> and save to test HMR
             </p>
