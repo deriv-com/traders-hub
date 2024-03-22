@@ -76,7 +76,7 @@ jobs:
               run: npm run build
 
             - name: Run tests for Eslint
-              run: npm run test:eslint
+              run: npm run test:lint
 
             - name: Run unit tests and coverage report
               run: npm run test
