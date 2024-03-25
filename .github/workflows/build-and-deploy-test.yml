@@ -15,6 +15,7 @@ jobs:
   build_and_deploy_preview_link:
     runs-on: Ubuntu-latest
     permissions:
+      contents: read
       checks: write
       pull-requests: write
     steps:
@@ -35,6 +36,7 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
         with:
           ref: ${{github.event.pull_request.head.sha}}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e
@@ -45,22 +47,11 @@ jobs:
         uses: "deriv-com/shared-actions/.github/actions/npm_install@v1"
 
       - name: Build
-        uses: "./.github/actions/build"
-        with:
-          target: staging
-
-      - name: Build Translations
-        uses: "./.github/actions/build"
-        with:
-          target: translations
+        run: npm run build
+        shell: bash
 
       - name: "Run Tests"
         run: npm run test
-
-      - name: Setup Node
-        uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7
-        with:
-          node-version: 20
 
       - name: Publish to CF pages branch
         id: publish_to_pages_branch
