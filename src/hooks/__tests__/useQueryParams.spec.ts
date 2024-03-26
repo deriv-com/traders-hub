@@ -11,15 +11,11 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('useQueryParams', () => {
-    const mockHistoryPush = jest.fn();
+    const mockNavigate = jest.fn();
 
     beforeEach(() => {
         (useLocation as jest.Mock).mockReturnValue({ search: '' });
-        (useNavigate as jest.Mock).mockReturnValue({
-            push: mockHistoryPush,
-            location: { pathname: '/' },
-            action: 'PUSH',
-        });
+        (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
     });
 
     it('should open the modal when openModal is called', async () => {
@@ -56,12 +52,8 @@ describe('useQueryParams', () => {
         result.current.openModal('GetADerivAccountDialog');
 
         await waitFor(() =>
-            expect(mockHistoryPush).toHaveBeenCalledWith({
-                pathname: '/',
-                search: 'modal=GetADerivAccountDialog',
-                state: {
-                    modal: 'GetADerivAccountDialog',
-                },
+            expect(mockNavigate).toHaveBeenCalledWith('/?modal=GetADerivAccountDialog', {
+                state: { modal: 'GetADerivAccountDialog' },
             })
         );
     });
@@ -69,7 +61,7 @@ describe('useQueryParams', () => {
     it('should close the modal when history action is POP', async () => {
         (useNavigate as jest.Mock).mockReturnValue({
             action: 'POP',
-            push: mockHistoryPush,
+            push: mockNavigate,
             location: { pathname: '/' },
         });
 
@@ -88,12 +80,8 @@ describe('useQueryParams', () => {
         await waitFor(() => expect(result.current.isModalOpen('GetADerivAccountDialog')).toBe(false));
 
         await waitFor(() =>
-            expect(mockHistoryPush).toHaveBeenCalledWith({
-                pathname: '/',
-                search: 'modal=AddOrManageAccount',
-                state: {
-                    modal: 'AddOrManageAccount',
-                },
+            expect(mockNavigate).toHaveBeenCalledWith('/?modal=AddOrManageAccount', {
+                state: { modal: 'AddOrManageAccount' },
             })
         );
     });
