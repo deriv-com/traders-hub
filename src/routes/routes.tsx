@@ -1,15 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, NavigateOptions } from 'react-router-dom';
 
 import { CompareAccounts, Homepage, Signup } from '../pages';
 
 type TRoutes = '/' | '/signup' | '/compare-accounts';
 
 declare module 'react-router-dom' {
-    export function useNavigate(): {
-        action: 'POP' | 'PUSH' | 'REPLACE';
-        location: { pathname: string; search: string };
-        push: (path: string | { pathname: string; search: string; state?: Record<string, unknown> }) => void;
-    };
+    export function useNavigate(): (path: string, state?: NavigateOptions | undefined) => void;
     export function useRouteMatch(path: TRoutes): boolean;
 }
 
