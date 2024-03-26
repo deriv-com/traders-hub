@@ -21,7 +21,6 @@ type ModalId =
     | 'TopUpModal'
     | 'TradeModal'
     | 'VerificationFailedModal';
-
 /**
  * @description A hook to manage query params for modals
  * @returns isOpen: (modalId: ModalId) => boolean
@@ -36,7 +35,7 @@ type ModalId =
  */
 const useQueryParams = () => {
     const { search } = useLocation();
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const queryParams = useMemo(() => new URLSearchParams(search), [search]);
 
@@ -45,29 +44,30 @@ const useQueryParams = () => {
     const openModal = useCallback(
         (modalId: string) => {
             queryParams.set('modal', modalId);
-            history.push({
-                pathname: history.location.pathname,
-                search: queryParams.toString(),
+            navigate(`${location.pathname}?${queryParams.toString()}`, {
                 state: { modal: modalId },
             });
         },
-        [queryParams, history]
+        [queryParams, navigate]
     );
 
     const closeModal = useCallback(() => {
         queryParams.delete('modal');
-        history.push({
-            pathname: history.location.pathname,
-            search: queryParams.toString(),
-        });
-    }, [queryParams, history]);
+        navigate(`${location.pathname}?${queryParams.toString()}`);
+    }, [queryParams, navigate]);
 
     useEffect(() => {
-        if (history.action === 'POP') {
-            closeModal();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        const handleLoad = () => {
+            Array.from(queryParams.keys()).forEach(key => queryParams.delete(key));
+            navigate(`${location.pathname}`);
+        };
+
+        window.addEventListener('load', handleLoad);
+
+        return () => {
+            window.removeEventListener('load', handleLoad);
+        };
+    }, [queryParams, navigate]);
 
     return {
         isModalOpen,
