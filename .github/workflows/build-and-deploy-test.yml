@@ -43,6 +43,9 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Install dependencies
         uses: "./.github/actions/npm_install_from_cache"
 
