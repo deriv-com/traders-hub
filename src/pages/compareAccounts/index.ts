@@ -1,0 +1,1 @@
+export { CompareAccounts } from './compareAccounts';

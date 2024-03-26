@@ -1,20 +1,11 @@
-import derivLogo from './static/deriv-logo.svg';
+import { RouterProvider } from 'react-router-dom';
+
+import { router } from './routes';
 
 import './App.css';
 
 function App() {
-    return (
-        <div className='flex flex-col items-center justify-center gap-10'>
-            <a href='https://deriv.com' target='_blank' rel='noreferrer'>
-                <img src={derivLogo} className='h-[100px] w-[100px]' alt='Deriv logo' />
-            </a>
-            <h1 className='text-5xl font-bold'>Deriv V2</h1>
-            <button>Click me 💅</button>
-            <p>
-                Edit <code>src/App.tsx</code> and save to test HMR
-            </p>
-        </div>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
