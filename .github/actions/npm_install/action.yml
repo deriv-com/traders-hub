@@ -4,5 +4,5 @@ runs:
   using: composite
   steps:
     - name: Install npm packages
-      run: rm -rf node_modules && rm -f package-lock.json && npm install
+      run: npm ci
       shell: bash

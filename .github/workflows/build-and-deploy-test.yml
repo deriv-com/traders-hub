@@ -47,7 +47,8 @@ jobs:
         uses: "./.github/actions/npm_install"
 
       - name: Build
-        uses: "./.github/actions/build"
+        run: npm run build
+        shell: bash
 
       - name: "Run Tests"
         run: npm run test
