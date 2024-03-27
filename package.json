@@ -13,7 +13,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@deriv-com/api-hooks": "^0.0.4",
+        "@deriv-com/api-hooks": "^0.0.8",
         "@deriv-com/ui": "latest",
         "@deriv-com/utils": "latest",
         "@deriv/quill-icons": "latest",
