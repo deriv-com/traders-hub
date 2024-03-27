@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { renderHook, waitFor } from '@testing-library/react';
 
-import useQueryParams from '../useQueryParams';
+import { useQueryParams } from '../useQueryParams';
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
