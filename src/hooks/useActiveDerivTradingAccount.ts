@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useDerivTradingAccountsList } from './useDerivTradingAccountsList';
 
 /**
@@ -9,7 +11,9 @@ import { useDerivTradingAccountsList } from './useDerivTradingAccountsList';
 export const useActiveDerivTradingAccount = () => {
     const { data, ...rest } = useDerivTradingAccountsList();
 
-    const activeTradingAccount = data?.find(trading => trading.isActive);
+    const activeTradingAccount = useMemo(() => {
+        return data?.find(trading => trading.isActive);
+    }, [data]);
 
     return { data: activeTradingAccount, ...rest };
 };
