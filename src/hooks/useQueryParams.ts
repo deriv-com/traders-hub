@@ -33,7 +33,7 @@ type ModalId =
  * openModal('GetADerivAccountDialog');
  * closeModal();
  */
-const useQueryParams = () => {
+export const useQueryParams = () => {
     const { search } = useLocation();
     const navigate = useNavigate();
 
@@ -76,5 +76,3 @@ const useQueryParams = () => {
         queryParams,
     };
 };
-
-export default useQueryParams;
