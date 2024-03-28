@@ -7,6 +7,11 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
     server: {
         https: {
             key: fs.readFileSync(path.resolve(__dirname, './dev.pem')),

@@ -1,6 +1,6 @@
 import { createBrowserRouter, NavigateOptions } from 'react-router-dom';
 
-import { CompareAccounts, Homepage, Login, Signup } from '../pages';
+import { CompareAccounts, Homepage, Login, Signup } from '@/pages';
 
 type TRoutes = '/' | '/signup' | '/compare-accounts';
 

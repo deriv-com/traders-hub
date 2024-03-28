@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 
 import { AppDataProvider } from '@deriv-com/api-hooks';
 
+import { UIProvider } from '@/providers';
+
 import App from './App.tsx';
-import { UIProvider } from './providers';
 
 import './index.css';
 

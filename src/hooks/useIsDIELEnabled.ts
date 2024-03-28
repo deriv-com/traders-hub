@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useLandingCompany } from './useLandingCompany';
+import { useLandingCompany } from '.';
 
 /**
  * @returns {boolean} isDIELEnabled

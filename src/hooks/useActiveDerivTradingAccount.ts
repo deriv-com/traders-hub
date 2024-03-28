@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useDerivTradingAccountsList } from './useDerivTradingAccountsList';
+import { useDerivTradingAccountsList } from '.';
 
 /**
  * Custom hook to get the active trading account

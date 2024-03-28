@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useLandingCompany } from './useLandingCompany';
+import { useLandingCompany } from '.';
 
 /**
  * @description A custom hook that returns whether the user is in the EU region

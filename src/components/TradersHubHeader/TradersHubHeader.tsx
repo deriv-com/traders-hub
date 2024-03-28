@@ -1,6 +1,6 @@
 import { Text } from '@deriv-com/ui';
 
-import { DemoRealSwitcher } from '../DemoRealSwitcher';
+import { DemoRealSwitcher } from '@/components';
 
 export const TradersHubHeader = () => {
     return (

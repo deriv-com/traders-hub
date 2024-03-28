@@ -56,7 +56,7 @@ module.exports = {
                 'import/resolver': {
                     typescript: {
                         // use an array
-                        project: 'packages/**/tsconfig.json',
+                        project: './tsconfig.json',
                     },
                     node: {
                         extensions: ['.ts', '.tsx'],

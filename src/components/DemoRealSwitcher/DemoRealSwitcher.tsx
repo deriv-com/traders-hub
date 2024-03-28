@@ -5,8 +5,8 @@ import { useOnClickOutside } from 'usehooks-ts';
 import { LabelPairedChevronDownSmRegularIcon } from '@deriv/quill-icons';
 import { Text } from '@deriv-com/ui';
 
-import { useAccountSwitcher, useRegulationFlags } from '../../hooks';
-import { DemoRealSwitcherLoader } from '../Loaders';
+import { DemoRealSwitcherLoader } from '@/components';
+import { useAccountSwitcher, useRegulationFlags } from '@/hooks';
 
 export const DemoRealSwitcher = () => {
     const { selectedAccount, setSelectedAccount, accountTypes } = useAccountSwitcher();
