@@ -1,5 +1,4 @@
 {
     "*.{js,jsx,ts,tsx,md,html,css,scss}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --fix --config .eslintrc.cjs",
-    "*.{css,scss}": "npx stylelint --fix"
+    "*.{js,jsx,ts,tsx}": "eslint --fix --config .eslintrc.cjs"
 }

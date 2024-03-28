@@ -10,7 +10,7 @@ import { useActiveDerivTradingAccount, useDerivTradingAccountsList, useIsEuRegio
  * @param regulation 'EU' | 'Non-EU'
  * @returns  { isDemo: boolean, isEU: boolean, isEUReal: boolean, isNonEU: boolean, isNonEUReal: boolean }
  */
-const useRegulationFlags = () => {
+export const useRegulationFlags = () => {
     const { uiState } = useUIContext();
     const { accountType, regulation } = uiState;
     const isEUCountry = useIsEuRegion();
@@ -68,5 +68,3 @@ const useRegulationFlags = () => {
         landingCompanySuccess,
     ]);
 };
-
-export default useRegulationFlags;
