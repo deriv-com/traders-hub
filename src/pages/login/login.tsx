@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAccountList } from '@deriv-com/api-hooks';
+import { Button } from '@deriv-com/ui';
 import { URLUtils } from '@deriv-com/utils';
 
 export const Login = () => {
@@ -15,8 +16,12 @@ export const Login = () => {
     }, [data, navigate]);
 
     return (
-        <div>
-            <a href={URLUtils.getOauthURL()}>Login</a>
-        </div>
+        <Button
+            onClick={() => {
+                window.location.href = URLUtils.getOauthURL();
+            }}
+        >
+            Login
+        </Button>
     );
 };

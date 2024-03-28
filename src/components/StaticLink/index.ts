@@ -1,0 +1,1 @@
+export { StaticLink } from './StaticLink';
