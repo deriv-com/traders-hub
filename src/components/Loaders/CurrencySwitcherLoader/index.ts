@@ -1,0 +1,1 @@
+export { CurrencySwitcherLoader } from './CurrencySwitcherLoader';
