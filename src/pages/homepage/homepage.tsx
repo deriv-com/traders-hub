@@ -1,4 +1,4 @@
-import { AppContainer, TradersHubHeader } from '../../components';
+import { AppContainer, TradersHubHeader } from '@/components';
 
 export const Homepage = () => {
     return (

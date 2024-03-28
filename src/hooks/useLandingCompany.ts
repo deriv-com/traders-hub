@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useLandingCompany as useAPIHooksLandingCompany } from '@deriv-com/api-hooks';
 
-import { useSettings } from './useSettings';
+import { useSettings } from '.';
 
 export const useLandingCompany = () => {
     const { data: getSettings } = useSettings();

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { Regulation } from '../constants';
-import { useUIContext } from '../providers';
+import { Regulation } from '@/constants';
+import { useUIContext } from '@/providers';
 
 import {
     useActiveDerivTradingAccount,
