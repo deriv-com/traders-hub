@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useAccountList } from '@deriv-com/api-hooks';
-import { Button } from '@deriv-com/ui';
+import { Button, Text } from '@deriv-com/ui';
 import { URLUtils } from '@deriv-com/utils';
 
 export const Login = () => {
@@ -16,12 +16,15 @@ export const Login = () => {
     }, [data, navigate]);
 
     return (
-        <Button
-            onClick={() => {
-                window.location.href = URLUtils.getOauthURL();
-            }}
-        >
-            Login
-        </Button>
+        <div className='flex flex-col gap-24'>
+            <Button
+                onClick={() => {
+                    window.location.href = URLUtils.getOauthURL();
+                }}
+            >
+                Login
+            </Button>
+            <Text>Tradershub logged out version will be here. Coming soon. Stay tuned </Text>
+        </div>
     );
 };
