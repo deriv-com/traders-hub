@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useAccountList, useAppData } from '@deriv-com/api-hooks';
+import { useAccountList, useAuthData } from '@deriv-com/api-hooks';
 
 import { useBalance } from '.';
 
@@ -12,7 +12,7 @@ import { useBalance } from '.';
 export const useDerivTradingAccountsList = () => {
     const { data, ...rest } = useAccountList();
     const { data: balanceData } = useBalance();
-    const { activeLoginid } = useAppData();
+    const { activeLoginid } = useAuthData();
 
     const modifiedAccounts = useMemo(() => {
         return data?.map(account => {

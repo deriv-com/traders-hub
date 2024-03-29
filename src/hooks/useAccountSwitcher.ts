@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { useAuthData } from '@deriv-com/api-hooks';
+
 import { Regulation } from '@/constants';
 import { useUIContext } from '@/providers';
 
@@ -29,6 +31,7 @@ export const useAccountSwitcher = () => {
     const { data: tradingAccountsList } = useDerivTradingAccountsList();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
     const { setUIState } = useUIContext();
+    const { switchAccount } = useAuthData();
     const activeAccountType = activeTradingAccount?.is_virtual ? accountTypes[0].value : accountTypes[1].value;
     const activeType = accountTypes.find(account => account.value === activeAccountType);
     const [selectedAccount, setSelected] = useState(activeType);
@@ -63,8 +66,7 @@ export const useAccountSwitcher = () => {
 
             const loginId = account.value === accountTypes[0].value ? demoLoginId : firstRealLoginId;
             if (loginId) {
-                // switchAccount(loginId);
-                //TODO: Use the switchAccount function from the api-hooks package
+                switchAccount(loginId);
             }
 
             // Open the RealAccountCreation modal if the user is in the EU and is switching to a real account
@@ -72,7 +74,7 @@ export const useAccountSwitcher = () => {
                 openModal('RealAccountCreation');
             }
         },
-        [demoLoginId, firstRealLoginId, isEU, openModal, setUIState]
+        [demoLoginId, firstRealLoginId, isEU, openModal, setUIState, switchAccount]
     );
 
     return {

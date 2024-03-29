@@ -37,6 +37,7 @@ export const AddedMT5AccountsList = ({ account }: { account: THooks.MT5AccountsL
                             // else transferModal;
                         }}
                         variant='outlined'
+                        size='sm'
                     >
                         {isVirtual ? 'Top up' : 'Transfer'}
                     </Button>
@@ -49,6 +50,7 @@ export const AddedMT5AccountsList = ({ account }: { account: THooks.MT5AccountsL
                             });
                             openModal('TradeModal');
                         }}
+                        size='sm'
                     >
                         Open
                     </Button>
