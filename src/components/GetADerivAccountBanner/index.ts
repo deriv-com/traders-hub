@@ -1,0 +1,1 @@
+export { GetADerivAccountBanner } from './GetADerivAccountBanner';
