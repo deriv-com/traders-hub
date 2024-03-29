@@ -6,6 +6,7 @@ import {
     AccountsDmt5DerivedIcon,
     AccountsDmt5FinancialIcon,
     AccountsDmt5SwfIcon,
+    BrandDerivWordmarkCoralIcon,
     CurrencyAudIcon,
     CurrencyBtcIcon,
     CurrencyDemoIcon,
@@ -34,6 +35,7 @@ interface IconProps<T> {
 }
 
 export const Icons: Record<string, ElementType> = {
+    Deriv: BrandDerivWordmarkCoralIcon,
     BinaryBot: PartnersProductBinaryBotBrandLightLogoHorizontalIcon,
     CFDs: AccountsDmt5CfdsIcon,
     CTrader: PartnersProductDerivCtraderBrandLightLogoHorizontalIcon,

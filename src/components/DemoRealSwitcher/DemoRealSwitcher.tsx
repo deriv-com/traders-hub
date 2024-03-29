@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import { LabelPairedChevronDownSmRegularIcon } from '@deriv/quill-icons';
+import { useAuthData } from '@deriv-com/api-hooks';
 import { Text } from '@deriv-com/ui';
 
 import { DemoRealSwitcherLoader } from '@/components';
@@ -11,6 +12,7 @@ import { useAccountSwitcher, useRegulationFlags } from '@/hooks';
 export const DemoRealSwitcher = () => {
     const { selectedAccount, setSelectedAccount, accountTypes } = useAccountSwitcher();
     const { isSuccess } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { label, value } = selectedAccount ?? {};
 
@@ -26,6 +28,8 @@ export const DemoRealSwitcher = () => {
     }, []);
 
     if (!isSuccess) return <DemoRealSwitcherLoader />;
+
+    if (!isAuthorized) return null;
 
     return (
         <div className='relative inline-block w-auto' ref={ref}>

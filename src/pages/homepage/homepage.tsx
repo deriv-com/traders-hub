@@ -11,7 +11,7 @@ export const Homepage = () => {
     return (
         <Fragment>
             <AppContainer>
-                <div className='space-y-24'>
+                <div className='space-y-24 pt-48'>
                     <div className='flex justify-between flex-wrap items-center'>
                         <TradersHubHeader />
                     </div>

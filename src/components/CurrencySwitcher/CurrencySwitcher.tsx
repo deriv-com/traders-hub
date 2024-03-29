@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { StandaloneChevronDownBoldIcon } from '@deriv/quill-icons';
+import { useAuthData } from '@deriv-com/api-hooks';
 import { Button } from '@deriv-com/ui';
 
 import { CurrencySwitcherLoader } from '@/components';
@@ -46,6 +47,7 @@ export const CurrencySwitcher = () => {
     const { data: activeAccount, isSuccess } = useActiveDerivTradingAccount();
     const isDemo = activeAccount?.is_virtual;
     const { openModal } = useQueryParams();
+    const { isAuthorized } = useAuthData();
 
     const { noRealCRNonEUAccount, noRealMFEUAccount } = useRegulationFlags();
 
@@ -56,6 +58,8 @@ export const CurrencySwitcher = () => {
     if (!isSuccess) return <CurrencySwitcherLoader />;
 
     const { icon, text } = IconToCurrencyMapper[iconCurrency];
+
+    if (!isAuthorized) return null;
 
     return (
         <div className='flex items-center justify-between w-full gap-16 p-16 border-solid rounded-default border-1 border-system-light-active-background lg:w-auto lg:shrink-0'>
