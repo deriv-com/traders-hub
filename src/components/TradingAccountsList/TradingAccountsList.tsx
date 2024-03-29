@@ -43,7 +43,7 @@ export const TradingAccountsList = () => {
                                     <Text size='sm'>{account.loginid}</Text>
                                 </div>
                                 <div className='text-right'>
-                                    <Text size='sm'>{account.balance}</Text>
+                                    <Text size='sm'>{account.displayBalance}</Text>
                                 </div>
                             </button>
                         );

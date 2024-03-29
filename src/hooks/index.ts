@@ -4,6 +4,7 @@ export { useAvailableMT5Accounts } from './useAvailableMT5Accounts';
 export { useBalance } from './useBalance';
 export { useCreateOtherCFDAccount } from './useCreateOtherCFDAccount';
 export { useCtraderAccountsList } from './useCtraderAccountsList';
+export { useCurrencyConfig } from './useCurrencyConfig';
 export { useDerivTradingAccountsList } from './useDerivTradingAccountsList';
 export { useDxtradeAccountsList } from './useDxtradeAccountsList';
 export { useIsDIELEnabled } from './useIsDIELEnabled';

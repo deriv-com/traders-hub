@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 
 import { useAccountList, useAuthData } from '@deriv-com/api-hooks';
+import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
-import { useBalance } from '.';
+import { useBalance, useCurrencyConfig, useSettings } from '.';
 
 /**
  * Custom hook to get a list of trading accounts
@@ -13,15 +14,25 @@ export const useDerivTradingAccountsList = () => {
     const { data, ...rest } = useAccountList();
     const { data: balanceData } = useBalance();
     const { activeLoginid } = useAuthData();
+    const { getConfig } = useCurrencyConfig();
+    const { data: settingsData } = useSettings();
+
+    const { formatMoney } = FormatUtils;
 
     const modifiedAccounts = useMemo(() => {
         return data?.map(account => {
             return {
                 ...account,
                 isActive: account.loginid === activeLoginid,
+                /** Account's currency config information */
+                currencyConfig: account.currency ? getConfig(account.currency) : undefined,
+                /** indicating whether the account is a virtual-money account. */
+                isVirtual: Boolean(account.is_virtual),
+                /** The platform of the account */
+                platform: 'deriv' as const,
             };
         });
-    }, [data, activeLoginid]);
+    }, [data, activeLoginid, getConfig]);
 
     const modifiedAccountsWithBalance = useMemo(
         () =>
@@ -31,9 +42,15 @@ export const useDerivTradingAccountsList = () => {
                 return {
                     ...account,
                     balance,
+                    /** The balance of the account in currency format. */
+                    displayBalance: `${formatMoney(balance, {
+                        currency: account.currencyConfig?.display_code as CurrencyConstants.Currency,
+                        decimalPlaces: account.currencyConfig?.fractional_digits ?? 2,
+                        locale: settingsData?.preferred_language ?? 'en',
+                    })} ${account.currencyConfig?.display_code}`,
                 };
             }),
-        [modifiedAccounts, balanceData]
+        [modifiedAccounts, balanceData?.accounts, formatMoney, settingsData?.preferred_language]
     );
 
     return { data: modifiedAccountsWithBalance, ...rest };
