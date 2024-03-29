@@ -2,6 +2,7 @@ import { useRegulationFlags } from '@/hooks';
 
 import { GetADerivAccountBanner } from '../GetADerivAccountBanner';
 
+import { CFDContent } from './CFDContent';
 import { CFDHeading } from './CFDHeading';
 
 const CFDSection = () => {
@@ -15,6 +16,7 @@ const CFDSection = () => {
                     <GetADerivAccountBanner />
                 </div>
             )}
+            <CFDContent />
         </div>
     );
 };

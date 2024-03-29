@@ -20,7 +20,8 @@
         "noFallthroughCasesInSwitch": true,
         "types": ["@testing-library/jest-dom"],
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "@cfd/*": ["./src/cfd/*"]
         }
     },
     "include": ["src"],
