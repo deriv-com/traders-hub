@@ -62,9 +62,12 @@ export const CurrencySwitcher = () => {
             <div className='flex-none '>{icon}</div>
             <div className='grow'>
                 {isDemo ? (
-                    <DemoCurrencySwitcherAccountInfo displayBalance={0.0} />
+                    <DemoCurrencySwitcherAccountInfo displayBalance={activeAccount.displayBalance} />
                 ) : (
-                    <RealCurrencySwitcherAccountInfo currencyText={text} displayBalance={0} />
+                    <RealCurrencySwitcherAccountInfo
+                        currencyText={text}
+                        displayBalance={activeAccount?.displayBalance}
+                    />
                 )}
             </div>
             <div className='flex-none'>
