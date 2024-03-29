@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { useAccountList, useAppData } from '@deriv-com/api-hooks';
 
+import { useBalance } from '.';
+
 /**
  * Custom hook to get a list of trading accounts
  * @returns {Object} tradingAccounts - List of trading accounts
@@ -9,6 +11,7 @@ import { useAccountList, useAppData } from '@deriv-com/api-hooks';
  */
 export const useDerivTradingAccountsList = () => {
     const { data, ...rest } = useAccountList();
+    const { data: balanceData } = useBalance();
     const { activeLoginid } = useAppData();
 
     const modifiedAccounts = useMemo(() => {
@@ -20,5 +23,18 @@ export const useDerivTradingAccountsList = () => {
         });
     }, [data, activeLoginid]);
 
-    return { data: modifiedAccounts, ...rest };
+    const modifiedAccountsWithBalance = useMemo(
+        () =>
+            modifiedAccounts?.map(account => {
+                const balance = balanceData?.accounts?.[account.loginid]?.balance ?? 0;
+
+                return {
+                    ...account,
+                    balance,
+                };
+            }),
+        [modifiedAccounts, balanceData]
+    );
+
+    return { data: modifiedAccountsWithBalance, ...rest };
 };
