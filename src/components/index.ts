@@ -11,4 +11,5 @@ export * from './OptionsAndMultipliersSection';
 export * from './StaticLink';
 export * from './TradersHubDesktopContent';
 export * from './TradersHubHeader';
+export * from './TradersHubMobileContent';
 export * from './TradingAccountCard';
