@@ -15,3 +15,4 @@ export { useQueryParams } from './useQueryParams';
 export { useRegulationFlags } from './useRegulationFlags';
 export { useSettings } from './useSettings';
 export { useSortedMT5Accounts } from './useSortedMT5Accounts';
+export { useAccountStatus } from './useAccountStatus';
