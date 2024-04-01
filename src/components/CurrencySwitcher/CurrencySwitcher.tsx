@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { StandaloneChevronDownBoldIcon } from '@deriv/quill-icons';
-import { useAuthData } from '@deriv-com/api-hooks';
+import { useAuthData, useTopupVirtual } from '@deriv-com/api-hooks';
 import { Button } from '@deriv-com/ui';
 
 import { CurrencySwitcherLoader } from '@/components';
@@ -16,6 +16,7 @@ type AccountActionButtonProps = {
 };
 
 const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
+    const { mutate: resetVirtualBalance } = useTopupVirtual();
     const navigate = useNavigate();
     let buttonText = 'Deposit';
     if (isDemo && balance !== 10000) {
@@ -29,8 +30,7 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
             color='black'
             onClick={() => {
                 if (isDemo) {
-                    // resetVirtualBalance();
-                    // TODO: Implement resetVirtualBalance
+                    resetVirtualBalance();
                 } else {
                     navigate('/cashier/deposit');
                 }
@@ -53,13 +53,10 @@ export const CurrencySwitcher = () => {
 
     const iconCurrency = isDemo ? 'virtual' : activeAccount?.currency ?? 'virtual';
 
-    if (noRealCRNonEUAccount || noRealMFEUAccount) return null;
-
-    if (!isSuccess) return <CurrencySwitcherLoader />;
+    if (noRealCRNonEUAccount || noRealMFEUAccount || !isAuthorized) return null;
+    if (!isSuccess && isAuthorized) return <CurrencySwitcherLoader />;
 
     const { icon, text } = IconToCurrencyMapper[iconCurrency];
-
-    if (!isAuthorized) return null;
 
     return (
         <div className='flex items-center justify-between w-full gap-16 p-16 border-solid rounded-default border-1 border-system-light-active-background lg:w-auto lg:shrink-0'>

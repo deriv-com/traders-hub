@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
+import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, Text, useDevice } from '@deriv-com/ui';
 
 import { StaticLink, TitleDescriptionLoader } from '@/components';
@@ -8,10 +9,13 @@ import { useRegulationFlags } from '@/hooks';
 
 const CompareAccountsButton = ({ className }: { className?: string }) => {
     const navigate = useNavigate();
+    const { isAuthorized } = useAuthData();
 
     const { isEU } = useRegulationFlags();
 
     const title = isEU ? 'Account information' : 'Compare Accounts';
+
+    if (!isAuthorized) return null;
 
     return (
         <Button
@@ -29,8 +33,9 @@ const CompareAccountsButton = ({ className }: { className?: string }) => {
 const CFDHeading = () => {
     const { isDesktop } = useDevice();
     const { isSuccess } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
 
-    if (!isSuccess) return <TitleDescriptionLoader />;
+    if (!isSuccess && isAuthorized) return <TitleDescriptionLoader />;
 
     return (
         <div className='flex flex-col'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, useDevice } from '@deriv-com/ui';
 import { URLUtils } from '@deriv-com/utils';
 
@@ -99,6 +100,7 @@ export const OptionsAndMultipliersContent = () => {
     const { isDesktop } = useDevice();
     const { data } = useActiveDerivTradingAccount();
     const { isSuccess: isRegulationAccessible } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
 
     const { isEU } = useRegulationFlags();
 
@@ -108,7 +110,7 @@ export const OptionsAndMultipliersContent = () => {
         ? getoptionsAndMultipliersContent.filter(account => account.title === 'Deriv Trader')
         : getoptionsAndMultipliersContent;
 
-    if (!isRegulationAccessible)
+    if (!isRegulationAccessible && isAuthorized)
         return (
             <div className='pt-40'>
                 <TradingAppCardLoader />

@@ -1,12 +1,14 @@
 import { MT5PlatformsList } from '@cfd/components';
+import { useAuthData } from '@deriv-com/api-hooks';
 
 import { TradingAppCardLoader } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
 export const CFDContent = () => {
     const { isSuccess: isRegulationAccessible } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
 
-    if (!isRegulationAccessible)
+    if (!isRegulationAccessible && isAuthorized)
         return (
             <div className='pt-16 lg:pt-24'>
                 <TradingAppCardLoader />

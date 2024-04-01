@@ -1,3 +1,4 @@
+import { useAuthData } from '@deriv-com/api-hooks';
 import { Text } from '@deriv-com/ui';
 
 import { CurrencySwitcher, StaticLink, TitleDescriptionLoader } from '@/components';
@@ -29,12 +30,13 @@ const getDescription = (isEU: boolean) => {
 export const OptionsAndMultipliersHeading = () => {
     const { isSuccess: isRegulationAccessible } = useRegulationFlags();
     const { isEU } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
 
     const title = isEU ? 'Multipliers' : 'Options & multipliers';
 
     const description = getDescription(isEU);
 
-    if (!isRegulationAccessible) return <TitleDescriptionLoader />;
+    if (!isRegulationAccessible && isAuthorized) return <TitleDescriptionLoader />;
 
     return (
         <div className='flex flex-col items-start justify-between gap-16 lg:flex-row lg:gap-48'>

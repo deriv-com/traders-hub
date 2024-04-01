@@ -27,7 +27,7 @@ export const DemoRealSwitcher = () => {
         setIsDropdownOpen(prevState => !prevState);
     }, []);
 
-    if (!isSuccess) return <DemoRealSwitcherLoader />;
+    if (!isSuccess && isAuthorized) return <DemoRealSwitcherLoader />;
 
     if (!isAuthorized) return null;
 
