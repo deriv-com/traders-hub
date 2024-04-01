@@ -1,6 +1,6 @@
 import { createBrowserRouter, NavigateOptions } from 'react-router-dom';
 
-import { CompareAccounts, Homepage, Login, Signup } from '@/pages';
+import { CompareAccounts, Homepage, Signup } from '@/pages';
 
 type TRoutes = '/' | '/signup' | '/compare-accounts';
 
@@ -12,10 +12,6 @@ declare module 'react-router-dom' {
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Login />,
-    },
-    {
-        path: '/homepage',
         element: <Homepage />,
     },
     {
