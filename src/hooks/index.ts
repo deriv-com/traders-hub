@@ -16,3 +16,5 @@ export { useRegulationFlags } from './useRegulationFlags';
 export { useSettings } from './useSettings';
 export { useSortedMT5Accounts } from './useSortedMT5Accounts';
 export { useAccountStatus } from './useAccountStatus';
+export { useDxtradeAccountHandler } from './useDxtradeAccountHandler';
+export { useMT5AccountHandler } from './useMT5AccountHandler';

@@ -5,9 +5,7 @@ import { useCryptoConfig, useWebsiteStatus } from '@deriv-com/api-hooks';
 /** A custom hook to get the currency config information from `website_status` endpoint and `crypto_config` endpoint. */
 export const useCurrencyConfig = () => {
     const { data: websiteStatusData, isLoading: isWebsiteStatusLoading, ...rest } = useWebsiteStatus();
-    const { data: cryptoConfigData, isLoading: isCryptConfigLoading } = useCryptoConfig({
-        name: 'crypto_config',
-    });
+    const { data: cryptoConfigData, isLoading: isCryptConfigLoading } = useCryptoConfig();
 
     const modifiedCurrencyConfig = useMemo(() => {
         if (!websiteStatusData || !cryptoConfigData) return;

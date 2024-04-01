@@ -5,7 +5,6 @@ import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
 export const useCtraderAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({
-        name: 'trading_platform_accounts',
         payload: { platform: 'ctrader' },
     });
 

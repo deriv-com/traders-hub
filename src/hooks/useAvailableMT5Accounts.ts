@@ -10,7 +10,6 @@ const market_type_to_leverage_mapper: Record<string, number> = {
 
 export const useAvailableMT5Accounts = () => {
     const { data, ...rest } = useTradingPlatformAvailableAccounts({
-        name: 'trading_platform_available_accounts',
         payload: { platform: 'mt5' },
     });
 

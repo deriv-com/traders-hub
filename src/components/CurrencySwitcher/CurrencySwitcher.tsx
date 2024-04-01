@@ -17,6 +17,7 @@ type AccountActionButtonProps = {
 
 const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
     const { mutate: resetVirtualBalance } = useTopupVirtual();
+    const { activeLoginid } = useAuthData();
     const navigate = useNavigate();
     let buttonText = 'Deposit';
     if (isDemo && balance !== 10000) {
@@ -30,7 +31,9 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
             color='black'
             onClick={() => {
                 if (isDemo) {
-                    resetVirtualBalance();
+                    resetVirtualBalance({
+                        loginid: activeLoginid,
+                    });
                 } else {
                     navigate('/cashier/deposit');
                 }

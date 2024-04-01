@@ -8,7 +8,6 @@ export const useLandingCompany = () => {
     const { data: getSettings } = useSettings();
 
     const { data, ...rest } = useAPIHooksLandingCompany({
-        name: 'landing_company',
         payload: { landing_company: getSettings.country_code ?? '' },
     });
 
