@@ -7,7 +7,7 @@ import { URLUtils } from '@deriv-com/utils';
 
 import { TradingAccountCard, TradingAccountCardContent, TradingAppCardLoader } from '@/components';
 import { optionsAndMultipliersContent } from '@/constants';
-import { getUrlBinaryBot, getUrlSmartTrader } from '@/helpers';
+import { getUrlBinaryBot, getUrlDerivTrader, getUrlSmartTrader } from '@/helpers';
 import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
 
 type OptionsAndMultipliersContentItem = {
@@ -35,7 +35,7 @@ const LinkTitle = ({ icon, title }: TLinkTitleProps) => {
         event.persist();
         switch (title) {
             case 'Deriv Trader':
-                window.open(getDerivStaticURL(`/dtrader`));
+                window.open(getUrlDerivTrader());
                 break;
             case 'Deriv Bot':
                 window.open(getDerivStaticURL(`/dbot`));
