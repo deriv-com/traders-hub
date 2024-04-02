@@ -53,6 +53,20 @@ export const getUrlSmartTrader = () => {
     return `${baseLink}/${i18NLanguage.toLowerCase()}/trading.html`;
 };
 
+export const getUrlDerivTrader = () => {
+    const { isStagingDerivApp } = getPlatformFromUrl();
+
+    let baseLink = '';
+
+    if (isStagingDerivApp) {
+        baseLink = derivUrls.DERIV_APP_STAGING;
+    } else {
+        baseLink = derivUrls.DERIV_APP_PRODUCTION;
+    }
+
+    return `${baseLink}/`;
+};
+
 export const getUrlBinaryBot = (isLanguageRequired = true) => {
     const { isStagingDerivApp } = getPlatformFromUrl();
 

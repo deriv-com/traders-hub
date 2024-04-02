@@ -15,7 +15,7 @@ import {
 import { URLUtils } from '@deriv-com/utils';
 
 import { IconComponent } from '../components';
-import { getUrlBinaryBot, getUrlSmartTrader } from '../helpers/urls';
+import { getUrlBinaryBot, getUrlDerivTrader, getUrlSmartTrader } from '../helpers/urls';
 
 const { getDerivStaticURL } = URLUtils;
 
@@ -30,7 +30,8 @@ export const optionsAndMultipliersContent = (isEU: boolean) => [
     {
         description: isEU ? 'Multipliers trading platform.' : 'Options and multipliers trading platform.',
         icon: <IconComponent icon='DTrader' />,
-        redirect: '/',
+        redirect: getUrlDerivTrader(),
+        isExternal: true,
         smallIcon: <IconComponent height={32} icon='DTrader' width={32} />,
         title: 'Deriv Trader',
     },
