@@ -39,8 +39,8 @@ jobs:
               id: publish_to_pages_branch
               uses: "deriv-com/shared-actions/.github/actions/publish_to_pages_branch@v1"
               with:
-                CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_ACCOUNT_DER_API_KEY }}
-                CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_DER_ID }}
+                CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
                 project_name: "traders-hub"
                 branch_name: staging
                 output_dir: dist
