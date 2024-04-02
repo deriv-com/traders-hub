@@ -4,7 +4,6 @@ import { useBalance as useAPIBalance } from '@deriv-com/api-hooks';
 
 export const useBalance = () => {
     const { data, ...rest } = useAPIBalance({
-        name: 'balance',
         payload: { account: 'all' },
     });
 

@@ -1,5 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
 
+import { MT5PasswordModal, MT5SuccessModal } from '@/cfd/modals';
+
 import { AccountSelector } from '.';
 
 /**
@@ -11,6 +13,8 @@ export const Modals = () => {
         <Fragment>
             {/* PLS DO NOT ADD ANY PROPS TO ANY MODALS HERE.💥 */}
             <AccountSelector />
+            <MT5PasswordModal />
+            <MT5SuccessModal />
         </Fragment>
     );
 };
