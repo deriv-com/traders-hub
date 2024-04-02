@@ -2,12 +2,12 @@ import { ReactNode } from 'react';
 
 import { PlatformDetails } from '@cfd/constants';
 
-import CTraderSuccess from '@/assets/cfd/ctrader-success.svg';
-import DerivXSuccess from '@/assets/cfd/dxtrade-success.svg';
-import MT5DerivedSuccess from '@/assets/cfd/mt5-derived-success.svg';
-import MT5FinancialSuccess from '@/assets/cfd/mt5-financial-success.svg';
-import MT5SwapFreeSuccess from '@/assets/cfd/mt5-swap-free-success.svg';
-import CheckMark from '@/assets/svgs/checkmark.svg';
+import CTraderSuccess from '@/assets/cfd/ctrader-success.svg?react';
+import DerivXSuccess from '@/assets/cfd/dxtrade-success.svg?react';
+import MT5DerivedSuccess from '@/assets/cfd/mt5-derived-success.svg?react';
+import MT5FinancialSuccess from '@/assets/cfd/mt5-financial-success.svg?react';
+import MT5SwapFreeSuccess from '@/assets/cfd/mt5-swap-free-success.svg?react';
+import CheckMark from '@/assets/svgs/checkmark.svg?react';
 import { ActionScreen } from '@/components';
 import { TMarketTypes, TPlatforms } from '@/types';
 

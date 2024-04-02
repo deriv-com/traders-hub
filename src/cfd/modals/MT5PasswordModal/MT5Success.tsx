@@ -12,7 +12,7 @@ import { CFDSuccess } from '@cfd/screens';
 import { useActiveDerivTradingAccount, useMT5AccountsList, useRegulationFlags } from '@/hooks';
 import { useCFDContext } from '@/providers';
 
-const MT5SuccessModal = () => {
+export const MT5Success = () => {
     const { isEU } = useRegulationFlags();
     const { data: mt5Accounts } = useMT5AccountsList();
     const { data: activeTrading } = useActiveDerivTradingAccount();
@@ -49,5 +49,3 @@ const MT5SuccessModal = () => {
         />
     );
 };
-
-export default MT5SuccessModal;
