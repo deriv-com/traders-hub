@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@deriv-com/api-hooks": "^0.0.17",
-        "@deriv-com/ui": "1.12.7",
+        "@deriv-com/ui": "1.12.19",
         "@deriv-com/utils": "^0.0.11",
         "@deriv/quill-icons": "latest",
         "clsx": "^2.1.0",
