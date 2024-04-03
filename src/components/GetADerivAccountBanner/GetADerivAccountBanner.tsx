@@ -14,7 +14,7 @@ export const GetADerivAccountBanner = () => {
     return (
         <div className='flex items-center justify-center w-full gap-16 p-16 rounded-xs bg-system-light-secondary-background'>
             <Text weight='bold'>You need a Deriv account to create a CFD account.</Text>
-            <Button className='rounded-xs' onClick={() => openModal('RealAccountCreation')}>
+            <Button className='rounded-xs' onClick={() => openModal('RealAccountCreation')} size='sm'>
                 Get a Deriv account
             </Button>
         </div>

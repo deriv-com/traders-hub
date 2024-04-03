@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { CFDPlatformLayout } from '@cfd/components';
 import { PlatformDetails } from '@cfd/constants';
 import { AddedMT5AccountsList, AvailableMT5AccountsList } from '@cfd/flows';
@@ -9,20 +7,11 @@ import { useActiveDerivTradingAccount, useSortedMT5Accounts } from '@/hooks';
 import { useUIContext } from '@/providers';
 import { THooks } from '@/types';
 
-type TMT5PlatformsListProps = {
-    onMT5PlatformListLoaded?: (value: boolean) => void;
-};
-
-export const MT5PlatformsList = ({ onMT5PlatformListLoaded }: TMT5PlatformsListProps) => {
+export const MT5PlatformsList = () => {
     const { uiState } = useUIContext();
     const { accountType } = uiState;
     const { data: sortedMt5Accounts, isFetchedAfterMount } = useSortedMT5Accounts();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
-
-    useEffect(() => {
-        onMT5PlatformListLoaded?.(isFetchedAfterMount);
-        return () => onMT5PlatformListLoaded?.(false);
-    }, [isFetchedAfterMount, onMT5PlatformListLoaded]);
 
     return (
         <CFDPlatformLayout title={PlatformDetails.mt5.title}>
