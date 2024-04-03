@@ -10,6 +10,7 @@
         "test:lint": "prettier --log-level silent --write . && eslint \"./src/**/*.?(js|jsx|ts|tsx)\"",
         "test": "jest --passWithNoTests",
         "test:coverage": "jest --coverage --passWithNoTests",
+        "test:report": "jest --collectCoverage",
         "prepare": "husky install"
     },
     "dependencies": {
