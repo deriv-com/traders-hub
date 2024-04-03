@@ -3,8 +3,8 @@ import React, { ChangeEvent } from 'react';
 import { CFDPlatforms, PlatformDetails } from '@cfd/constants';
 import { Modal, PasswordInput, Text } from '@deriv-com/ui';
 
-import DxtradePasswordIcon from '@/assets/svgs/ic-derivx-password-updated.svg';
-import MT5PasswordIcon from '@/assets/svgs/ic-mt5-password.svg';
+import DxtradePasswordIcon from '@/assets/svgs/ic-derivx-password-updated.svg?react';
+import MT5PasswordIcon from '@/assets/svgs/ic-mt5-password.svg?react';
 import { useCFDContext } from '@/providers';
 
 import DxtradePasswordFooter from '../../modals/DxtradePasswordModal/DxtradePasswordFooter';

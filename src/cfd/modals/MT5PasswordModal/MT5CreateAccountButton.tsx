@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { Button } from '@deriv-com/ui';
+import { Button, useDevice } from '@deriv-com/ui';
 
 import { useMT5AccountHandler, useQueryParams } from '@/hooks';
 
@@ -17,6 +17,7 @@ export const MT5CreateAccountButton = ({ buttonText, password }: TCreateAccountB
         tradingPlatformPasswordChangeLoading,
         createMT5AccountStatus,
     } = useMT5AccountHandler();
+    const { isDesktop } = useDevice();
     const { openModal } = useQueryParams();
 
     const isLoading = tradingPlatformPasswordChangeLoading || createMT5AccountLoading;
@@ -33,7 +34,12 @@ export const MT5CreateAccountButton = ({ buttonText, password }: TCreateAccountB
     }, [doesNotMeetPasswordPolicy, createMT5AccountStatus, openModal]);
 
     return (
-        <Button disabled={isDisabled} isLoading={isLoading} onClick={() => handleSubmit(password)}>
+        <Button
+            disabled={isDisabled}
+            isLoading={isLoading}
+            onClick={() => handleSubmit(password)}
+            isFullWidth={!isDesktop}
+        >
             {buttonText}
         </Button>
     );

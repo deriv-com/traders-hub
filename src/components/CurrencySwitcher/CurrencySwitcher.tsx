@@ -7,12 +7,13 @@ import { Button } from '@deriv-com/ui';
 import { CurrencySwitcherLoader } from '@/components';
 import { IconToCurrencyMapper } from '@/constants';
 import { useActiveDerivTradingAccount, useQueryParams, useRegulationFlags } from '@/hooks';
+import { THooks } from '@/types';
 
 import { DemoCurrencySwitcherAccountInfo, RealCurrencySwitcherAccountInfo } from './CurrencySwitcherAccountInfo';
 
 type AccountActionButtonProps = {
-    balance: number;
-    isDemo: boolean;
+    balance: THooks.ActiveDerivTradingAccount['balance'];
+    isDemo: THooks.ActiveDerivTradingAccount['isVirtual'];
 };
 
 const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
@@ -48,7 +49,7 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
 
 export const CurrencySwitcher = () => {
     const { data: activeAccount, isSuccess } = useActiveDerivTradingAccount();
-    const isDemo = activeAccount?.is_virtual;
+    const isDemo = activeAccount?.isVirtual;
     const { openModal } = useQueryParams();
     const { isAuthorized } = useAuthData();
 
@@ -75,7 +76,7 @@ export const CurrencySwitcher = () => {
                 )}
             </div>
             <div className='flex-none'>
-                <AccountActionButton balance={0} isDemo={!!isDemo} />
+                <AccountActionButton balance={activeAccount?.balance ?? 0} isDemo={isDemo ?? false} />
             </div>
             {!isDemo && (
                 <StandaloneChevronDownBoldIcon

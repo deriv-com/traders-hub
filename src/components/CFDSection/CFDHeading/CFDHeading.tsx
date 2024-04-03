@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
 
 import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, Text, useDevice } from '@deriv-com/ui';
@@ -7,7 +6,7 @@ import { Button, Text, useDevice } from '@deriv-com/ui';
 import { StaticLink, TitleDescriptionLoader } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
-const CompareAccountsButton = ({ className }: { className?: string }) => {
+const CompareAccountsButton = () => {
     const navigate = useNavigate();
     const { isAuthorized } = useAuthData();
 
@@ -19,11 +18,11 @@ const CompareAccountsButton = ({ className }: { className?: string }) => {
 
     return (
         <Button
-            className={twMerge('no-underline', className)}
             color='primary'
             onClick={() => navigate('/traders-hub/compare-accounts')}
             size='sm'
             variant='ghost'
+            hideHoverStyles
         >
             {title}
         </Button>
@@ -51,7 +50,7 @@ const CFDHeading = () => {
                 Trade with leverage and tight spreads for better returns on trades.
                 <StaticLink staticUrl='/trade-types/cfds/'>Learn more</StaticLink>
             </Text>
-            {!isDesktop && <CompareAccountsButton className='mt-16' />}
+            {!isDesktop && <CompareAccountsButton />}
         </div>
     );
 };
