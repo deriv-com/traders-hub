@@ -51,7 +51,7 @@ jobs:
         shell: bash
 
       - name: "Run Tests"
-        run: npm run test
+        run: npm run test:report
 
       - name: Publish to CF pages branch
         id: publish_to_pages_branch
