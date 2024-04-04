@@ -17,3 +17,4 @@ export * from './TradingAccountsList';
 export * from './ActionScreen';
 export * from './TotalAssets';
 export * from './RegulationSwitcher';
+export * from './RegulationTableContent';
