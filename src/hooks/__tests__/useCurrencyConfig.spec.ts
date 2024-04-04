@@ -10,7 +10,6 @@ jest.mock('@deriv-com/api-hooks', () => ({
 
 describe('useCurrencyConfig', () => {
     it('returns the expected data structure', async () => {
-        // Mock the return values of the hooks that useCurrencyConfig depends on
         (useWebsiteStatus as jest.Mock).mockReturnValue({
             data: { currencies_config: { USD: { type: 'fiat' }, BTC: { type: 'crypto' } } },
             isLoading: false,
@@ -20,10 +19,8 @@ describe('useCurrencyConfig', () => {
             isLoading: false,
         });
 
-        // Render the hook
         const { result } = renderHook(() => useCurrencyConfig());
 
-        // Check the return value of the hook
         expect(result.current.data).toEqual({
             USD: {
                 type: 'fiat',
@@ -46,7 +43,6 @@ describe('useCurrencyConfig', () => {
     });
 
     it('returns the correct config for a given currency', async () => {
-        // Mock the return values of the hooks that useCurrencyConfig depends on
         (useWebsiteStatus as jest.Mock).mockReturnValue({
             data: { currencies_config: { USD: { type: 'fiat' }, BTC: { type: 'crypto' } } },
             isLoading: false,
@@ -56,13 +52,10 @@ describe('useCurrencyConfig', () => {
             isLoading: false,
         });
 
-        // Render the hook
         const { result } = renderHook(() => useCurrencyConfig());
 
-        // Call getConfig with a currency code
         const config = result.current.getConfig('USD');
 
-        // Check that getConfig returns the expected object
         expect(config).toEqual({
             type: 'fiat',
             isCrypto: false,
@@ -74,7 +67,6 @@ describe('useCurrencyConfig', () => {
     });
 
     it('returns "USDT" as display_code for "UST"', async () => {
-        // Mock the return values of the hooks that useCurrencyConfig depends on
         (useWebsiteStatus as jest.Mock).mockReturnValue({
             data: { currencies_config: { UST: { type: 'crypto' } } },
             isLoading: false,
@@ -84,13 +76,10 @@ describe('useCurrencyConfig', () => {
             isLoading: false,
         });
 
-        // Render the hook
         const { result } = renderHook(() => useCurrencyConfig());
 
-        // Call getConfig with 'UST'
         const config = result.current.getConfig('UST');
 
-        // Check that display_code is 'USDT' for 'UST'
         expect(config?.display_code).toEqual('USDT');
     });
 
@@ -106,7 +95,6 @@ describe('useCurrencyConfig', () => {
 
         const { result } = renderHook(() => useCurrencyConfig());
 
-        // Check the return value of the hook
         expect(result.current.data).toBeUndefined();
         expect(result.current.isLoading).toBe(false);
     });
