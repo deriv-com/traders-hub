@@ -1,10 +1,9 @@
 name: Generate preview link
 
 on:
-  pull_request: 
-    branches: [main]
   pull_request_target:
     types: [opened, synchronize]
+    branches: [main]
 
 env:
   HEAD_REF: ${{ github.head_ref }}
