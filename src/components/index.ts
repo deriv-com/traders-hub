@@ -16,3 +16,6 @@ export * from './TradingAccountCard';
 export * from './TradingAccountsList';
 export * from './ProgressBar';
 export * from './ActionScreen';
+export * from './TotalAssets';
+export * from './RegulationSwitcher';
+export * from './RegulationTableContent';

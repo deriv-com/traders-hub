@@ -19,3 +19,6 @@ export { useAccountStatus } from './useAccountStatus';
 export { useCurrencies } from './useCurrencies';
 export { useSyncLocalStorageClientAccounts } from './useSyncLocalStorageClientAccounts';
 export { useNewCRRealAccount } from './useNewCRRealAccount';
+export { useDxtradeAccountHandler } from './useDxtradeAccountHandler';
+export { useMT5AccountHandler } from './useMT5AccountHandler';
+export { useRegulationSwitcher } from './useRegulationSwitcher';

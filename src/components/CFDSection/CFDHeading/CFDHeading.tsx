@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
 
 import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, Text, useDevice } from '@deriv-com/ui';
@@ -7,53 +6,53 @@ import { Button, Text, useDevice } from '@deriv-com/ui';
 import { StaticLink, TitleDescriptionLoader } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
-const CompareAccountsButton = ({ className }: { className?: string }) => {
-    const navigate = useNavigate();
-    const { isAuthorized } = useAuthData();
+const CompareAccountsButton = () => {
+  const navigate = useNavigate();
+  const { isAuthorized } = useAuthData();
 
-    const { isEU } = useRegulationFlags();
+  const { isEU } = useRegulationFlags();
 
-    const title = isEU ? 'Account information' : 'Compare Accounts';
+  const title = isEU ? 'Account information' : 'Compare Accounts';
 
-    if (!isAuthorized) return null;
+  if (!isAuthorized) return null;
 
-    return (
-        <Button
-            className={twMerge('no-underline', className)}
-            color='primary'
-            onClick={() => navigate('/traders-hub/compare-accounts')}
-            size='sm'
-            variant='ghost'
-        >
-            {title}
-        </Button>
-    );
+  return (
+    <Button
+      color='primary'
+      onClick={() => navigate('/traders-hub/compare-accounts')}
+      size='sm'
+      variant='ghost'
+      hideHoverStyles
+    >
+      {title}
+    </Button>
+  );
 };
 
 const CFDHeading = () => {
-    const { isDesktop } = useDevice();
-    const { isSuccess } = useRegulationFlags();
-    const { isAuthorized } = useAuthData();
+  const { isDesktop } = useDevice();
+  const { isSuccess } = useRegulationFlags();
+  const { isAuthorized } = useAuthData();
 
-    if (!isSuccess && isAuthorized) return <TitleDescriptionLoader />;
+  if (!isSuccess && isAuthorized) return <TitleDescriptionLoader />;
 
-    return (
-        <div className='flex flex-col'>
-            {isDesktop && (
-                <div className='flex items-center gap-x-4'>
-                    <Text size='lg' weight='bold' align='left'>
-                        CFDs
-                    </Text>
-                    <CompareAccountsButton />
-                </div>
-            )}
-            <Text className='leading-18' size='sm' align='left'>
-                Trade with leverage and tight spreads for better returns on trades.
-                <StaticLink staticUrl='/trade-types/cfds/'>Learn more</StaticLink>
-            </Text>
-            {!isDesktop && <CompareAccountsButton className='mt-16' />}
+  return (
+    <div className='flex flex-col'>
+      {isDesktop && (
+        <div className='flex items-center gap-x-4 '>
+          <Text size='lg' weight='bold' align='left'>
+            CFDs
+          </Text>
+          <CompareAccountsButton />
         </div>
-    );
+      )}
+      <Text className='leading-18' size='sm' align='left'>
+        Trade with leverage and tight spreads for better returns on trades.
+        <StaticLink staticUrl='/trade-types/cfds/'>Learn more</StaticLink>
+      </Text>
+      <div className='flex items-start'>{!isDesktop && <CompareAccountsButton />}</div>
+    </div>
+  );
 };
 
 export default CFDHeading;
