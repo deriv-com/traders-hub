@@ -10,13 +10,13 @@ export const useIsDIELEnabled = () => {
     const { data, ...rest } = useLandingCompany();
 
     const modifiedData = useMemo(() => {
-        if (!data) return;
+        if (data) {
+            const { financial_company, gaming_company } = data;
 
-        const { financial_company, gaming_company } = data;
+            const isDIELEnabled = financial_company?.shortcode === 'maltainvest' && gaming_company?.shortcode === 'svg';
 
-        const isDIELEnabled = financial_company?.shortcode === 'maltainvest' && gaming_company?.shortcode === 'svg';
-
-        return isDIELEnabled;
+            return isDIELEnabled;
+        }
     }, [data]);
 
     return {
