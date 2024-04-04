@@ -15,3 +15,4 @@ export * from './TradersHubMobileContent';
 export * from './TradingAccountCard';
 export * from './TradingAccountsList';
 export * from './ActionScreen';
+export * from './TotalAssets';
