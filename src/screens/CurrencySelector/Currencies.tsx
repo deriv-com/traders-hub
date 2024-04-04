@@ -27,7 +27,7 @@ export const Currencies = ({ type, list: currencies = [] }: TCurrencies) => {
                 {type === CurrencyTypes.CRYPTO ? 'Cryptocurrencies' : 'Fiat Currencies'}
             </Text>
             {type === CurrencyTypes.FIAT && (
-                <InlineMessage className='my-16 lg:w-[261px]' variant='info'>
+                <InlineMessage className='my-16 lg:w-fit' variant='info'>
                     <Text as='p' size='xs'>
                         Please note that you can only have 1 fiat account.
                     </Text>

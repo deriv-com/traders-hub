@@ -58,6 +58,7 @@ export const useNewCRRealAccount = () => {
             phone: state.phoneNumber,
             place_of_birth: state.placeOfBirth,
             date_of_birth: state.dateOfBirth,
+            // @ts-expect-error type mismatch between the API and the form
             account_opening_reason: state.accountOpeningReason,
             ...(state.taxIdentificationNumber
                 ? { tax_identification_number: state.taxIdentificationNumber, tax_residence: state.taxResidence }

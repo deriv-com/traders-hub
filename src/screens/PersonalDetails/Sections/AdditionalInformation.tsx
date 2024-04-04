@@ -43,14 +43,12 @@ export const AdditionalInformation = () => {
         taxResidence: string;
     }>();
 
-    const { data: residenceList } = useResidenceList({
-        name: 'residence_list',
-    });
+    const { data: residenceList } = useResidenceList();
 
     // need UI fixes for the below Dropdowns from deriv-ui
 
     return (
-        <div>
+        <>
             <div className='flex items-center gap-16'>
                 <Text as='p' className='my-16 shrink-0' weight='bold'>
                     Additional information
@@ -141,6 +139,6 @@ export const AdditionalInformation = () => {
                 />
                 {values.taxIdentificationNumber && values.taxResidence && <TaxInfoConfirmation />}
             </div>
-        </div>
+        </>
     );
 };

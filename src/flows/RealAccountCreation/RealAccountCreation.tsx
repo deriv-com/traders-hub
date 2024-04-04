@@ -41,8 +41,6 @@ const ModalBody = memo(
             }
         }, [formProgressSteps.length, setTotalSteps]);
 
-        // console.log(formProgressSteps, currentStep);
-
         return (
             <div className='bg-system-light-primary-background lg:max-h-[717px] lg:max-w-[1040px] h-screen w-screen lg:rounded-xl flex overflow-hidden'>
                 <div className='d-none lg:block min-w-[256px] bg-system-light-secondary-background p-24'>

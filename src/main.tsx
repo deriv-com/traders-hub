@@ -13,20 +13,20 @@ import App from './App.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <QueryClientProvider client={new QueryClient()}>
-      <AppDataProvider>
-        <UIProvider>
-          <CFDProvider>
-            <RealAccountCreationProvider>
-              {/* Temporary Header */}
-              <Header />
-              <App />
-            </RealAccountCreationProvider>
-          </CFDProvider>
-        </UIProvider>
-      </AppDataProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <QueryClientProvider client={new QueryClient()}>
+            <AppDataProvider>
+                <UIProvider>
+                    <CFDProvider>
+                        <RealAccountCreationProvider>
+                            {/* Temporary Header */}
+                            <Header />
+                            <App />
+                        </RealAccountCreationProvider>
+                    </CFDProvider>
+                </UIProvider>
+            </AppDataProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+    </React.StrictMode>
 );
