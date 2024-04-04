@@ -1,4 +1,3 @@
-// import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Text } from '@deriv-com/ui';
