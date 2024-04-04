@@ -24,8 +24,8 @@ describe('useCtraderAccountsList hook', () => {
         const { result } = renderHook(() => useCtraderAccountsList());
 
         expect(result.current.data).toEqual([
-            { ...mockData[0], platform: 'ctrader', is_virtual: true, loginid: '1', display_balance: '1000 USD' },
-            { ...mockData[1], platform: 'ctrader', is_virtual: false, loginid: '2', display_balance: '2000 EUR' },
+            { ...mockData[0], platform: 'ctrader', is_virtual: true, loginid: '1', display_balance: '1000 USD USD' },
+            { ...mockData[1], platform: 'ctrader', is_virtual: false, loginid: '2', display_balance: '2000 EUR EUR' },
         ]);
     });
 
@@ -53,7 +53,7 @@ describe('useCtraderAccountsList hook', () => {
         const { result } = renderHook(() => useCtraderAccountsList());
 
         expect(result.current.data).toEqual([
-            { ...mockData[0], platform: 'ctrader', is_virtual: true, loginid: '1', display_balance: '0 USD' },
+            { ...mockData[0], platform: 'ctrader', is_virtual: true, loginid: '1', display_balance: '0 USD USD' },
         ]);
     });
 });
