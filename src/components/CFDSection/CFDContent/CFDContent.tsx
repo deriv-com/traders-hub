@@ -1,4 +1,4 @@
-import { CTraderList, MT5PlatformsList } from '@cfd/components';
+import { CTraderList, MT5PlatformsList, OtherCFDPlatformsList } from '@cfd/components';
 import { useAuthData } from '@deriv-com/api-hooks';
 
 import { TradingAppCardLoader } from '@/components';
@@ -19,6 +19,7 @@ export const CFDContent = () => {
         <div className='pt-16 space-y-16 lg:space-y-24 lg:pt-24'>
             <MT5PlatformsList />
             {!isEU && <CTraderList />}
+            {!isEU && <OtherCFDPlatformsList />}
         </div>
     );
 };

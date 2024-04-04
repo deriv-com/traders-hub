@@ -39,7 +39,7 @@ const CFDHeading = () => {
     return (
         <div className='flex flex-col'>
             {isDesktop && (
-                <div className='flex items-center gap-x-4'>
+                <div className='flex items-center gap-x-4 '>
                     <Text size='lg' weight='bold' align='left'>
                         CFDs
                     </Text>
@@ -50,7 +50,7 @@ const CFDHeading = () => {
                 Trade with leverage and tight spreads for better returns on trades.
                 <StaticLink staticUrl='/trade-types/cfds/'>Learn more</StaticLink>
             </Text>
-            {!isDesktop && <CompareAccountsButton />}
+            <div className='flex items-start'>{!isDesktop && <CompareAccountsButton />}</div>
         </div>
     );
 };
