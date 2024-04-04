@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import { AppDataProvider } from '@deriv-com/api-hooks';
 
-import { CFDProvider, UIProvider } from '@/providers';
+import { CFDProvider, RealAccountCreationProvider, UIProvider } from '@/providers';
 
 import { Header } from './components/Header/Header.tsx';
 import App from './App.tsx';
@@ -15,9 +15,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <AppDataProvider>
             <UIProvider>
                 <CFDProvider>
-                    {/* Temporary Header */}
-                    <Header />
-                    <App />
+                    <RealAccountCreationProvider>
+                        {/* Temporary Header */}
+                        <Header />
+                        <App />
+                    </RealAccountCreationProvider>
                 </CFDProvider>
             </UIProvider>
         </AppDataProvider>

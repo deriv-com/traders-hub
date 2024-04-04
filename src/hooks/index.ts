@@ -16,3 +16,6 @@ export { useRegulationFlags } from './useRegulationFlags';
 export { useSettings } from './useSettings';
 export { useSortedMT5Accounts } from './useSortedMT5Accounts';
 export { useAccountStatus } from './useAccountStatus';
+export { useCurrencies } from './useCurrencies';
+export { useSyncLocalStorageClientAccounts } from './useSyncLocalStorageClientAccounts';
+export { useNewCRRealAccount } from './useNewCRRealAccount';
