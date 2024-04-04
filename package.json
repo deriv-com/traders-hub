@@ -14,11 +14,13 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@deriv-com/api-hooks": "^0.0.17",
+        "@deriv-com/api-hooks": "^0.0.21",
         "@deriv-com/ui": "1.12.19",
         "@deriv-com/utils": "^0.0.11",
         "@deriv/quill-icons": "latest",
         "@svgr/core": "^8.1.0",
+        "@tanstack/react-query": "^5.28.14",
+        "@tanstack/react-query-devtools": "^5.28.14",
         "clsx": "^2.1.0",
         "js-cookie": "^3.0.5",
         "react": "^18.2.0",
