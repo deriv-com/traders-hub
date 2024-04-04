@@ -4,7 +4,7 @@ import { DemoRealSwitcher } from '@/components';
 
 export const TradersHubHeader = () => {
     return (
-        <div className='flex flex-col gap-8 lg:flex-row w-1/2 lg:w-auto items-center'>
+        <div className='flex flex-col gap-4 lg:flex-row w-1/2 lg:w-auto'>
             <Text weight='bold' size='lg'>
                 Trader&apos;s Hub
             </Text>
