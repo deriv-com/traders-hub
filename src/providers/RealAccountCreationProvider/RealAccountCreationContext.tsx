@@ -14,43 +14,25 @@ export const ACTION_TYPES = {
 const initialHelpers: Helpers = {
     canGoToNextStep: false,
     canGoToPrevStep: false,
-    goToNextStep: /* noop */ () => {
-        /* noop */
-    },
-    goToPrevStep: /* noop */ () => {
-        /* noop */
-    },
-    reset: /* noop */ () => {
-        /* noop */
-    },
-    setStep: /* noop */ (() => {
-        /* noop */
-    }) as React.Dispatch<React.SetStateAction<number>>,
+    goToNextStep: () => {},
+    goToPrevStep: () => {},
+    reset: () => {},
+    setStep: (() => {}) as React.Dispatch<React.SetStateAction<number>>,
 };
 
 export const RealAccountCreationContext = createContext<TRealAccountCreationContext>({
     currentStep: 0,
-    dispatch: /* noop */ () => {
-        /* noop */
-    },
+    dispatch: () => {},
     helpers: initialHelpers,
     isSuccessModalOpen: false,
     isWizardOpen: false,
-    setIsSuccessModalOpen: /* noop */ () => {
-        /* noop */
-    },
-    setIsWizardOpen: /* noop */ () => {
-        /* noop */
-    },
-    setTotalSteps: /* noop */ () => {
-        /* noop */
-    },
+    setIsSuccessModalOpen: () => {},
+    setIsWizardOpen: () => {},
+    setTotalSteps: () => {},
     state: {
         currency: '',
     },
-    reset: /* noop */ () => {
-        /* noop */
-    },
+    reset: () => {},
     totalSteps: 0,
 });
 
@@ -67,7 +49,7 @@ export const useRealAccountCreationContext = () => {
 /**
  * @name RealAccountCreationProvider
  * @description The RealAccountCreationProvider component is used to wrap the components that need access to the RealAccountCreationContext.
- * @param {React.ReactNode} children - The content to be wrapped.
+ * @param children - The content to be wrapped.
  */
 export const RealAccountCreationProvider = ({ children }: TRealAccountCreationProvider) => {
     const [isWizardOpen, setIsWizardOpen] = useState(false);

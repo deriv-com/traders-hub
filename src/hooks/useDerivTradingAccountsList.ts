@@ -36,7 +36,7 @@ export const useDerivTradingAccountsList = () => {
 
     const modifiedAccountsWithBalance = useMemo(
         () =>
-            modifiedAccounts?.map(account => {
+            (modifiedAccounts ?? [])?.map(account => {
                 const balance = balanceData?.accounts?.[account.loginid]?.balance ?? 0;
 
                 return {

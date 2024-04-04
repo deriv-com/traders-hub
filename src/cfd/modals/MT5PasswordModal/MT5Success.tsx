@@ -27,9 +27,7 @@ export const MT5Success = () => {
             ? PlatformDetails[platform].title
             : MarketTypeDetails(isEU)[marketType].title;
 
-    const landingCompanyName = `(${
-        companyNamesAndUrls?.[selectedJurisdiction as TTM5FilterLandingCompany]?.shortcode
-    })`;
+    const landingCompanyName = `(${companyNamesAndUrls?.[selectedJurisdiction as TTM5FilterLandingCompany]?.shortcode})`;
 
     const SuccessDescription = isDemo
         ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} account. To start trading, transfer funds from your Deriv account into this account.`

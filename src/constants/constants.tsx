@@ -133,3 +133,15 @@ export const BrokerCodes = {
     CR: 'CR',
     MF: 'MF',
 } as const;
+
+/**
+ * @name CurrenciesListOrder
+ * @description The CurrenciesListOrder object is used to define the order of the currencies in the currency selector screen.
+ */
+export const CurrenciesListOrder: {
+    CRYPTO: string[];
+    FIAT: string[];
+} = {
+    FIAT: ['USD', 'EUR', 'GBP', 'AUD'],
+    CRYPTO: ['TUSDT', 'BTC', 'ETH', 'LTC', 'UST', 'eUSDT', 'BUSD', 'DAI', 'EURS', 'IDK', 'PAX', 'TUSD', 'USDC', 'USDK'],
+};

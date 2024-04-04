@@ -1,7 +1,8 @@
 import { ComponentProps, isValidElement, ReactNode } from 'react';
-import { twMerge } from 'tailwind-merge';
 
 import { Text } from '@deriv-com/ui';
+
+import { cn } from '@/utils';
 
 type TActionScreenProps = {
     children?: ReactNode;
@@ -15,9 +16,16 @@ type TActionScreenProps = {
 };
 
 /**
- * Generic component to display status / action screen / final screen
- * As its common and repeated in many places,
- * at the moment of writing this, there are already 3 different patterns use to display ex
+ * @description Component to display a screen with an icon, title, description, and buttons.
+ * @param children - The children to render.
+ * @param className - The class name to apply to the component.
+ * @param description - The description to display.
+ * @param typeof Text>['size']} descriptionSize - The size of the description text.
+ * @param icon - The icon to display.
+ * @param renderButtons - The function to render the buttons.
+ * @param title - The title to display.
+ * @param typeof Text>['size']} titleSize - The size of the title text.
+ * @returns JSX.Element The component to render.
  */
 export const ActionScreen = ({
     children,
@@ -30,9 +38,7 @@ export const ActionScreen = ({
     titleSize = 'md',
 }: TActionScreenProps) => {
     return (
-        <div
-            className={twMerge('flex flex-col items-center justify-center gap-24 w-auto h-auto rounded-xs', className)}
-        >
+        <div className={cn('flex flex-col items-center justify-center gap-24 w-auto h-auto rounded-xs', className)}>
             {icon}
             <div className='flex flex-col items-center justify-center gap-8'>
                 {title && (

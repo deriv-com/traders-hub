@@ -1,0 +1,1 @@
+export { FinancialAssessment } from './FinancialAssessment';
