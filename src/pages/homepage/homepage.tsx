@@ -14,7 +14,10 @@ export const Homepage = () => {
 
     const setLoginCookie = (token: string) => {
         if (import.meta.env.MODE === 'production') {
-            return Cookies.set('authToken', token, { domain: 'deriv.com', path: '/' });
+            const pagesDomain = Cookies.set('authToken', token, { domain: 'pages.dev', path: '/' });
+            const appDomain = Cookies.set('authToken', token, { domain: 'deriv.com', path: '/' });
+
+            return !!pagesDomain || !!appDomain;
         }
         Cookies.set('authToken', token);
     };
