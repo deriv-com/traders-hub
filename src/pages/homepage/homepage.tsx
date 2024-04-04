@@ -17,7 +17,7 @@ export const Homepage = () => {
             const pagesDomain = Cookies.set('authToken', token, { domain: 'pages.dev', path: '/' });
             const appDomain = Cookies.set('authToken', token, { domain: 'deriv.com', path: '/' });
 
-            return pagesDomain || appDomain;
+            return !!pagesDomain || !!appDomain;
         }
         Cookies.set('authToken', token);
     };
