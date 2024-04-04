@@ -5,37 +5,42 @@ import { Button, useDevice } from '@deriv-com/ui';
 import { useMT5AccountHandler, useQueryParams } from '@/hooks';
 
 type TCreateAccountButtonProps = {
-  buttonText: string;
-  password: string;
+    buttonText: string;
+    password: string;
 };
 
 export const MT5CreateAccountButton = ({ buttonText, password }: TCreateAccountButtonProps) => {
-  const {
-    createMT5AccountLoading,
-    doesNotMeetPasswordPolicy,
-    handleSubmit,
-    tradingPlatformPasswordChangeLoading,
-    createMT5AccountStatus,
-  } = useMT5AccountHandler();
-  const { isDesktop } = useDevice();
-  const { openModal } = useQueryParams();
+    const {
+        createMT5AccountLoading,
+        doesNotMeetPasswordPolicy,
+        handleSubmit,
+        tradingPlatformPasswordChangeLoading,
+        createMT5AccountStatus,
+    } = useMT5AccountHandler();
+    const { isDesktop } = useDevice();
+    const { openModal } = useQueryParams();
 
-  const isLoading = tradingPlatformPasswordChangeLoading || createMT5AccountLoading;
-  const isDisabled = !password || isLoading;
+    const isLoading = tradingPlatformPasswordChangeLoading || createMT5AccountLoading;
+    const isDisabled = !password || isLoading;
 
-  useEffect(() => {
-    if (doesNotMeetPasswordPolicy) {
-      return openModal('MT5ChangePasswordModal');
-    }
+    useEffect(() => {
+        if (doesNotMeetPasswordPolicy) {
+            return openModal('MT5ChangePasswordModal');
+        }
 
-    if (createMT5AccountStatus === 'success') {
-      openModal('MT5SuccessModal');
-    }
-  }, [doesNotMeetPasswordPolicy, createMT5AccountStatus, openModal]);
+        if (createMT5AccountStatus === 'success') {
+            openModal('MT5SuccessModal');
+        }
+    }, [doesNotMeetPasswordPolicy, createMT5AccountStatus, openModal]);
 
-  return (
-    <Button disabled={isDisabled} isLoading={isLoading} onClick={() => handleSubmit(password)} isFullWidth={!isDesktop}>
-      {buttonText}
-    </Button>
-  );
+    return (
+        <Button
+            disabled={isDisabled}
+            isLoading={isLoading}
+            onClick={() => handleSubmit(password)}
+            isFullWidth={!isDesktop}
+        >
+            {buttonText}
+        </Button>
+    );
 };

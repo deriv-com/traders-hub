@@ -12,71 +12,71 @@ import { ActionScreen } from '@/components';
 import { TMarketTypes, TPlatforms } from '@/types';
 
 type TCFDSuccessProps = {
-  description: string;
-  renderButtons?: () => ReactNode;
+    description: string;
+    renderButtons?: () => ReactNode;
 } & (
-  | {
-      displayBalance: string;
-      landingCompany?: string;
-      marketType: TMarketTypes.SortedMT5Accounts;
-      platform: TPlatforms.MT5;
-      title: string;
-    }
-  | {
-      marketType?: never;
-      platform: TPlatforms.OtherAccounts;
-    }
+    | {
+          displayBalance: string;
+          landingCompany?: string;
+          marketType: TMarketTypes.SortedMT5Accounts;
+          platform: TPlatforms.MT5;
+          title: string;
+      }
+    | {
+          marketType?: never;
+          platform: TPlatforms.OtherAccounts;
+      }
 );
 
 type TPlatformDetails = Partial<{
-  all: { icon: ReactNode };
-  financial: { icon: ReactNode };
-  icon: ReactNode;
-  synthetic: { icon: ReactNode };
+    all: { icon: ReactNode };
+    financial: { icon: ReactNode };
+    icon: ReactNode;
+    synthetic: { icon: ReactNode };
 }>;
 
 const marketTypeToDetailsMapper: Record<TPlatforms.All, TPlatformDetails> = {
-  ctrader: {
-    icon: <CTraderSuccess />,
-  },
-  dxtrade: {
-    icon: <DerivXSuccess />,
-  },
-  mt5: {
-    all: {
-      icon: <MT5SwapFreeSuccess />,
+    ctrader: {
+        icon: <CTraderSuccess />,
     },
-    financial: {
-      icon: <MT5FinancialSuccess />,
+    dxtrade: {
+        icon: <DerivXSuccess />,
     },
-    synthetic: {
-      icon: <MT5DerivedSuccess />,
+    mt5: {
+        all: {
+            icon: <MT5SwapFreeSuccess />,
+        },
+        financial: {
+            icon: <MT5FinancialSuccess />,
+        },
+        synthetic: {
+            icon: <MT5DerivedSuccess />,
+        },
     },
-  },
 };
 
 export const CFDSuccess = ({ description, marketType, platform, renderButtons }: TCFDSuccessProps) => {
-  let icon: ReactNode;
-  if (platform === 'mt5') {
-    icon = marketTypeToDetailsMapper[platform][marketType]?.icon;
-  } else {
-    icon = PlatformDetails[platform as keyof typeof PlatformDetails]?.icon();
-  }
+    let icon: ReactNode;
+    if (platform === 'mt5') {
+        icon = marketTypeToDetailsMapper[platform][marketType]?.icon;
+    } else {
+        icon = PlatformDetails[platform as keyof typeof PlatformDetails]?.icon();
+    }
 
-  const IconWithCheckMark = () => (
-    <div className='relative'>
-      {icon}
-      <CheckMark />
-    </div>
-  );
+    const IconWithCheckMark = () => (
+        <div className='relative'>
+            {icon}
+            <CheckMark />
+        </div>
+    );
 
-  return (
-    <ActionScreen
-      className='w-[440px] h-[364px]'
-      description={description}
-      icon={<IconWithCheckMark />}
-      renderButtons={renderButtons}
-      title='Success!'
-    />
-  );
+    return (
+        <ActionScreen
+            className='w-[440px] h-[364px]'
+            description={description}
+            icon={<IconWithCheckMark />}
+            renderButtons={renderButtons}
+            title='Success!'
+        />
+    );
 };

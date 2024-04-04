@@ -5,21 +5,21 @@ import { TradingAppCardLoader } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
 export const CFDContent = () => {
-  const { isSuccess: isRegulationAccessible, isEU } = useRegulationFlags();
-  const { isAuthorized } = useAuthData();
+    const { isSuccess: isRegulationAccessible, isEU } = useRegulationFlags();
+    const { isAuthorized } = useAuthData();
 
-  if (!isRegulationAccessible && isAuthorized)
+    if (!isRegulationAccessible && isAuthorized)
+        return (
+            <div className='pt-16 lg:pt-24'>
+                <TradingAppCardLoader />
+            </div>
+        );
+
     return (
-      <div className='pt-16 lg:pt-24'>
-        <TradingAppCardLoader />
-      </div>
+        <div className='pt-16 space-y-16 lg:space-y-24 lg:pt-24'>
+            <MT5PlatformsList />
+            {!isEU && <CTraderList />}
+            {!isEU && <OtherCFDPlatformsList />}
+        </div>
     );
-
-  return (
-    <div className='pt-16 space-y-16 lg:space-y-24 lg:pt-24'>
-      <MT5PlatformsList />
-      {!isEU && <CTraderList />}
-      {!isEU && <OtherCFDPlatformsList />}
-    </div>
-  );
 };

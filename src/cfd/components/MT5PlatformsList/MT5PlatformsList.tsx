@@ -10,36 +10,40 @@ import { useUIContext } from '@/providers';
 import { THooks } from '@/types';
 
 export const MT5PlatformsList = () => {
-  const { uiState } = useUIContext();
-  const { isAuthorized } = useAuthData();
-  const { accountType } = uiState;
-  const { data: sortedMt5Accounts, isFetchedAfterMount } = useSortedMT5Accounts();
-  const { data: activeTradingAccount } = useActiveDerivTradingAccount();
+    const { uiState } = useUIContext();
+    const { isAuthorized } = useAuthData();
+    const { accountType } = uiState;
+    const { data: sortedMt5Accounts, isFetchedAfterMount } = useSortedMT5Accounts();
+    const { data: activeTradingAccount } = useActiveDerivTradingAccount();
 
-  return (
-    <CFDPlatformLayout title={PlatformDetails.mt5.title}>
-      {!isAuthorized && <Text className='pt-8 lg:pt-18'>Logged out state for MT5 accounts pending requirements</Text>}
-      {!isFetchedAfterMount && isAuthorized && (
-        <div className='pt-8 lg:pt-18'>
-          <TradingAppCardLoader />
-        </div>
-      )}
-      {isFetchedAfterMount &&
-        sortedMt5Accounts?.map(MT5Account => {
-          if (
-            MT5Account.is_added &&
-            MT5Account.is_virtual === !!activeTradingAccount?.is_virtual &&
-            MT5Account.account_type === accountType
-          )
-            return <AddedMT5AccountsList account={MT5Account} key={`added-mt5-list-${MT5Account.loginid}`} />;
+    return (
+        <CFDPlatformLayout title={PlatformDetails.mt5.title}>
+            {!isAuthorized && (
+                <Text className='pt-8 lg:pt-18'>Logged out state for MT5 accounts pending requirements</Text>
+            )}
+            {!isFetchedAfterMount && isAuthorized && (
+                <div className='pt-8 lg:pt-18'>
+                    <TradingAppCardLoader />
+                </div>
+            )}
+            {isFetchedAfterMount &&
+                sortedMt5Accounts?.map(MT5Account => {
+                    if (
+                        MT5Account.is_added &&
+                        MT5Account.is_virtual === !!activeTradingAccount?.is_virtual &&
+                        MT5Account.account_type === accountType
+                    )
+                        return (
+                            <AddedMT5AccountsList account={MT5Account} key={`added-mt5-list-${MT5Account.loginid}`} />
+                        );
 
-          return (
-            <AvailableMT5AccountsList
-              account={MT5Account as unknown as THooks.MT5AccountsList}
-              key={`available-mt5-list-${MT5Account.market_type}-${MT5Account.leverage}`}
-            />
-          );
-        })}
-    </CFDPlatformLayout>
-  );
+                    return (
+                        <AvailableMT5AccountsList
+                            account={MT5Account as unknown as THooks.MT5AccountsList}
+                            key={`available-mt5-list-${MT5Account.market_type}-${MT5Account.leverage}`}
+                        />
+                    );
+                })}
+        </CFDPlatformLayout>
+    );
 };
