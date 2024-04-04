@@ -7,12 +7,14 @@ import { useDevice } from '@deriv-com/ui';
 
 import {
     AppContainer,
+    RegulationSwitcherDesktop,
+    RegulationSwitcherMobile,
     TotalAssets,
     TradersHubDesktopContent,
     TradersHubHeader,
     TradersHubMobileContent,
 } from '@/components';
-import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
+import { useActiveDerivTradingAccount, useIsDIELEnabled, useRegulationFlags } from '@/hooks';
 import { Modals } from '@/modals/Modals';
 
 export const Homepage = () => {
@@ -21,7 +23,11 @@ export const Homepage = () => {
     const { hasActiveDerivAccount } = useRegulationFlags();
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const isDemo = activeTrading?.is_virtual;
+    const isReal = !activeTrading?.is_virtual;
+    const { data: isDIEL } = useIsDIELEnabled();
     const isTotalAssetsVisible = hasActiveDerivAccount || isDemo;
+
+    const isSwitcherVisible = isDIEL && isReal;
 
     const setLoginCookie = (token: string) => {
         if (import.meta.env.MODE === 'production') {
@@ -48,9 +54,11 @@ export const Homepage = () => {
     return (
         <Fragment>
             <AppContainer>
-                <div className='space-y-24 pt-48'>
+                <div className=' flex gap-24 p-16 lg:p-40 align-middle flex-col'>
                     <div className='flex justify-between flex-wrap items-center'>
                         <TradersHubHeader />
+                        {isSwitcherVisible &&
+                            (isDesktop ? <RegulationSwitcherDesktop /> : <RegulationSwitcherMobile />)}
                         {isTotalAssetsVisible && <TotalAssets />}
                     </div>
                     {!isDesktop ? <TradersHubMobileContent /> : <TradersHubDesktopContent />}
