@@ -23,9 +23,11 @@ export const useCtraderAccountsList = () => {
                         /** The login id for the account */
                         loginid: account.account_id,
                         /** The balance of the account in currency format. */
-                        display_balance: `${formatMoney(account.balance ?? 0, {
-                            currency: account.currency as CurrencyConstants.Currency,
-                        })} ${account.currency}`,
+                        display_balance: Number(
+                            `${formatMoney(account.balance ?? 0, {
+                                currency: account.currency as CurrencyConstants.Currency,
+                            })} ${account.currency}`
+                        ),
                     }) as const
             );
         }

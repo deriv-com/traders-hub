@@ -1,5 +1,5 @@
 import { useAuthData } from '@deriv-com/api-hooks';
-import { FormatUtils } from '@deriv-com/utils';
+import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
 import { useUIContext } from '@/providers';
 
@@ -34,11 +34,13 @@ const useTotalAssets = () => {
 
     const totalBalance = activeTradingAccount?.is_virtual ? demoTotalBalance : realTotalBalance;
 
-    const formattedTotalBalance = formatMoney(totalBalance, {
-        currency: fiatCurrency,
-        decimalPlaces: 2,
-        locale: settingsData?.preferred_language ?? 'en',
-    });
+    const formattedTotalBalance = Number(
+        formatMoney(totalBalance, {
+            currency: fiatCurrency as CurrencyConstants.Currency,
+            decimalPlaces: 2,
+            locale: settingsData?.preferred_language ?? 'en',
+        })
+    );
 
     return {
         //Returns the total balance of all accounts

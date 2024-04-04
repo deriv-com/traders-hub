@@ -27,10 +27,12 @@ export const useMT5AccountsList = () => {
                 /** The id of the account */
                 loginid: account.login,
                 /** The balance of the account in currency format. */
-                display_balance: `${formatMoney(account.balance ?? 0, {
-                    currency: account.currency as CurrencyConstants.Currency,
-                })} ${account.currency}`,
-            };
+                display_balance: Number(
+                    `${formatMoney(account.balance ?? 0, {
+                        currency: account.currency as CurrencyConstants.Currency,
+                    })} ${account.currency}`
+                ),
+            } as const;
         });
     }, [data, formatMoney, getConfig]);
 

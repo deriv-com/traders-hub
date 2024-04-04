@@ -6,11 +6,17 @@ import { useAuthData } from '@deriv-com/api-hooks';
 import { useDevice } from '@deriv-com/ui';
 
 import { AppContainer, TradersHubDesktopContent, TradersHubHeader, TradersHubMobileContent } from '@/components';
+import { TotalAssets } from '@/components/TotalAssets';
+import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
 import { Modals } from '@/modals/Modals';
 
 export const Homepage = () => {
     const { isDesktop } = useDevice();
     const { activeLoginid, isAuthorized } = useAuthData();
+    const { hasActiveDerivAccount } = useRegulationFlags();
+    const { data: activeTrading } = useActiveDerivTradingAccount();
+    const isDemo = activeTrading?.is_virtual;
+    const isTotalAssetsVisible = hasActiveDerivAccount || isDemo;
 
     const setLoginCookie = (token: string) => {
         if (import.meta.env.MODE === 'production') {
@@ -37,6 +43,7 @@ export const Homepage = () => {
                 <div className='space-y-24 pt-48'>
                     <div className='flex justify-between flex-wrap items-center'>
                         <TradersHubHeader />
+                        {isTotalAssetsVisible && <TotalAssets />}
                     </div>
                     {!isDesktop ? <TradersHubMobileContent /> : <TradersHubDesktopContent />}
                 </div>

@@ -9,7 +9,7 @@ import { useMT5AccountsList } from './useMT5AccountsList';
  */
 const useCFDAssets = (regulation?: string) => {
     const { data: mt5Accounts, isSuccess: isMT5AcccounrSuccess } = useMT5AccountsList();
-    const demoMT5AccountBalance = mt5Accounts?.find(account => account.is_virtual)?.converted_balance ?? 0;
+    const demoMT5AccountBalance = mt5Accounts?.find(account => account.is_virtual)?.display_balance ?? 0;
 
     const isEURegulation = regulation === 'EU';
 
@@ -21,17 +21,17 @@ const useCFDAssets = (regulation?: string) => {
                 }
                 return !account.is_virtual && account.landing_company_short !== 'maltainvest';
             })
-            .reduce((total, account) => total + account.converted_balance, 0) ?? 0;
+            .reduce((total, account) => total + account.display_balance, 0) ?? 0;
 
     // Calculate Dxtrade account balances
     const { data: dxtradeAccounts } = useDxtradeAccountsList();
-    const demoDxtradeAccountBalance = dxtradeAccounts?.find(account => account.is_virtual)?.converted_balance ?? 0;
-    const realDxtradeAccountBalance = dxtradeAccounts?.find(account => !account.is_virtual)?.converted_balance ?? 0;
+    const demoDxtradeAccountBalance = dxtradeAccounts?.find(account => account.is_virtual)?.display_balance ?? 0;
+    const realDxtradeAccountBalance = dxtradeAccounts?.find(account => !account.is_virtual)?.display_balance ?? 0;
 
     // Calculate Ctrader account balances
     const { data: ctraderAccounts } = useCtraderAccountsList();
-    const ctraderDemoAccountBalance = ctraderAccounts?.find(account => account.is_virtual)?.converted_balance ?? 0;
-    const ctraderRealAccountBalance = ctraderAccounts?.find(account => !account.is_virtual)?.converted_balance ?? 0;
+    const ctraderDemoAccountBalance = ctraderAccounts?.find(account => account.is_virtual)?.display_balance ?? 0;
+    const ctraderRealAccountBalance = ctraderAccounts?.find(account => !account.is_virtual)?.display_balance ?? 0;
 
     // Calculate total real and demo CFD balances
     const totalRealCFDBalance = realMT5AccountBalance + realDxtradeAccountBalance + ctraderRealAccountBalance;
