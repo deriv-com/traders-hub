@@ -25,7 +25,7 @@ export const Homepage = () => {
     const isDemo = activeTrading?.is_virtual;
     const isReal = !activeTrading?.is_virtual;
     const { data: isDIEL } = useIsDIELEnabled();
-    const isTotalAssetsVisible = hasActiveDerivAccount || isDemo;
+    const isTotalAssetsVisible = (hasActiveDerivAccount || isDemo) && isAuthorized;
 
     const isSwitcherVisible = isDIEL && isReal;
 
