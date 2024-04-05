@@ -7,27 +7,6 @@ jest.mock('../useLandingCompany', () => ({
     useLandingCompany: jest.fn(),
 }));
 
-jest.mock('@/assets/cfd/ctrader-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'CTraderSuccess',
-}));
-
-jest.mock('@/assets/cfd/dxtrade-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'DerivXSuccess',
-}));
-
-jest.mock('@/assets/cfd/mt5-derived-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'MT5DerivedSuccess',
-}));
-
-jest.mock('@deriv-com/ui', () => ({
-    useIsMounted: () => ({
-        isMounted: jest.fn(),
-    }),
-}));
-
 describe('useIsEuRegion', () => {
     it('returns true if the user is in the EU region', () => {
         const mockData = {

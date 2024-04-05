@@ -17,21 +17,6 @@ jest.mock('@deriv-com/api-hooks', () => ({
     useAuthData: jest.fn(),
 }));
 
-jest.mock('@/assets/cfd/ctrader-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'CTraderSuccess',
-}));
-
-jest.mock('@/assets/cfd/dxtrade-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'DerivXSuccess',
-}));
-
-jest.mock('@/assets/cfd/mt5-derived-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'MT5DerivedSuccess',
-}));
-
 jest.mock('@/providers', () => ({
     useUIContext: jest.fn().mockReturnValue({ setUIState: jest.fn(), uiState: {} }),
 }));
@@ -43,12 +28,6 @@ jest.mock('..', () => ({
     useDerivTradingAccountsList: jest.fn(),
     useActiveDerivTradingAccount: jest.fn(),
     useIsDIELEnabled: jest.fn(),
-}));
-
-jest.mock('@deriv-com/ui', () => ({
-    useIsMounted: () => ({
-        isMounted: jest.fn(),
-    }),
 }));
 
 describe('useAccountSwitcher', () => {

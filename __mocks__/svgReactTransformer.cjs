@@ -1,10 +1,7 @@
-const svgr = require('@svgr/core').default;
-const { readFileSync } = require('fs');
+const React = require('react');
 
 module.exports = {
-    process(src, filename) {
-        const source = readFileSync(filename, 'utf8');
-        const jsCode = svgr.sync(source, { react: true }, { filePath: filename });
-        return jsCode;
+    process() {
+        return `module.exports = ${JSON.stringify(React.Component)}`;
     },
 };

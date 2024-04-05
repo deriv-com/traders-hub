@@ -8,24 +8,6 @@ jest.mock('..', () => ({
     useAccountStatus: jest.fn(),
     useCreateOtherCFDAccount: jest.fn(),
 }));
-jest.mock('@deriv-com/ui', () => ({
-    useIsMounted: jest.fn().mockReturnValue(true),
-}));
-
-jest.mock('@/assets/cfd/ctrader-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'CTraderSuccess',
-}));
-
-jest.mock('@/assets/cfd/dxtrade-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'DerivXSuccess',
-}));
-
-jest.mock('@/assets/cfd/mt5-derived-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'MT5DerivedSuccess',
-}));
 
 describe('useDxtradeAccountHandler', () => {
     it('should call handleSubmit with correct parameters', () => {
