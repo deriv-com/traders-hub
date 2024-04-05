@@ -1,9 +1,15 @@
 import { createBrowserRouter, NavigateOptions } from 'react-router-dom';
 
-import { CompareAccounts, Homepage, Signup } from '@/pages';
+import { CompareAccounts, Homepage, Redirect, Signup } from '@/pages';
 
-type TRoutes = '/' | '/signup' | '/compare-accounts';
+export const routes = {
+    home: '/',
+    signup: '/signup',
+    compareAccounts: '/compare-accounts',
+    redirect: '/redirect',
+} as const;
 
+type TRoutes = (typeof routes)[keyof typeof routes];
 declare module 'react-router-dom' {
     export function useNavigate(): (path: string, state?: NavigateOptions | undefined) => void;
     export function useRouteMatch(path: TRoutes): boolean;
@@ -11,15 +17,19 @@ declare module 'react-router-dom' {
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: routes.home,
         element: <Homepage />,
     },
     {
-        path: '/signup',
+        path: routes.signup,
         element: <Signup />,
     },
     {
-        path: '/compare-accounts',
+        path: routes.compareAccounts,
         element: <CompareAccounts />,
+    },
+    {
+        path: routes.redirect,
+        element: <Redirect />,
     },
 ]);
