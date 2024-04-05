@@ -9,27 +9,6 @@ jest.mock('@deriv-com/api-hooks', () => ({
     useGetSettings: jest.fn(),
 }));
 
-jest.mock('@/assets/cfd/ctrader-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'CTraderSuccess',
-}));
-
-jest.mock('@/assets/cfd/dxtrade-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'DerivXSuccess',
-}));
-
-jest.mock('@/assets/cfd/mt5-derived-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'MT5DerivedSuccess',
-}));
-
-jest.mock('@deriv-com/ui', () => ({
-    useIsMounted: () => ({
-        isMounted: jest.fn(),
-    }),
-}));
-
 describe('useIsDIELEnabled', () => {
     it('returns true if the DIEL landing company is enabled', () => {
         const mockData = {

@@ -11,27 +11,6 @@ jest.mock('../useBalance');
 jest.mock('../useCurrencyConfig');
 jest.mock('../useSettings');
 
-jest.mock('@deriv-com/ui', () => ({
-    useIsMounted: () => ({
-        isMounted: jest.fn(),
-    }),
-}));
-
-jest.mock('@/assets/cfd/ctrader-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'CTraderSuccess',
-}));
-
-jest.mock('@/assets/cfd/dxtrade-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'DerivXSuccess',
-}));
-
-jest.mock('@/assets/cfd/mt5-derived-success.svg?react', () => ({
-    __esModule: true,
-    default: () => 'MT5DerivedSuccess',
-}));
-
 describe('useDerivTradingAccountsList', () => {
     it('returns the expected data structure', async () => {
         (useAccountList as jest.Mock).mockReturnValue({
