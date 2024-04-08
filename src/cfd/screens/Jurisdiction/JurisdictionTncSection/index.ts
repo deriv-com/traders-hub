@@ -1,0 +1,1 @@
+export { JurisdictionTncSection } from './JurisdictionTncSection';

@@ -22,3 +22,5 @@ export { useNewCRRealAccount } from './useNewCRRealAccount';
 export { useDxtradeAccountHandler } from './useDxtradeAccountHandler';
 export { useMT5AccountHandler } from './useMT5AccountHandler';
 export { useRegulationSwitcher } from './useRegulationSwitcher';
+export { useDynamicLeverage } from './useDynamicLeverage';
+export { useAuthentication } from './useAuthentication';

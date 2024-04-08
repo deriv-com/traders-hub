@@ -1,10 +1,12 @@
 import {
     useActiveDerivTradingAccount,
+    useAuthentication,
     useAvailableMT5Accounts,
     useCreateOtherCFDAccount,
     useCtraderAccountsList,
     useDerivTradingAccountsList,
     useDxtradeAccountsList,
+    useDynamicLeverage,
     useLandingCompany,
     useMT5AccountsList,
     useSettings,
@@ -23,6 +25,8 @@ export namespace THooks {
     export type AvailableMT5Accounts = NonNullable<ReturnType<typeof useAvailableMT5Accounts>['data']>[0];
     export type CtraderAccountsList = NonNullable<ReturnType<typeof useCtraderAccountsList>['data']>[0];
     export type CreateOtherCFDAccount = NonNullable<ReturnType<typeof useCreateOtherCFDAccount>['data']>;
+    export type DynamicLeverage = NonNullable<ReturnType<typeof useDynamicLeverage>['data']>;
+    export type Authentication = NonNullable<ReturnType<typeof useAuthentication>['data']>;
 }
 
 // eslint-disable-next-line  @typescript-eslint/no-namespace
