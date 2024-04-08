@@ -1,0 +1,1 @@
+export { JurisdictionCard } from './JurisdictionCard';

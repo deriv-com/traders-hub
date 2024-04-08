@@ -72,7 +72,7 @@ export const CFDSuccess = ({ description, marketType, platform, renderButtons }:
 
     return (
         <ActionScreen
-            className='w-[440px] h-[364px] p-24'
+            className='w-[440px] p-24'
             description={description}
             icon={<IconWithCheckMark />}
             renderButtons={renderButtons}
