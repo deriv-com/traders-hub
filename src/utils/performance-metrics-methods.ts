@@ -41,7 +41,7 @@ export const startPerformanceEventTimer = (action: keyof typeof Window.prototype
     window.performance_metrics[action] = Date.now();
 };
 
-export const setPerformanceValue = (action: keyof typeof Window.prototype.performance_metrics) => {
+export const setPerformanceValue = (action: keyof typeof Window.prototype.performance_metrics, isMobile = false) => {
     if (window.performance_metrics?.[action]) {
         const value = (Date.now() - window.performance_metrics[action]) / 1000;
         window.performance_metrics[action] = 0;
@@ -51,7 +51,7 @@ export const setPerformanceValue = (action: keyof typeof Window.prototype.perfor
         Analytics.trackEvent(event_name, {
             action,
             value,
-            device: true ? 'mobile' : 'desktop',
+            device: isMobile ? 'mobile' : 'desktop',
         });
     }
 };

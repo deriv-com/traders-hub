@@ -1,11 +1,26 @@
 import { twMerge } from 'tailwind-merge';
 
-import { Text } from '@deriv-com/ui';
+import { Text, useDevice } from '@deriv-com/ui';
 
 import { useActiveDerivTradingAccount } from '@/hooks';
+import { setPerformanceValue } from '@/utils';
+
+import { TotalAssetsLoader } from '../Loaders';
 
 const TotalAssets = () => {
-    const { data: activeDerivTradingAccount } = useActiveDerivTradingAccount();
+    const { data: activeDerivTradingAccount, isFetching } = useActiveDerivTradingAccount();
+    const { isMobile } = useDevice();
+
+    // need to add more conditions to show the loader
+    if (isFetching) {
+        return <TotalAssetsLoader />;
+    }
+
+    setPerformanceValue('login_time', isMobile);
+    setPerformanceValue('redirect_from_deriv_com_time', isMobile);
+    setPerformanceValue('switch_currency_accounts_time', isMobile);
+    setPerformanceValue('switch_from_demo_to_real_time', isMobile);
+    setPerformanceValue('switch_from_real_to_demo_time', isMobile);
 
     return (
         <div className='relative lg:inline-block text-center lg:text-right w-full lg:w-auto flex justify-center mt-24 lg:mt-0'>
