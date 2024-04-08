@@ -2,6 +2,12 @@ import { render, screen } from '@testing-library/react';
 
 import { Modals } from '../Modals';
 
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useLocation: jest.fn().mockReturnValue({ search: '' }),
+    useNavigate: jest.fn(),
+}));
+
 jest.mock('@/cfd/modals/MT5PasswordModal', () => {
     const MT5PasswordModal = () => <div>MT5PasswordModal</div>;
     MT5PasswordModal.displayName = 'MT5PasswordModal';
@@ -38,6 +44,12 @@ jest.mock('../AccountSelector', () => {
     return { AccountSelector };
 });
 
+jest.mock('../JurisdictionModal', () => {
+    const JurisdictionModal = () => <div>JurisdictionModal</div>;
+    JurisdictionModal.displayName = 'JurisdictionModal';
+    return { JurisdictionModal };
+});
+
 describe('Modals', () => {
     it('should render all modals', () => {
         render(<Modals />);
@@ -47,5 +59,6 @@ describe('Modals', () => {
         expect(screen.getByText('MT5PasswordModal')).toBeInTheDocument();
         expect(screen.getByText('MT5SuccessModal')).toBeInTheDocument();
         expect(screen.getByText('RegulationModal')).toBeInTheDocument();
+        expect(screen.getByText('JurisdictionModal')).toBeInTheDocument();
     });
 });
