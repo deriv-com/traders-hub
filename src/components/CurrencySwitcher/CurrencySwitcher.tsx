@@ -6,8 +6,9 @@ import { Button } from '@deriv-com/ui';
 
 import { CurrencySwitcherLoader } from '@/components';
 import { IconToCurrencyMapper } from '@/constants';
-import { useActiveDerivTradingAccount, useQueryParams, useRegulationFlags } from '@/hooks';
+import { useActiveDerivTradingAccount, useCurrencyConfig, useQueryParams, useRegulationFlags } from '@/hooks';
 import { THooks } from '@/types';
+import { startPerformanceEventTimer } from '@/utils';
 
 import { DemoCurrencySwitcherAccountInfo, RealCurrencySwitcherAccountInfo } from './CurrencySwitcherAccountInfo';
 
@@ -19,6 +20,7 @@ type AccountActionButtonProps = {
 const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
     const { mutate: resetVirtualBalance } = useTopupVirtual();
     const { activeLoginid } = useAuthData();
+    const { data: currencyConfig } = useCurrencyConfig();
     const navigate = useNavigate();
     let buttonText = 'Deposit';
     if (isDemo && balance !== 10000) {
@@ -36,7 +38,10 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
                         loginid: activeLoginid,
                     });
                 } else {
-                    navigate('/cashier/deposit');
+                    if (currencyConfig?.currency?.isCrypto)
+                        startPerformanceEventTimer('load_crypto_deposit_cashier_time');
+                    else startPerformanceEventTimer('load_fiat_deposit_cashier_time');
+                    navigate('/cashier/deposit#deposit');
                 }
             }}
             variant='outlined'
