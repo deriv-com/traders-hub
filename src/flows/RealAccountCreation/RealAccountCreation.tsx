@@ -5,7 +5,7 @@ import { Modal, Text } from '@deriv-com/ui';
 
 import { DesktopProgressBar, MobileProgressBar } from '@/components';
 import { useQueryParams, useRegulationFlags } from '@/hooks';
-import { AccountOpeningSuccessModal, ExitConfirmationDialog } from '@/modals';
+import { ExitConfirmationDialog } from '@/modals';
 import { useRealAccountCreationContext } from '@/providers';
 
 import { WizardScreens } from './WizardScreens';
@@ -95,7 +95,6 @@ export const RealAccountCreation = memo(() => {
                 <ModalBody setIsConfirmationDialogOpen={setIsConfirmationDialogOpen} />
             </Modal>
             <ExitConfirmationDialog isOpen={isConfirmationDialogOpen} onClose={closeConfirmationDialog} />
-            <AccountOpeningSuccessModal />
         </>
     );
 });
