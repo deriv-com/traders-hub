@@ -1,8 +1,7 @@
 import { CFDPlatformLayout } from '@cfd/components';
 import { PlatformDetails } from '@cfd/constants';
-import { AddedMT5AccountsList, AvailableMT5AccountsList } from '@cfd/flows';
+import { AddedMT5AccountsList, AvailableMT5AccountsList, LoggedOutMT5AccountsList } from '@cfd/flows';
 import { useAuthData } from '@deriv-com/api-hooks';
-import { Text } from '@deriv-com/ui';
 
 import { TradingAppCardLoader } from '@/components';
 import { useActiveDerivTradingAccount, useSortedMT5Accounts } from '@/hooks';
@@ -18,9 +17,7 @@ export const MT5PlatformsList = () => {
 
     return (
         <CFDPlatformLayout title={PlatformDetails.mt5.title}>
-            {!isAuthorized && (
-                <Text className='pt-8 lg:pt-18'>Logged out state for MT5 accounts pending requirements</Text>
-            )}
+            {!isAuthorized && <LoggedOutMT5AccountsList />}
             {!isFetchedAfterMount && isAuthorized && (
                 <div className='pt-8 lg:pt-18'>
                     <TradingAppCardLoader />
