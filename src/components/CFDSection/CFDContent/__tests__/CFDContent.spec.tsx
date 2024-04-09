@@ -16,7 +16,7 @@ jest.mock('@/hooks', () => ({
 jest.mock('@cfd/components', () => ({
     CTraderList: () => <div data-testid='ctrader-list' />,
     MT5PlatformsList: () => <div data-testid='mt5-platforms-list' />,
-    OtherCFDPlatformsList: () => <div data-testid='other-cfd-platforms-list' />,
+    DxtradePlatformList: () => <div data-testid='dxtrade-platform-list' />,
 }));
 
 jest.mock('@/components', () => ({
@@ -70,7 +70,7 @@ describe('CFDContent', () => {
 
         render(<CFDContent />);
 
-        expect(screen.getByTestId('other-cfd-platforms-list')).toBeInTheDocument();
+        expect(screen.getByTestId('dxtrade-platform-list')).toBeInTheDocument();
     });
 
     it('should not render OtherCFDPlatformsList when isEU is true', () => {
@@ -85,7 +85,7 @@ describe('CFDContent', () => {
 
         render(<CFDContent />);
 
-        expect(screen.queryByTestId('other-cfd-platforms-list')).not.toBeInTheDocument();
+        expect(screen.queryByTestId('dxtrade-platform-list')).not.toBeInTheDocument();
     });
 
     it('should not render CTraderList when isEU is true', () => {
