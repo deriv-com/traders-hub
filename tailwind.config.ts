@@ -417,9 +417,6 @@ export default {
                     },
                 },
             },
-            fontFamily: {
-                sans: ['IBM Plex Sans', 'sans-serif'],
-            },
             fontSize: {
                 '2xs': '8px',
                 xs: '10px',
