@@ -11,7 +11,7 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: {
-                    'deriv-com': ['@deriv-com/api-hooks', '@deriv-com/utils'],
+                    'deriv-com': ['@deriv-com/api-hooks', '@deriv-com/utils', '@deriv-com/ui'],
                     react: ['react', 'react-dom'],
                 },
             },

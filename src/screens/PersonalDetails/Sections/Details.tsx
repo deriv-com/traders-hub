@@ -1,11 +1,11 @@
-import { Fragment, Suspense } from 'react';
+import { Fragment, lazy, Suspense } from 'react';
 import { useFormikContext } from 'formik';
 
 import { Divider, InlineMessage, Input, Loader, Text } from '@deriv-com/ui';
 
-import ExampleImage from '@/assets/svgs/personal-details-example.svg?react';
-
 import { DetailsConfirmation } from './DetailsConfirmation';
+
+const ExampleImage = lazy(() => import('@/assets/svgs/personal-details-example.svg?react'));
 
 /**
  * @name Details
