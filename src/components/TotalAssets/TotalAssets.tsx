@@ -2,10 +2,11 @@ import { twMerge } from 'tailwind-merge';
 
 import { Text } from '@deriv-com/ui';
 
-import { useActiveDerivTradingAccount } from '@/hooks';
+import { useActiveDerivTradingAccount, useTotalAssets } from '@/hooks';
 
 const TotalAssets = () => {
     const { data: activeDerivTradingAccount } = useActiveDerivTradingAccount();
+    const { formattedTotalBalance } = useTotalAssets();
 
     return (
         <div className='relative lg:inline-block text-center lg:text-right w-full lg:w-auto flex justify-center mt-24 lg:mt-0'>
@@ -20,7 +21,7 @@ const TotalAssets = () => {
                 )}
                 weight='bold'
             >
-                0.00 USD
+                {formattedTotalBalance}
             </Text>
         </div>
     );
