@@ -6,7 +6,12 @@ import { useQueryParams } from '@/hooks';
 export const MT5SuccessModal = () => {
     const { isModalOpen, closeModal } = useQueryParams();
     return (
-        <Modal ariaHideApp={false} isOpen={isModalOpen('MT5SuccessModal')} onRequestClose={closeModal}>
+        <Modal
+            ariaHideApp={false}
+            isOpen={isModalOpen('MT5SuccessModal')}
+            onRequestClose={closeModal}
+            className='w-auto h-auto rounded-sm'
+        >
             <Modal.Body>
                 <MT5Success />
             </Modal.Body>
