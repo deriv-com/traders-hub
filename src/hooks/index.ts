@@ -24,3 +24,6 @@ export { useMT5AccountHandler } from './useMT5AccountHandler';
 export { useRegulationSwitcher } from './useRegulationSwitcher';
 export { useDynamicLeverage } from './useDynamicLeverage';
 export { useAuthentication } from './useAuthentication';
+export { usePlatformAssets } from './usePlatformAssets';
+export { useCFDAssets } from './useCFDAssets';
+export { useTotalAssets } from './useTotalAssets';

@@ -53,5 +53,8 @@ export const useDerivTradingAccountsList = () => {
         [modifiedAccounts, balanceData?.accounts, formatMoney, settingsData?.preferred_language]
     );
 
-    return { data: modifiedAccountsWithBalance, ...rest };
+    const fiatAccount =
+        modifiedAccountsWithBalance?.find(account => getConfig(account.currency ?? '')?.isFiat)?.currency ?? 'USD';
+
+    return { data: modifiedAccountsWithBalance, fiatAccount, ...rest };
 };
