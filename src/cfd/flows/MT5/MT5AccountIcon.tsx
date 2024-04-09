@@ -4,9 +4,14 @@ import { MarketType, MarketTypeDetails } from '@cfd/constants';
 import { URLUtils } from '@deriv-com/utils';
 
 import { useRegulationFlags } from '@/hooks';
-import { THooks } from '@/types';
+import { THooks, TMarketTypes } from '@/types';
 
-export const MT5AccountIcon = ({ account }: { account: THooks.MT5AccountsList }) => {
+type MT5AccountIconProps = {
+    account?: THooks.MT5AccountsList;
+    marketType?: TMarketTypes.All;
+};
+
+export const MT5AccountIcon = ({ account, marketType }: MT5AccountIconProps) => {
     const { getDerivStaticURL } = URLUtils;
     const { isEU } = useRegulationFlags();
 
@@ -20,7 +25,9 @@ export const MT5AccountIcon = ({ account }: { account: THooks.MT5AccountsList })
         }
     };
 
-    const marketTypeDetails = MarketTypeDetails(isEU)[account.market_type ?? MarketType.ALL];
+    const marketTypeToUse = marketType ?? account?.market_type ?? MarketType.ALL;
+
+    const marketTypeDetails = MarketTypeDetails(isEU)[marketTypeToUse];
 
     const icon = marketTypeDetails?.icon ?? null;
 

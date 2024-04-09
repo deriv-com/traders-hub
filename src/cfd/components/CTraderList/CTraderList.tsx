@@ -1,6 +1,7 @@
 import { CFDPlatformLayout } from '@cfd/components';
 import { PlatformDetails } from '@cfd/constants';
 import { AddedCTraderAccountsList, AvailableCTraderAccountsList } from '@cfd/flows';
+import { useAuthData } from '@deriv-com/api-hooks';
 
 import { TradingAppCardLoader } from '@/components';
 import { useActiveDerivTradingAccount, useCtraderAccountsList } from '@/hooks';
@@ -12,6 +13,7 @@ export const CTraderList = () => {
     const { accountType } = uiState;
     const { data: cTraderAccounts, isFetchedAfterMount } = useCtraderAccountsList();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
+    const { isAuthorized } = useAuthData();
 
     const hasCTraderAccount = cTraderAccounts?.some(
         (account: THooks.CtraderAccountsList) =>
@@ -20,8 +22,10 @@ export const CTraderList = () => {
 
     return (
         <CFDPlatformLayout title={PlatformDetails.ctrader.title}>
-            {!isFetchedAfterMount && <TradingAppCardLoader />}
+            {!isAuthorized && <AvailableCTraderAccountsList />}
+            {!isFetchedAfterMount && isAuthorized && <TradingAppCardLoader />}
             {isFetchedAfterMount &&
+                isAuthorized &&
                 (hasCTraderAccount ? <AddedCTraderAccountsList /> : <AvailableCTraderAccountsList />)}
         </CFDPlatformLayout>
     );

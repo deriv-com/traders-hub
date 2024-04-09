@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { PlatformDetails } from '@cfd/constants';
+import { useAuthData } from '@deriv-com/api-hooks';
 import { URLUtils } from '@deriv-com/utils';
 
 import {
@@ -30,12 +31,17 @@ export const AvailableCTraderAccountsList = () => {
     const { hasActiveDerivAccount } = useRegulationFlags();
     const { setUIState } = useUIContext();
     const { openModal } = useQueryParams();
+    const { isAuthorized } = useAuthData();
+    const { getOauthURL } = URLUtils;
 
     const accountType = activeTradingAccount?.is_virtual ? 'demo' : 'real';
     const title = getCfdsAccountTitle(PlatformDetails.ctrader.title, activeTradingAccount?.isVirtual);
 
     const onSubmit = () => {
-        if (!hasActiveDerivAccount) {
+        if (!isAuthorized) {
+            return (window.location.href = getOauthURL());
+        }
+        if (!hasActiveDerivAccount && isAuthorized) {
             // TODO: GetDerivAccountDialog here
         } else {
             mutate({
