@@ -1,3 +1,4 @@
+import { useAuthData, useWebsiteStatus } from '@deriv-com/api-hooks';
 import { renderHook } from '@testing-library/react';
 
 import { useUIContext } from '@/providers';
@@ -7,6 +8,11 @@ import { useActiveDerivTradingAccount, useDerivTradingAccountsList, useIsEuRegio
 
 jest.mock('@/providers', () => ({
     useUIContext: jest.fn(),
+}));
+
+jest.mock('@deriv-com/api-hooks', () => ({
+    useAuthData: jest.fn(),
+    useWebsiteStatus: jest.fn(),
 }));
 
 jest.mock('../useActiveDerivTradingAccount', () => ({
@@ -50,6 +56,16 @@ describe('useRegulationFlags', () => {
             isSuccess: true,
         });
 
+        (useAuthData as jest.Mock).mockReturnValue({
+            isAuthorized: true,
+        });
+
+        (useWebsiteStatus as jest.Mock).mockReturnValue({
+            data: {
+                clients_country: 'EU',
+            },
+        });
+
         const { result } = renderHook(() => useRegulationFlags());
 
         expect(result.current).toEqual({
@@ -89,6 +105,14 @@ describe('useRegulationFlags', () => {
                 gaming_company: { shortcode: 'svg' },
             },
             isSuccess: true,
+        });
+
+        (useAuthData as jest.Mock).mockReturnValue({
+            isAuthorized: true,
+        });
+
+        (useWebsiteStatus as jest.Mock).mockReturnValue({
+            data: {},
         });
 
         const { result } = renderHook(() => useRegulationFlags());
@@ -132,6 +156,12 @@ describe('useRegulationFlags', () => {
             isSuccess: true,
         });
 
+        (useAuthData as jest.Mock).mockReturnValue({
+            isAuthorized: true,
+        });
+
+        (useWebsiteStatus as jest.Mock).mockReturnValue({});
+
         const { result } = renderHook(() => useRegulationFlags());
 
         expect(result.current).toEqual({
@@ -171,6 +201,14 @@ describe('useRegulationFlags', () => {
                 gaming_company: { shortcode: 'svg' },
             },
             isSuccess: true,
+        });
+
+        (useAuthData as jest.Mock).mockReturnValue({
+            isAuthorized: true,
+        });
+
+        (useWebsiteStatus as jest.Mock).mockReturnValue({
+            data: {},
         });
 
         const { result } = renderHook(() => useRegulationFlags());
