@@ -13,7 +13,8 @@ import { useActiveDerivTradingAccount, useMT5AccountsList, useRegulationFlags } 
 import { useCFDContext } from '@/providers';
 
 export const MT5Success = () => {
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { data: mt5Accounts } = useMT5AccountsList();
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const { cfdState } = useCFDContext();

@@ -13,7 +13,8 @@ type MT5AccountIconProps = {
 
 export const MT5AccountIcon = ({ account, marketType }: MT5AccountIconProps) => {
     const { getDerivStaticURL } = URLUtils;
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     const handleClick = () => {
         window.open(getDerivStaticURL('/dmt5'));

@@ -16,7 +16,8 @@ export const useRegulationSwitcher = () => {
     const { data: tradingAccountsList } = useDerivTradingAccountsList();
     const { setUIState, uiState } = useUIContext();
     const currentRegulation = uiState.regulation;
-    const { isEU, isHighRisk } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU, isHighRisk } = regulationFlags;
 
     const realCRAccount = tradingAccountsList?.find(account => account.loginid.startsWith('CR'))?.loginid ?? '';
     const realMFAccount = tradingAccountsList?.find(account => account.loginid.startsWith('MF'))?.loginid ?? '';

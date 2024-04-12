@@ -29,7 +29,7 @@ describe('TradingAccountsList', () => {
         });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: { loginid: 'real' } });
         (useAuthData as jest.Mock).mockReturnValue({ switchAccount: jest.fn() });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: true });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: true } });
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal: jest.fn() });
 
         render(<TradingAccountsList />);
@@ -45,7 +45,7 @@ describe('TradingAccountsList', () => {
         });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: { loginid: 'real' } });
         (useAuthData as jest.Mock).mockReturnValue({ switchAccount: jest.fn() });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: false });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: false } });
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal: jest.fn() });
 
         render(<TradingAccountsList />);
@@ -62,7 +62,7 @@ describe('TradingAccountsList', () => {
         });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: { loginid: 'real' } });
         (useAuthData as jest.Mock).mockReturnValue({ switchAccount: switchAccountMock });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: false });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: false } });
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal: jest.fn() });
 
         render(<TradingAccountsList />);
@@ -78,7 +78,7 @@ describe('TradingAccountsList', () => {
         });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: { loginid: 'real' } });
         (useAuthData as jest.Mock).mockReturnValue({ switchAccount: jest.fn() });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: false });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: false } });
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal: jest.fn() });
 
         render(<TradingAccountsList />);

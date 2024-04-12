@@ -28,7 +28,8 @@ const LeadingIcon = () => (
 export const AvailableCTraderAccountsList = () => {
     const { mutate, status } = useCreateOtherCFDAccount();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
-    const { hasActiveDerivAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { hasActiveDerivAccount } = regulationFlags;
     const { setUIState } = useUIContext();
     const { openModal } = useQueryParams();
     const { isAuthorized } = useAuthData();

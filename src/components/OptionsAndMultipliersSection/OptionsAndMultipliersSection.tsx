@@ -9,7 +9,8 @@ import { OptionsAndMultipliersHeading } from './OptionsAndMultipliersHeading';
  * @returns {React.ElementType} The `OptionsAndMultipliersSection` component.
  */
 export const OptionsAndMultipliersSection = () => {
-    const { isSuccess, noRealCRNonEUAccount, noRealMFEUAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { noRealCRNonEUAccount, noRealMFEUAccount, isSuccess } = regulationFlags;
     return (
         <div className='overflow-y-scroll pt-16 lg:p-24 lg:rounded-[24px] lg:outline-1 lg:outline lg:outline-system-light-hover-background'>
             <div className='flex-col justify-between w-full gap-24'>

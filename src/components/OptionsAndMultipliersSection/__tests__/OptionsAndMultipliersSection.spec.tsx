@@ -31,9 +31,11 @@ jest.mock('../../GetDerivAccount/', () => ({
 describe('OptionsAndMultipliersSection', () => {
     it('renders the OptionsAndMultipliersHeading and OptionsAndMultipliersContent', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<OptionsAndMultipliersSection />);
@@ -44,9 +46,11 @@ describe('OptionsAndMultipliersSection', () => {
 
     it('renders the GetDerivAccount when noRealCRNonEUAccount or noRealMFEUAccount is true and isSuccess is true', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            noRealCRNonEUAccount: true,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: true,
+                noRealCRNonEUAccount: true,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<OptionsAndMultipliersSection />);
@@ -56,9 +60,11 @@ describe('OptionsAndMultipliersSection', () => {
 
     it('does not render the GetDerivAccount when isSuccess is false', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: false,
-            noRealCRNonEUAccount: true,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: false,
+                noRealCRNonEUAccount: true,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<OptionsAndMultipliersSection />);

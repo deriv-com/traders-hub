@@ -11,7 +11,8 @@ import { useAccountSwitcher, useRegulationFlags } from '@/hooks';
 
 export const DemoRealSwitcher = () => {
     const { selectedAccount, setSelectedAccount, accountTypes } = useAccountSwitcher();
-    const { isSuccess } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isSuccess } = regulationFlags;
     const { isAuthorized } = useAuthData();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const { label, value } = selectedAccount ?? {};

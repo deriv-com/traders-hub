@@ -25,7 +25,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
     });
 
@@ -56,7 +58,9 @@ describe('useCurrencies', () => {
             isLoading: true,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
 
         const { result } = renderHook(() => useCurrencies());
@@ -85,7 +89,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.currentAccountCurrencyConfig).toBeUndefined();
@@ -108,7 +114,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.addedFiatCurrency).toBeUndefined();
@@ -131,7 +139,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.data).toEqual({ FIAT: [], CRYPTO: [] });
@@ -158,7 +168,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: true,
+            regulationFlags: {
+                isNonEU: true,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.data).toEqual({
@@ -199,7 +211,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.data).toEqual({
@@ -231,7 +245,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.data).toBeUndefined();
@@ -264,7 +280,9 @@ describe('useCurrencies', () => {
             isLoading: false,
         });
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isNonEU: false,
+            regulationFlags: {
+                isNonEU: false,
+            },
         });
         const { result } = renderHook(() => useCurrencies());
         expect(result.current.allCryptoCurrenciesAreAdded).toBe(true);

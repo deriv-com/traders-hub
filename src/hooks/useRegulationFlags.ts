@@ -23,10 +23,24 @@ export const useRegulationFlags = () => {
     const { data: websiteStatusData } = useWebsiteStatus();
     const { isAuthorized } = useAuthData();
 
-    return useMemo(() => {
+    const regulationFlags = useMemo(() => {
         const clientCountry = websiteStatusData?.clients_country;
-
         const isEUResidence = isEuCountry(clientCountry ?? '');
+
+        if (!isAuthorized) {
+            return {
+                hasActiveDerivAccount: false,
+                isEU: isEUResidence,
+                isEURealAccount: false,
+                isHighRisk: false,
+                isNonEU: false,
+                isNonEURealAccount: false,
+                isSuccess: false,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: false,
+            };
+        }
+
         const isHighRisk =
             landingCompany?.financial_company?.shortcode === 'svg' &&
             landingCompany?.gaming_company?.shortcode === 'svg';
@@ -34,12 +48,14 @@ export const useRegulationFlags = () => {
         const isEURegulation = regulation === Regulation.EU;
         const isNonEURegulation = regulation === Regulation.NonEU;
 
-        const isEU = isAuthorized ? isEUCountry || isEURegulation : isEUResidence;
+        const isEU = isEUCountry || isEURegulation;
+
         const isNonEU = isHighRisk || isNonEURegulation;
 
         const isRealAccount = !activeTradingAccount?.is_virtual || accountType === 'real';
 
         const isEURealAccount = isEU && isRealAccount;
+
         const isNonEURealAccount = isNonEU && isRealAccount;
 
         const noRealCRNonEUAccount =
@@ -77,4 +93,6 @@ export const useRegulationFlags = () => {
         tradingAccountListSuccess,
         landingCompanySuccess,
     ]);
+
+    return { regulationFlags };
 };

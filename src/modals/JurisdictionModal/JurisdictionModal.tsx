@@ -12,7 +12,8 @@ export const JurisdictionModal = () => {
     const [isDynamicLeverageVisible, setIsDynamicLeverageVisible] = useState(false);
     const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);
     const { isModalOpen, closeModal, openModal } = useQueryParams();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { cfdState, setCfdState } = useCFDContext();
 
     const { isDesktop } = useDevice();

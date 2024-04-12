@@ -24,7 +24,8 @@ export const useCurrencies = () => {
     const { data: websiteStatusData, isLoading: isWebsiteStatusLoading, ...rest } = useWebsiteStatus();
     const { data: landingCompanyData, isLoading: isLandingCompanyLoading } = useLandingCompany();
 
-    const { isNonEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isNonEU } = regulationFlags;
 
     // Get the legal allowed currencies based on the landing company
     const legalAllowedCurrencies = useMemo(() => {

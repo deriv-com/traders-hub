@@ -29,7 +29,8 @@ const ModalBody = memo(
     ({ setIsConfirmationDialogOpen }: { setIsConfirmationDialogOpen: Dispatch<SetStateAction<boolean>> }) => {
         const { currentStep, setTotalSteps } = useRealAccountCreationContext();
 
-        const { isEU } = useRegulationFlags();
+        const { regulationFlags } = useRegulationFlags();
+        const { isEU } = regulationFlags;
 
         // Get the form steps based on the user's location
         const formProgressSteps = useMemo(() => getFormSteps(isEU), [isEU]);

@@ -30,8 +30,10 @@ describe('CFDContent', () => {
 
     it('should render MT5PlatformsList', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({
@@ -45,8 +47,10 @@ describe('CFDContent', () => {
 
     it('should render CTraderList when isEU is false', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({
@@ -60,8 +64,10 @@ describe('CFDContent', () => {
 
     it('should render OtherCFDPlatformsList when isEU is false', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({
@@ -75,8 +81,10 @@ describe('CFDContent', () => {
 
     it('should not render OtherCFDPlatformsList when isEU is true', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: true,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: true,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({
@@ -90,8 +98,10 @@ describe('CFDContent', () => {
 
     it('should not render CTraderList when isEU is true', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: true,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: true,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({
@@ -105,7 +115,9 @@ describe('CFDContent', () => {
 
     it('should render TradingAppCardLoader when isSuccess is false', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: false,
+            regulationFlags: {
+                isSuccess: false,
+            },
         });
 
         (useAuthData as jest.Mock).mockReturnValue({

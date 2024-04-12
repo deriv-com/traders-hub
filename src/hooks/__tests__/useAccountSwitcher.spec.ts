@@ -42,7 +42,7 @@ describe('useAccountSwitcher', () => {
             ],
         });
         (useQueryParams as jest.Mock).mockReturnValue({ openModal: jest.fn() });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: false });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: false } });
         (useUIContext as jest.Mock).mockReturnValue({ setUIState: jest.fn() });
     });
 
@@ -103,7 +103,7 @@ describe('useAccountSwitcher', () => {
         });
         (useIsDIELEnabled as jest.Mock).mockReturnValue({ data: false });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: { is_virtual: false } });
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: true });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: true } });
         const { result } = renderHook(() => useAccountSwitcher());
         act(() => {
             result.current.setSelectedAccount({ label: 'Real', value: 'real' });

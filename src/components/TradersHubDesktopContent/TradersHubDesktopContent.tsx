@@ -4,7 +4,8 @@ import { CFDSection, OptionsAndMultipliersSection } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
 export const TradersHubDesktopContent = () => {
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     return (
         <div

@@ -10,7 +10,8 @@ import { MT5AccountIcon } from '../MT5AccountIcon';
 
 export const LoggedOutMT5AccountsList = () => {
     const { getOauthURL } = URLUtils;
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const marketTypes = [MarketType.SYNTHETIC, MarketType.FINANCIAL, MarketType.ALL];
     return (
         <Fragment>
