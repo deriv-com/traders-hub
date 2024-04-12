@@ -23,9 +23,11 @@ jest.mock('../CFDHeading', () => ({
 describe('CFDSection', () => {
     it('renders the CFDHeading and CFDContent', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<CFDSection />);
@@ -36,9 +38,11 @@ describe('CFDSection', () => {
 
     it('renders the GetADerivAccountBanner when conditions are met', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            noRealCRNonEUAccount: true,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: true,
+                noRealCRNonEUAccount: true,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<CFDSection />);
@@ -48,9 +52,11 @@ describe('CFDSection', () => {
 
     it('does not render the GetADerivAccountBanner when conditions are not met', () => {
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: false,
+            regulationFlags: {
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: false,
+            },
         });
 
         render(<CFDSection />);

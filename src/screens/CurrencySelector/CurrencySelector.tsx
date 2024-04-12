@@ -18,7 +18,8 @@ import { Currencies } from './Currencies';
 export const CurrencySelector = () => {
     const { dispatch, helpers, state } = useRealAccountCreationContext();
     const { data: currencies, isLoading } = useCurrencies();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     const handleSubmit = (values: FormikValues) => {
         dispatch({ payload: { currency: values.currency }, type: ACTION_TYPES.SET_CURRENCY });

@@ -21,7 +21,8 @@ type TEnterPasswordProps = {
  */
 
 export const EnterPassword = ({ onPasswordChange, password }: TEnterPasswordProps) => {
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { cfdState } = useCFDContext();
     const { data } = useActiveDerivTradingAccount();
     const { closeModal } = useQueryParams();

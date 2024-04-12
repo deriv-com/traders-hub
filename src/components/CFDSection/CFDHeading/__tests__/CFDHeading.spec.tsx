@@ -40,8 +40,10 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         render(<CFDHeading />);
@@ -56,7 +58,9 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: false,
+            regulationFlags: {
+                isSuccess: false,
+            },
         });
 
         render(<CFDHeading />);
@@ -70,8 +74,10 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         render(<CFDHeading />);
@@ -85,8 +91,10 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         render(<CFDHeading />);
@@ -100,8 +108,10 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: true,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: true,
+            },
         });
 
         render(<CFDHeading />);
@@ -115,8 +125,10 @@ describe('CFDHeading', () => {
         });
 
         (useRegulationFlags as jest.Mock).mockReturnValue({
-            isSuccess: true,
-            isEU: false,
+            regulationFlags: {
+                isSuccess: true,
+                isEU: false,
+            },
         });
 
         const navigate = jest.fn();

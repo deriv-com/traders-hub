@@ -70,7 +70,8 @@ export const JurisdictionCard = ({
     const [isFlipped, setIsFlipped] = useState(false);
     const { toggleDynamicLeverage } = useDynamicLeverageModalState();
     const { cfdState } = useCFDContext();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     const { marketType: marketTypeState } = cfdState;
 

@@ -20,7 +20,8 @@ import { Modals } from '@/modals/Modals';
 export const Homepage = () => {
     const { isDesktop } = useDevice();
     const { activeLoginid, isAuthorized } = useAuthData();
-    const { hasActiveDerivAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { hasActiveDerivAccount } = regulationFlags;
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const isDemo = activeTrading?.is_virtual;
     const isReal = !activeTrading?.is_virtual;

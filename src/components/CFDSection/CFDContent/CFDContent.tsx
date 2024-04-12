@@ -5,7 +5,8 @@ import { TradingAppCardLoader } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
 export const CFDContent = () => {
-    const { isSuccess: isRegulationAccessible, isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isSuccess: isRegulationAccessible, isEU } = regulationFlags;
     const { isAuthorized } = useAuthData();
 
     if (!isRegulationAccessible && isAuthorized)

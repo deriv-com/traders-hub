@@ -21,7 +21,8 @@ import {
  */
 export const WizardScreens = memo(() => {
     const { currentStep } = useRealAccountCreationContext();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     // If the user is in the EU, we need to display the TradingAssessment and FinancialAssessment screens
     const screens = useMemo(() => {

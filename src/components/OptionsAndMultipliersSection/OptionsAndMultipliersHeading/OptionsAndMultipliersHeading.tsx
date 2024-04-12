@@ -28,8 +28,8 @@ const getDescription = (isEU: boolean) => {
  * @returns {React.ElementType} The `OptionsAndMultipliersHeading` component.
  */
 export const OptionsAndMultipliersHeading = () => {
-    const { isSuccess: isRegulationAccessible } = useRegulationFlags();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU, isSuccess: isRegulationAccessible } = regulationFlags;
     const { isAuthorized } = useAuthData();
 
     const title = isEU ? 'Multipliers' : 'Options & multipliers';

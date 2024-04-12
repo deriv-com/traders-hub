@@ -69,15 +69,17 @@ describe('useRegulationFlags', () => {
         const { result } = renderHook(() => useRegulationFlags());
 
         expect(result.current).toEqual({
-            hasActiveDerivAccount: false,
-            isEU: true,
-            isEURealAccount: true,
-            isHighRisk: true,
-            isNonEU: true,
-            isNonEURealAccount: true,
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: true,
+            regulationFlags: {
+                hasActiveDerivAccount: false,
+                isEU: true,
+                isEURealAccount: true,
+                isHighRisk: true,
+                isNonEU: true,
+                isNonEURealAccount: true,
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: true,
+            },
         });
 
         expect(useUIContext).toHaveBeenCalled();
@@ -118,15 +120,17 @@ describe('useRegulationFlags', () => {
         const { result } = renderHook(() => useRegulationFlags());
 
         expect(result.current).toEqual({
-            hasActiveDerivAccount: false,
-            isEU: true,
-            isEURealAccount: true,
-            isHighRisk: true,
-            isNonEU: true,
-            isNonEURealAccount: true,
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: true,
+            regulationFlags: {
+                hasActiveDerivAccount: false,
+                isEU: true,
+                isEURealAccount: true,
+                isHighRisk: true,
+                isNonEU: true,
+                isNonEURealAccount: true,
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: true,
+            },
         });
 
         expect(useUIContext).toHaveBeenCalled();
@@ -165,15 +169,17 @@ describe('useRegulationFlags', () => {
         const { result } = renderHook(() => useRegulationFlags());
 
         expect(result.current).toEqual({
-            hasActiveDerivAccount: false,
-            isEU: true,
-            isEURealAccount: true,
-            isHighRisk: true,
-            isNonEU: true,
-            isNonEURealAccount: true,
-            isSuccess: true,
-            noRealCRNonEUAccount: false,
-            noRealMFEUAccount: true,
+            regulationFlags: {
+                hasActiveDerivAccount: false,
+                isEU: true,
+                isEURealAccount: true,
+                isHighRisk: true,
+                isNonEU: true,
+                isNonEURealAccount: true,
+                isSuccess: true,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: true,
+            },
         });
 
         expect(useUIContext).toHaveBeenCalled();
@@ -213,6 +219,57 @@ describe('useRegulationFlags', () => {
 
         const { result } = renderHook(() => useRegulationFlags());
 
-        expect(result.current.isEURealAccount).toBe(true);
+        expect(result.current.regulationFlags.isEURealAccount).toBe(true);
+    });
+
+    it('should return correct regulation flags when isAuthorized is false', () => {
+        (useUIContext as jest.Mock).mockReturnValue({
+            uiState: {
+                accountType: 'real',
+                regulation: 'EU',
+            },
+        });
+        (useIsEuRegion as jest.Mock).mockReturnValue(true);
+        (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({
+            data: {},
+            isSuccess: true,
+        });
+        (useDerivTradingAccountsList as jest.Mock).mockReturnValue({
+            data: [{ broker: 'CR' }],
+            isSuccess: true,
+        });
+        (useLandingCompany as jest.Mock).mockReturnValue({
+            data: {
+                financial_company: { shortcode: 'svg' },
+                gaming_company: { shortcode: 'svg' },
+            },
+            isSuccess: true,
+        });
+
+        (useAuthData as jest.Mock).mockReturnValue({
+            isAuthorized: false,
+        });
+
+        (useWebsiteStatus as jest.Mock).mockReturnValue({
+            data: {
+                clients_country: 'es',
+            },
+        });
+
+        const { result } = renderHook(() => useRegulationFlags());
+
+        expect(result.current).toEqual({
+            regulationFlags: {
+                hasActiveDerivAccount: false,
+                isEU: true,
+                isEURealAccount: false,
+                isHighRisk: false,
+                isNonEU: false,
+                isNonEURealAccount: false,
+                isSuccess: false,
+                noRealCRNonEUAccount: false,
+                noRealMFEUAccount: false,
+            },
+        });
     });
 });

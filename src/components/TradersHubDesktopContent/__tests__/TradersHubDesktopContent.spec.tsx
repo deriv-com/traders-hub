@@ -15,7 +15,7 @@ jest.mock('@/components', () => ({
 
 describe('TradersHubDesktopContent', () => {
     it('renders sections correctly', () => {
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: false });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: false } });
 
         render(<TradersHubDesktopContent />);
 
@@ -24,7 +24,7 @@ describe('TradersHubDesktopContent', () => {
     });
 
     it('make sure CFD section is rendered first for EU clients', async () => {
-        (useRegulationFlags as jest.Mock).mockReturnValue({ isEU: true });
+        (useRegulationFlags as jest.Mock).mockReturnValue({ regulationFlags: { isEU: true } });
 
         render(<TradersHubDesktopContent />);
 

@@ -26,7 +26,8 @@ const LeadingIcon = () => (
 );
 
 export const AvailableDxtradeAccountsList = () => {
-    const { hasActiveDerivAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { hasActiveDerivAccount } = regulationFlags;
     const { openModal } = useQueryParams();
     const { setCfdState } = useCFDContext();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();

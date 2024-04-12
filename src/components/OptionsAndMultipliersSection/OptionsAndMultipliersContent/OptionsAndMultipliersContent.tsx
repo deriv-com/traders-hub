@@ -72,7 +72,8 @@ const LinkTitle = ({ icon, title }: TLinkTitleProps) => {
 const ShowOpenButton = ({ isExternal, redirect }: TShowButtonProps) => {
     const navigate = useNavigate();
 
-    const { noRealCRNonEUAccount, noRealMFEUAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { noRealCRNonEUAccount, noRealMFEUAccount } = regulationFlags;
 
     if (noRealCRNonEUAccount || noRealMFEUAccount) return null;
 
@@ -99,10 +100,9 @@ const ShowOpenButton = ({ isExternal, redirect }: TShowButtonProps) => {
 export const OptionsAndMultipliersContent = () => {
     const { isDesktop } = useDevice();
     const { data } = useActiveDerivTradingAccount();
-    const { isSuccess: isRegulationAccessible } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU, isSuccess: isRegulationAccessible } = regulationFlags;
     const { isAuthorized } = useAuthData();
-
-    const { isEU } = useRegulationFlags();
 
     const getoptionsAndMultipliersContent = optionsAndMultipliersContent(isEU ?? false);
 
