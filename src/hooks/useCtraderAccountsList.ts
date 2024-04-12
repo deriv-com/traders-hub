@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useTradingPlatformAccounts } from '@deriv-com/api-hooks';
 import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
-import { CFDPlatforms } from '@/cfd';
+import { CFDPlatforms } from '@/cfd/constants';
 
 export const useCtraderAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({

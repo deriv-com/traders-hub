@@ -11,13 +11,16 @@ jest.mock('@deriv-com/utils', () => ({
     FormatUtils: {
         formatMoney: jest.fn((balance, { currency }) => `${balance} ${currency}`),
     },
+    URLUtils: {
+        getDerivStaticURL: jest.fn(),
+    },
 }));
 
 describe('useCtraderAccountsList hook', () => {
     it('should return modified accounts with correct properties', () => {
         const mockData = [
-            { account_id: '1', account_type: 'demo', balance: 1000, currency: 'USD' },
-            { account_id: '2', account_type: 'real', balance: 2000, currency: 'EUR' },
+            { account_id: '1', account_type: 'demo', balance: 1000, currency: 'USD', platform: 'ctrader' },
+            { account_id: '2', account_type: 'real', balance: 2000, currency: 'EUR', platform: 'ctrader' },
         ];
         (useTradingPlatformAccounts as jest.Mock).mockReturnValue({ data: mockData, rest: {} });
 
@@ -47,7 +50,7 @@ describe('useCtraderAccountsList hook', () => {
     });
 
     it('should return 0 when balance is undefined in the account', () => {
-        const mockData = [{ account_id: '1', account_type: 'demo', currency: 'USD' }];
+        const mockData = [{ account_id: '1', account_type: 'demo', currency: 'USD', platform: 'ctrader' }];
         (useTradingPlatformAccounts as jest.Mock).mockReturnValue({ data: mockData, rest: {} });
 
         const { result } = renderHook(() => useCtraderAccountsList());

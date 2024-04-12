@@ -13,11 +13,13 @@ describe('useDxtradeAccountsList', () => {
                 account_type: 'demo',
                 balance: 1000,
                 currency: 'USD',
+                platform: 'dxtrade',
             },
             {
                 account_type: 'real',
                 balance: 2000,
                 currency: 'EUR',
+                platform: 'dxtrade',
             },
         ];
 
@@ -44,10 +46,12 @@ describe('useDxtradeAccountsList', () => {
             {
                 account_type: 'demo',
                 currency: 'USD',
+                platform: 'dxtrade',
             },
             {
                 account_type: 'real',
                 currency: 'EUR',
+                platform: 'dxtrade',
             },
         ];
 
