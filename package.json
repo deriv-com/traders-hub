@@ -30,6 +30,7 @@
         "react-router-dom": "^6.22.3",
         "tailwind-merge": "^2.2.1",
         "usehooks-ts": "^3.0.2",
+        "qrcode.react": "^3.1.0",
         "yup": "^1.4.0"
     },
     "devDependencies": {

@@ -50,6 +50,12 @@ jest.mock('../JurisdictionModal', () => {
     return { JurisdictionModal };
 });
 
+jest.mock('@/cfd/modals/TradeModal', () => {
+    const TradeModal = () => <div>TradeModal</div>;
+    TradeModal.displayName = 'TradeModal';
+    return { TradeModal };
+});
+
 describe('Modals', () => {
     it('should render all modals', () => {
         render(<Modals />);
@@ -60,5 +66,6 @@ describe('Modals', () => {
         expect(screen.getByText('MT5SuccessModal')).toBeInTheDocument();
         expect(screen.getByText('RegulationModal')).toBeInTheDocument();
         expect(screen.getByText('JurisdictionModal')).toBeInTheDocument();
+        expect(screen.getByText('TradeModal')).toBeInTheDocument();
     });
 });

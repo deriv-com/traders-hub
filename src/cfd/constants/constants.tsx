@@ -1,5 +1,14 @@
-import { ReactNode } from 'react';
+import { ComponentType, ReactNode, SVGAttributes } from 'react';
 
+import CTraderLabelIcon from '@/assets/svgs/ctrader-label.svg?react';
+import DerivXLabelIcon from '@/assets/svgs/derivx-label.svg?react';
+import InstallationAppleIcon from '@/assets/svgs/ic-installation-apple.svg?react';
+import InstallationGoogleIcon from '@/assets/svgs/ic-installation-google.svg?react';
+import InstallationHuaweiIcon from '@/assets/svgs/ic-installation-huawei.svg?react';
+import LinuxIcon from '@/assets/svgs/ic-linux-logo.svg?react';
+import MacOSIcon from '@/assets/svgs/ic-macos-logo.svg?react';
+import MT5Icon from '@/assets/svgs/ic-mt5.svg?react';
+import WindowsIcon from '@/assets/svgs/ic-windows-logo.svg?react';
 import { IconComponent } from '@/components';
 import { TJurisdiction, TMarketTypes, TPlatforms } from '@/types';
 
@@ -10,6 +19,20 @@ type TAppContent = {
     link: string;
     text: string;
     title: string;
+};
+
+type TDesktopLinks =
+    | 'ctrader_mac'
+    | 'ctrader_web'
+    | 'ctrader_windows'
+    | 'dxtrade_web'
+    | 'mt5_linux'
+    | 'mt5_macos'
+    | 'mt5_web'
+    | 'mt5_windows';
+
+type TAppToContentMapper = {
+    [key in TDesktopLinks]: Omit<TAppContent, 'description'>;
 };
 
 export type TAppLinks = {
@@ -27,6 +50,14 @@ type TLandingCompanyDetails = { name: string; shortcode: string; tncUrl: string 
 
 type TcompanyNamesAndUrls = {
     [key in TTM5FilterLandingCompany]: TLandingCompanyDetails;
+};
+
+type TPlatformUrls = {
+    [key in TPlatforms.OtherAccounts]: {
+        demo?: string;
+        live: string;
+        staging?: string;
+    };
 };
 
 export const CFDPlatforms = {
@@ -145,4 +176,77 @@ export const LinksMapper: Record<TPlatforms.All, TAppLinks> = {
         huawei: 'https://appgallery.huawei.com/#/app/C102015329',
         ios: 'https://download.mql5.com/cdn/mobile/mt5/ios?server=Deriv-Demo,Deriv-Server,Deriv-Server-02',
     },
+};
+
+export const PlatformUrls: TPlatformUrls = {
+    ctrader: {
+        live: 'https://ct.deriv.com',
+        staging: 'https://ct-uat.deriv.com',
+    },
+    dxtrade: {
+        demo: 'https://dx-demo.deriv.com',
+        live: 'https://dx.deriv.com',
+    },
+};
+
+export const PlatformToLabelIconMapper: Record<TPlatforms.OtherAccounts, ReactNode> = {
+    ctrader: <CTraderLabelIcon />,
+    dxtrade: <DerivXLabelIcon />,
+};
+
+export const AppToContentMapper: TAppToContentMapper = {
+    ctrader_web: {
+        icon: '',
+        link: '',
+        text: 'Open',
+        title: 'cTrader web',
+    },
+    dxtrade_web: {
+        icon: '',
+        link: '',
+        text: 'Open',
+        title: 'DerivX web',
+    },
+    ctrader_windows: {
+        icon: <WindowsIcon />,
+        link: 'https://getctrader.com/deriv/ctrader-deriv-setup.exe',
+        text: 'Download',
+        title: 'cTrader Windows App',
+    },
+    ctrader_mac: {
+        icon: <MacOSIcon />,
+        link: 'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg',
+        text: 'Download',
+        title: 'cTrader MacOS App',
+    },
+    mt5_linux: {
+        icon: <LinuxIcon />,
+        link: 'https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux',
+        text: 'Learn more',
+        title: 'MetaTrader 5 Linux app',
+    },
+    mt5_macos: {
+        icon: <MacOSIcon />,
+        link: 'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg',
+        text: 'Download',
+        title: 'MetaTrader 5 MacOS app',
+    },
+    mt5_web: {
+        icon: <MT5Icon />,
+        link: '',
+        text: 'Open',
+        title: 'MetaTrader 5 web',
+    },
+    mt5_windows: {
+        icon: <WindowsIcon />,
+        link: 'https://download.mql5.com/cdn/web/deriv.com.limited/mt5/deriv5setup.exe',
+        text: 'Download',
+        title: 'MetaTrader 5 Windows app',
+    },
+};
+
+export const AppToIconMapper: Record<string, ComponentType<SVGAttributes<SVGElement>>> = {
+    android: InstallationGoogleIcon,
+    huawei: InstallationHuaweiIcon,
+    ios: InstallationAppleIcon,
 };
