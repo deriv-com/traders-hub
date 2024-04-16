@@ -1,1 +1,0 @@
-export { OtherCFDPlatformsList } from './OtherCFDPlatformsList';

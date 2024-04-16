@@ -40,7 +40,8 @@ export const useAccountSwitcher = () => {
     const demoLoginId = tradingAccountsList?.find(acc => acc.is_virtual)?.loginid;
     const { data: isDIEL } = useIsDIELEnabled();
 
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { openModal } = useQueryParams();
 
     useEffect(() => {

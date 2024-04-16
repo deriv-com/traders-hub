@@ -13,7 +13,8 @@ import { useActiveDerivTradingAccount, useMT5AccountsList, useRegulationFlags } 
 import { useCFDContext } from '@/providers';
 
 export const MT5Success = () => {
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { data: mt5Accounts } = useMT5AccountsList();
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const { cfdState } = useCFDContext();
@@ -31,7 +32,7 @@ export const MT5Success = () => {
 
     const SuccessDescription = isDemo
         ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} account. To start trading, transfer funds from your Deriv account into this account.`
-        : `Congratulations, you have successfully created your ${Category.REAL} ${PlatformDetails.mt5.title} ${landingCompanyName} ${selectedJurisdiction} account. To start trading, top-up funds from your Deriv account into this account.`;
+        : `Congratulations, you have successfully created your ${Category.REAL} ${PlatformDetails.mt5.title} ${landingCompanyName} account. To start trading, top-up funds from your Deriv account into this account.`;
 
     const SuccessTitle = `Your ${marketTypeTitle} ${isDemo ? Category.DEMO : landingCompanyName} account is ready`;
 

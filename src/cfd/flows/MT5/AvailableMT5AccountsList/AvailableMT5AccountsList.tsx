@@ -9,7 +9,8 @@ import { THooks } from '@/types';
 import { MT5AccountIcon } from '../MT5AccountIcon';
 
 export const AvailableMT5AccountsList = ({ account }: { account: THooks.MT5AccountsList }) => {
-    const { hasActiveDerivAccount, isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU, hasActiveDerivAccount } = regulationFlags;
     const marketTypeDetails = MarketTypeDetails(isEU)[account.market_type ?? MarketType.ALL];
     const description = marketTypeDetails?.description ?? '';
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();

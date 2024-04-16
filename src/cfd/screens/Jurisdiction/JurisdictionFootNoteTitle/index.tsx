@@ -1,0 +1,1 @@
+export { JurisdictionFootNoteTitle } from './JurisdictionFootNoteTitle';

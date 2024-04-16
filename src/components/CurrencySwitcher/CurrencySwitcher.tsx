@@ -58,7 +58,8 @@ export const CurrencySwitcher = () => {
     const { openModal } = useQueryParams();
     const { isAuthorized } = useAuthData();
 
-    const { noRealCRNonEUAccount, noRealMFEUAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { noRealCRNonEUAccount, noRealMFEUAccount } = regulationFlags;
 
     const iconCurrency = isDemo ? 'virtual' : activeAccount?.currency ?? 'virtual';
 

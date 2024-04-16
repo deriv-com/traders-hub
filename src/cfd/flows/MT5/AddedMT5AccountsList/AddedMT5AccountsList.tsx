@@ -11,7 +11,8 @@ import { MT5AccountIcon } from '../MT5AccountIcon';
 
 export const AddedMT5AccountsList = ({ account }: { account: THooks.MT5AccountsList }) => {
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { openModal } = useQueryParams();
     const { setCfdState } = useCFDContext();
 

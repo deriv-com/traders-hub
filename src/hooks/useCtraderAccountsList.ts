@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { useTradingPlatformAccounts } from '@deriv-com/api-hooks';
 import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
+import { CFDPlatforms } from '@/cfd/constants';
+
 export const useCtraderAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({
         payload: { platform: 'ctrader' },
@@ -12,7 +14,9 @@ export const useCtraderAccountsList = () => {
 
     const modifiedAccounts = useMemo(() => {
         if (data) {
-            return data.map(
+            const cTraderAccounts = data.filter(account => account.platform === CFDPlatforms.CTRADER);
+
+            return cTraderAccounts.map(
                 account =>
                     ({
                         ...account,

@@ -6,7 +6,8 @@ import { CFDContent } from './CFDContent';
 import { CFDHeading } from './CFDHeading';
 
 const CFDSection = () => {
-    const { isSuccess, noRealCRNonEUAccount, noRealMFEUAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { noRealCRNonEUAccount, noRealMFEUAccount, isSuccess } = regulationFlags;
 
     return (
         <div className='overflow-y-scroll pt-16 lg:p-24 rounded-[24px] lg:outline-1 lg:outline lg:outline-system-light-hover-background'>

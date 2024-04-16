@@ -10,7 +10,8 @@ const CompareAccountsButton = () => {
     const navigate = useNavigate();
     const { isAuthorized } = useAuthData();
 
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
 
     const title = isEU ? 'Account information' : 'Compare Accounts';
 
@@ -31,7 +32,8 @@ const CompareAccountsButton = () => {
 
 const CFDHeading = () => {
     const { isDesktop } = useDevice();
-    const { isSuccess } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isSuccess } = regulationFlags;
     const { isAuthorized } = useAuthData();
 
     if (!isSuccess && isAuthorized) return <TitleDescriptionLoader />;

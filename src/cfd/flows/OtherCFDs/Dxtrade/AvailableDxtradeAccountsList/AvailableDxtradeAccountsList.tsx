@@ -1,4 +1,5 @@
 import { PlatformDetails } from '@cfd/constants';
+import { useAuthData } from '@deriv-com/api-hooks';
 import { URLUtils } from '@deriv-com/utils';
 
 import {
@@ -25,17 +26,24 @@ const LeadingIcon = () => (
 );
 
 export const AvailableDxtradeAccountsList = () => {
-    const { hasActiveDerivAccount } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { hasActiveDerivAccount } = regulationFlags;
     const { openModal } = useQueryParams();
     const { setCfdState } = useCFDContext();
     const { data: activeTradingAccount } = useActiveDerivTradingAccount();
+    const { isAuthorized } = useAuthData();
+
+    const { getOauthURL } = URLUtils;
 
     const TrailingButton = () => <TradingAccountCardLightButton onSubmit={trailingButtonClick} />;
 
     const title = getCfdsAccountTitle(PlatformDetails.dxtrade.title, activeTradingAccount?.isVirtual);
 
     const trailingButtonClick = () => {
-        if (!hasActiveDerivAccount) {
+        if (!isAuthorized) {
+            return (window.location.href = getOauthURL());
+        }
+        if (!hasActiveDerivAccount && isAuthorized) {
             // TODO: Add GetDerivAccountDialog here
         } else {
             setCfdState({ platform: PlatformDetails.dxtrade.platform });

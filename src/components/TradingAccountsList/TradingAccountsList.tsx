@@ -12,7 +12,8 @@ export const TradingAccountsList = () => {
     const { data: tradingAccountsList } = useDerivTradingAccountsList();
     const { data: activeAccount } = useActiveDerivTradingAccount();
     const { switchAccount } = useAuthData();
-    const { isEU } = useRegulationFlags();
+    const { regulationFlags } = useRegulationFlags();
+    const { isEU } = regulationFlags;
     const { closeModal } = useQueryParams();
 
     const handleSwitchAccount = (loginid: string) => {

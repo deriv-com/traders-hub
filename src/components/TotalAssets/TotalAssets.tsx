@@ -2,13 +2,14 @@ import { twMerge } from 'tailwind-merge';
 
 import { Text, useDevice } from '@deriv-com/ui';
 
-import { useActiveDerivTradingAccount } from '@/hooks';
+import { useActiveDerivTradingAccount, useTotalAssets } from '@/hooks';
 import { setPerformanceValue } from '@/utils';
 
 import { TotalAssetsLoader } from '../Loaders';
 
 const TotalAssets = () => {
     const { data: activeDerivTradingAccount, isFetching } = useActiveDerivTradingAccount();
+    const { formattedTotalBalance } = useTotalAssets();
     const { isMobile } = useDevice();
 
     // need to add more conditions to show the loader
@@ -35,7 +36,7 @@ const TotalAssets = () => {
                 )}
                 weight='bold'
             >
-                0.00 USD
+                {formattedTotalBalance}
             </Text>
         </div>
     );
