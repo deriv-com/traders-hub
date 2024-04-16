@@ -27,3 +27,4 @@ export { useAuthentication } from './useAuthentication';
 export { usePlatformAssets } from './usePlatformAssets';
 export { useCFDAssets } from './useCFDAssets';
 export { useTotalAssets } from './useTotalAssets';
+export { useCtraderServiceToken } from './useCtraderServiceToken';

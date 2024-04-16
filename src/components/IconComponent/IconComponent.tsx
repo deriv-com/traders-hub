@@ -26,6 +26,8 @@ import {
     PartnersProductSmarttraderBrandLightLogoIcon,
 } from '@deriv/quill-icons';
 
+import ImportantIcon from '@/assets/svgs/ic-important.svg?react';
+
 interface IconProps<T> {
     className?: string;
     height?: CSSProperties['height'];
@@ -60,6 +62,7 @@ export const Icons: Record<string, ElementType> = {
     USDC: CurrencyUsdcIcon,
     UST: CurrencyUsdtIcon,
     virtual: CurrencyDemoIcon,
+    ImportantIcon,
 };
 
 export const IconComponent = ({ className, height = 48, icon, onClick, width = 48 }: IconProps<keyof typeof Icons>) => {
