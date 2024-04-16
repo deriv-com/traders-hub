@@ -8,12 +8,13 @@ import { setPerformanceValue } from '@/utils';
 import { TotalAssetsLoader } from '../Loaders';
 
 const TotalAssets = () => {
-    const { data: activeDerivTradingAccount, isFetching } = useActiveDerivTradingAccount();
+    const { data: activeDerivTradingAccount } = useActiveDerivTradingAccount();
     const { formattedTotalBalance } = useTotalAssets();
     const { isMobile } = useDevice();
 
-    // need to add more conditions to show the loader
-    if (isFetching) {
+    // need to add more conditions to show the loader and wait until all accounts are measured
+    // or wait when BE team completes the task to measure TotalAssets on BE
+    if (!formattedTotalBalance) {
         return <TotalAssetsLoader />;
     }
 

@@ -33,7 +33,7 @@ describe('useMT5AccountHandler', () => {
             isPending: false,
             isSuccess: false,
             status: 'idle',
-            mutate: jest.fn(),
+            mutateAsync: jest.fn(),
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({ isPending: false, mutateAsync: jest.fn() });
         (useActiveDerivTradingAccount as jest.Mock).mockReturnValue({ data: {} });
@@ -63,7 +63,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
@@ -90,7 +90,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
@@ -122,7 +122,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
@@ -154,7 +154,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useAvailableMT5Accounts as jest.Mock).mockReturnValue({
             data: mockAccounts,
@@ -182,7 +182,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
@@ -215,7 +215,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
@@ -248,7 +248,7 @@ describe('useMT5AccountHandler', () => {
             },
         });
         (useMT5NewAccount as jest.Mock).mockReturnValue({
-            mutate: mockCreateMT5Account,
+            mutateAsync: mockCreateMT5Account,
         });
         (useTradingPlatformPasswordChange as jest.Mock).mockReturnValue({
             mutateAsync: mockTradingPasswordChange,
