@@ -40,7 +40,7 @@ export const useAccountSwitcher = () => {
     const { data: isDIEL } = useIsDIELEnabled();
 
     const { regulationFlags } = useRegulationFlags();
-    const { isEU } = regulationFlags;
+    const { isEU, hasActiveDerivAccount } = regulationFlags;
     const { openModal } = useQueryParams();
 
     useEffect(() => {
@@ -71,11 +71,11 @@ export const useAccountSwitcher = () => {
             }
 
             // Open the RealAccountCreation modal if the user is in the EU and is switching to a real account
-            if (isEU && openModal && account.value === 'real') {
+            if (isEU && openModal && account.value === 'real' && !hasActiveDerivAccount) {
                 openModal('RealAccountCreation');
             }
         },
-        [demoLoginId, firstRealLoginId, isEU, openModal, setUIState, switchAccount]
+        [demoLoginId, firstRealLoginId, hasActiveDerivAccount, isEU, openModal, setUIState, switchAccount]
     );
 
     return {

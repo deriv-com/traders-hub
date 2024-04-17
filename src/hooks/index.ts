@@ -17,7 +17,6 @@ export { useSettings } from './useSettings';
 export { useSortedMT5Accounts } from './useSortedMT5Accounts';
 export { useAccountStatus } from './useAccountStatus';
 export { useCurrencies } from './useCurrencies';
-export { useSyncLocalStorageClientAccounts } from './useSyncLocalStorageClientAccounts';
 export { useNewCRRealAccount } from './useNewCRRealAccount';
 export { useDxtradeAccountHandler } from './useDxtradeAccountHandler';
 export { useMT5AccountHandler } from './useMT5AccountHandler';
