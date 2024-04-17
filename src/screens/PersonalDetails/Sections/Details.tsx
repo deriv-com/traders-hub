@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 
 import { Divider, InlineMessage, Input, Loader, Text } from '@deriv-com/ui';
 
-import ExampleImage from '@/assets/svgs/personal-details-example.svg?react';
+import Example from '@/assets/jpg/personal-details-example.jpg';
 
 import { DetailsConfirmation } from './DetailsConfirmation';
 
@@ -97,7 +97,7 @@ export const Details = () => {
                             Example:
                         </Text>
                         <Suspense fallback={<Loader />}>
-                            <ExampleImage />
+                            <img alt='example' src={Example} />
                         </Suspense>
                     </div>
                 </div>
