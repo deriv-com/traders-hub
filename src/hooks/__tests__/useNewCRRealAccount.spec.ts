@@ -4,7 +4,7 @@ import { act, renderHook } from '@testing-library/react';
 import { useRealAccountCreationContext } from '@/providers';
 
 import { useNewCRRealAccount } from '../useNewCRRealAccount';
-import { useSettings, useSyncLocalStorageClientAccounts } from '..';
+import { useSettings } from '..';
 
 jest.mock('@deriv-com/api-hooks', () => ({
     useRealAccountCreationContext: jest.fn(),
@@ -20,16 +20,11 @@ jest.mock('../useSettings', () => ({
     useSettings: jest.fn(),
 }));
 
-jest.mock('../useSyncLocalStorageClientAccounts', () => ({
-    useSyncLocalStorageClientAccounts: jest.fn(),
-}));
-
 describe('useNewCRRealAccount', () => {
     it('should call the correct functions when status is success', async () => {
         const mockSetIsWizardOpen = jest.fn();
         const mockSetIsSuccessModalOpen = jest.fn();
-        const mockAddTradingAccountToLocalStorage = jest.fn();
-        const mockSwitchAccount = jest.fn();
+        const mockAddTradingAccount = jest.fn();
         const mockCreateAccount = jest.fn();
 
         (useRealAccountCreationContext as jest.Mock).mockReturnValue({
@@ -37,15 +32,13 @@ describe('useNewCRRealAccount', () => {
             setIsSuccessModalOpen: mockSetIsSuccessModalOpen,
         });
         (useNewAccountReal as jest.Mock).mockReturnValue({
-            data: { client_id: '123' },
+            data: { client_id: '123', oauth_token: 'oauth_token' },
             status: 'success',
             mutate: mockCreateAccount,
         });
-        (useSyncLocalStorageClientAccounts as jest.Mock).mockReturnValue({
-            addTradingAccountToLocalStorage: mockAddTradingAccountToLocalStorage,
-        });
+
         (useAuthData as jest.Mock).mockReturnValue({
-            switchAccount: mockSwitchAccount,
+            appendAccountCookie: mockAddTradingAccount,
         });
 
         (useSettings as jest.Mock).mockReturnValue({
@@ -58,15 +51,13 @@ describe('useNewCRRealAccount', () => {
             result.current.mutate();
         });
 
-        expect(mockAddTradingAccountToLocalStorage).toHaveBeenCalledWith({ client_id: '123' });
-        expect(mockSwitchAccount).toHaveBeenCalledWith('123');
+        expect(mockAddTradingAccount).toHaveBeenCalledWith('123', 'oauth_token');
     });
 
     it('should not call any function if newTradingAccountData is undefined', async () => {
         const mockSetIsWizardOpen = jest.fn();
         const mockSetIsSuccessModalOpen = jest.fn();
-        const mockAddTradingAccountToLocalStorage = jest.fn();
-        const mockSwitchAccount = jest.fn();
+        const mockappendAccountCookie = jest.fn();
         const mockCreateAccount = jest.fn();
 
         (useRealAccountCreationContext as jest.Mock).mockReturnValue({
@@ -78,11 +69,9 @@ describe('useNewCRRealAccount', () => {
             status: 'success',
             mutate: mockCreateAccount,
         });
-        (useSyncLocalStorageClientAccounts as jest.Mock).mockReturnValue({
-            addTradingAccountToLocalStorage: mockAddTradingAccountToLocalStorage,
-        });
+
         (useAuthData as jest.Mock).mockReturnValue({
-            switchAccount: mockSwitchAccount,
+            appendAccountCookie: mockappendAccountCookie,
         });
         (useSettings as jest.Mock).mockReturnValue({
             data: { country_code: 'US' },
@@ -94,8 +83,7 @@ describe('useNewCRRealAccount', () => {
             result.current.mutate();
         });
 
-        expect(mockAddTradingAccountToLocalStorage).not.toHaveBeenCalled();
-        expect(mockSwitchAccount).not.toHaveBeenCalled();
+        expect(mockappendAccountCookie).not.toHaveBeenCalled();
         expect(mockSetIsWizardOpen).not.toHaveBeenCalled();
         expect(mockSetIsSuccessModalOpen).not.toHaveBeenCalled();
     });

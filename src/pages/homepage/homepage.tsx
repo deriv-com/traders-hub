@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import { Fragment } from 'react/jsx-runtime';
-import Cookies from 'js-cookie';
 
 import { useAuthData } from '@deriv-com/api-hooks';
 import { useDevice } from '@deriv-com/ui';
@@ -19,7 +17,7 @@ import { Modals } from '@/modals/Modals';
 
 export const Homepage = () => {
     const { isDesktop } = useDevice();
-    const { activeLoginid, isAuthorized } = useAuthData();
+    const { isAuthorized } = useAuthData();
     const { regulationFlags } = useRegulationFlags();
     const { hasActiveDerivAccount } = regulationFlags;
     const { data: activeTrading } = useActiveDerivTradingAccount();
@@ -29,28 +27,6 @@ export const Homepage = () => {
     const isTotalAssetsVisible = (hasActiveDerivAccount || isDemo) && isAuthorized;
 
     const isSwitcherVisible = isDIEL && isReal;
-
-    const setLoginCookie = (token: string) => {
-        if (import.meta.env.MODE === 'production') {
-            const pagesDomain = Cookies.set('authToken', token, { domain: 'pages.dev', path: '/' });
-            const appDomain = Cookies.set('authToken', token, { domain: 'deriv.com', path: '/' });
-
-            return !!pagesDomain || !!appDomain;
-        }
-        Cookies.set('authToken', token);
-    };
-
-    useEffect(() => {
-        if (isAuthorized && activeLoginid) {
-            const clientAccounts = JSON.parse(localStorage.getItem('client.account_list') ?? '[]');
-
-            const activeAccount = clientAccounts.find(
-                (account: { loginid: string; token: string }) => account.loginid === activeLoginid
-            );
-
-            setLoginCookie(activeAccount.token);
-        }
-    }, [isAuthorized, activeLoginid]);
 
     return (
         <Fragment>

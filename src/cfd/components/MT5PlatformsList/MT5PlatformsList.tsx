@@ -24,6 +24,7 @@ export const MT5PlatformsList = () => {
                 </div>
             )}
             {isFetchedAfterMount &&
+                isAuthorized &&
                 sortedMt5Accounts?.map(MT5Account => {
                     if (
                         MT5Account.is_added &&

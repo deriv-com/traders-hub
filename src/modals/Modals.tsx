@@ -1,6 +1,6 @@
 import { Fragment } from 'react/jsx-runtime';
 
-import { MT5PasswordModal, MT5SuccessModal, TradeModal } from '@/cfd/modals';
+import { DxtradePasswordModal, MT5PasswordModal, MT5SuccessModal, TradeModal } from '@/cfd/modals';
 import { RealAccountCreation } from '@/flows';
 
 import { JurisdictionModal } from './JurisdictionModal';
@@ -17,6 +17,7 @@ export const Modals = () => {
             {/* PLS DO NOT ADD ANY PROPS TO ANY MODALS HERE.💥 */}
             <AccountSelector />
             <AccountOpeningSuccessModal />
+            <DxtradePasswordModal />
             <JurisdictionModal />
             <MT5PasswordModal />
             <MT5SuccessModal />

@@ -5,10 +5,15 @@ import { CurrencyConstants, FormatUtils } from '@deriv-com/utils';
 
 import { CFDPlatforms } from '@/cfd/constants';
 
+import { useExchangeRates } from './useExchangeRates';
+
 export const useCtraderAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({
         payload: { platform: 'ctrader' },
+        queryKey: ['ctrader'],
     });
+
+    const { getExchangeRate } = useExchangeRates();
 
     const { formatMoney } = FormatUtils;
 
@@ -30,10 +35,12 @@ export const useCtraderAccountsList = () => {
                         display_balance: `${formatMoney(account.balance ?? 0, {
                             currency: account.currency as CurrencyConstants.Currency,
                         })} ${account.currency}`,
+                        /** The exchange rate of the account's currency to the user's currency */
+                        convertedBalance: getExchangeRate(account.currency ?? 'USD', 'USD') * (account.balance ?? 0),
                     }) as const
             );
         }
-    }, [data, formatMoney]);
+    }, [data, formatMoney, getExchangeRate]);
 
     return { data: modifiedAccounts, ...rest };
 };

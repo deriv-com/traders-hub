@@ -4,7 +4,7 @@ import { useAuthData, useNewAccountReal } from '@deriv-com/api-hooks';
 
 import { useRealAccountCreationContext } from '@/providers/RealAccountCreationProvider';
 
-import { useSettings, useSyncLocalStorageClientAccounts } from '.';
+import { useSettings } from '.';
 
 /**
  * @name useNewCRRealAccount
@@ -17,28 +17,19 @@ export const useNewCRRealAccount = () => {
     const { data: newTradingAccountData, mutate: createAccount, status, ...rest } = useNewAccountReal();
     const { data: settingsData } = useSettings();
 
-    const { addTradingAccountToLocalStorage } = useSyncLocalStorageClientAccounts();
-    const { switchAccount } = useAuthData();
+    const { appendAccountCookie } = useAuthData();
 
     useEffect(() => {
         if (status === 'success') {
             // fail-safe for typescript as the data type is also undefined
             if (!newTradingAccountData) return;
 
-            addTradingAccountToLocalStorage(newTradingAccountData);
-            switchAccount(newTradingAccountData?.client_id);
+            appendAccountCookie(newTradingAccountData.client_id, newTradingAccountData.oauth_token);
             setIsWizardOpen(false);
             setIsSuccessModalOpen(true);
         }
         // trigger validation error on status change when validation modal is created
-    }, [
-        addTradingAccountToLocalStorage,
-        newTradingAccountData,
-        setIsSuccessModalOpen,
-        setIsWizardOpen,
-        status,
-        switchAccount,
-    ]);
+    }, [appendAccountCookie, newTradingAccountData, setIsSuccessModalOpen, setIsWizardOpen, status]);
 
     /**
      * @name handleSubmit

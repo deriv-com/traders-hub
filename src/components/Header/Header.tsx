@@ -5,14 +5,14 @@ import { URLUtils } from '@deriv-com/utils';
 import { IconComponent } from '..';
 
 export const Header = () => {
-    const { isAuthorized, activeLoginid } = useAuthData();
+    const { isAuthorized, activeLoginid, logout } = useAuthData();
     const { getOauthURL, getDerivStaticURL } = URLUtils;
 
     return (
         <header className='border-solid border-b-1 border-b-system-light-hover-background flex px-20'>
             <div className='flex justify-between items-center w-full'>
                 <IconComponent icon='Deriv' />
-                {!(isAuthorized || activeLoginid) && (
+                {!(isAuthorized || activeLoginid) ? (
                     <div className='flex gap-6'>
                         <Button
                             size='sm'
@@ -33,6 +33,10 @@ export const Header = () => {
                             Sign Up
                         </Button>
                     </div>
+                ) : (
+                    <Button size='sm' variant='outlined' color='black' onClick={logout}>
+                        Logout
+                    </Button>
                 )}
             </div>
         </header>
