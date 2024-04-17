@@ -1,52 +1,57 @@
-import { useMemo } from 'react';
+import { Jurisdiction } from '@/cfd';
+import { Regulation } from '@/constants';
+import { useUIContext } from '@/providers';
 
-import { useBalance } from './useBalance';
 import { useCtraderAccountsList } from './useCtraderAccountsList';
 import { useDxtradeAccountsList } from './useDxtradeAccountsList';
+import { useMT5AccountsList } from './useMT5AccountsList';
 
-interface Account {
-    is_virtual: boolean;
-    balance: number;
-}
-
-const calculateBalance = (accountsList: Account[] | undefined, isVirtual: boolean) =>
-    accountsList
-        ?.filter(account => account.is_virtual === isVirtual)
-        .reduce((acc, account) => acc + (account.balance || 0), 0) || 0;
 /**
  *
  * @returns @description This hook is used to get the total balance of the CFD accounts.
  * @example
  * const { totalCFDDemoAccountBalance, totalCFDRealAccountBalance } = useCFDAssets();
  */
-
 export const useCFDAssets = () => {
-    const { data: balanceAll } = useBalance();
+    const { data: mt5AccountsList } = useMT5AccountsList();
+    const { uiState } = useUIContext();
     const { data: ctraderAccountsList } = useCtraderAccountsList();
     const { data: dxtradeAccountsList } = useDxtradeAccountsList();
+    const { regulation } = uiState;
+    const isEURegulation = regulation === Regulation.EU;
 
-    const demoCTraderBalance = calculateBalance(ctraderAccountsList as Account[], true);
-    const realCTraderBalance = calculateBalance(ctraderAccountsList as Account[], false);
-    const demoDxtradeBalance = calculateBalance(dxtradeAccountsList as Account[], true);
-    const realDxtradeBalance = calculateBalance(dxtradeAccountsList as Account[], false);
+    const demoMT5AccountBalance =
+        mt5AccountsList
+            ?.filter(account => account.is_virtual)
+            .reduce((total, account) => total + account.convertedBalance, 0) ?? 0;
 
-    const realMT5Balance = balanceAll.total?.mt5?.amount || 0;
+    const realMT5AccountBalance =
+        mt5AccountsList
+            ?.filter(account => {
+                if (isEURegulation) {
+                    return !account.is_virtual && account.landing_company_short === Jurisdiction.MALTAINVEST;
+                }
+                return !account.is_virtual && account.landing_company_short !== Jurisdiction.MALTAINVEST;
+            })
+            .reduce((total, account) => total + account.convertedBalance, 0) ?? 0;
 
-    const demoMT5Balance = balanceAll.total?.mt5_demo?.amount || 0;
+    const demoDxtradeAccountBalance = dxtradeAccountsList?.find(account => account.is_virtual)?.convertedBalance ?? 0;
+    const realDxtradeAccountBalance = dxtradeAccountsList?.find(account => !account.is_virtual)?.convertedBalance ?? 0;
 
-    const totalCFDAccountBalance = useMemo(() => {
-        return {
-            demo: demoCTraderBalance + demoDxtradeBalance + demoMT5Balance,
-            real: realCTraderBalance + realDxtradeBalance + realMT5Balance,
-        };
-    }, [
-        demoCTraderBalance,
-        demoDxtradeBalance,
-        demoMT5Balance,
-        realCTraderBalance,
-        realDxtradeBalance,
-        realMT5Balance,
-    ]);
+    // Calculate Ctrader account balances
+    const ctraderDemoAccountBalance = ctraderAccountsList?.find(account => account.is_virtual)?.convertedBalance ?? 0;
+    const ctraderRealAccountBalance = ctraderAccountsList?.find(account => !account.is_virtual)?.convertedBalance ?? 0;
 
-    return totalCFDAccountBalance;
+    // Calculate total real and demo CFD balances
+    const totalRealCFDBalance = realMT5AccountBalance + realDxtradeAccountBalance + ctraderRealAccountBalance;
+    const totalDemoCFDBalance = demoMT5AccountBalance + demoDxtradeAccountBalance + ctraderDemoAccountBalance;
+
+    // Calculate final real and demo balances based on regulation
+    const calculatedRealBalance = isEURegulation ? realMT5AccountBalance : totalRealCFDBalance;
+    const calculatedDemoBalance = isEURegulation ? demoMT5AccountBalance : totalDemoCFDBalance;
+
+    return {
+        calculatedDemoBalance,
+        calculatedRealBalance,
+    };
 };
