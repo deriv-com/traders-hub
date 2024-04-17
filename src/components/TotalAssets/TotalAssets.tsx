@@ -12,7 +12,7 @@ const TotalAssets = () => {
     const { formattedTotalBalance } = useTotalAssets();
     const { isMobile } = useDevice();
 
-    // need to add more conditions to show the loader and wait until all accounts are measured
+    // TODO: need to add more conditions to show the loader and wait until all accounts are measured
     // or wait when BE team completes the task to measure TotalAssets on BE
     if (!formattedTotalBalance) {
         return <TotalAssetsLoader />;

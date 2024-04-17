@@ -41,7 +41,7 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
                     if (currencyConfig?.currency?.isCrypto)
                         startPerformanceEventTimer('load_crypto_deposit_cashier_time');
                     else startPerformanceEventTimer('load_fiat_deposit_cashier_time');
-                    navigate('/cashier/deposit#deposit');
+                    navigate('https://app.deriv.com/cashier/deposit#deposit');
                 }
             }}
             variant='outlined'

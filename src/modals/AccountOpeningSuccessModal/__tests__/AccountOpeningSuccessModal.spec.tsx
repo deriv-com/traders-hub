@@ -67,7 +67,7 @@ describe('AccountOpeningSuccessModal', () => {
 
         expect(reset).toHaveBeenCalled();
         expect(closeModal).toHaveBeenCalled();
-        expect(navigate).toHaveBeenCalledWith('/cashier/deposit');
+        expect(navigate).toHaveBeenCalledWith('https://app.deriv.com/cashier/deposit');
     });
 
     it('uses USD as the default currency if state.currency is undefined', () => {

@@ -47,7 +47,7 @@ export const AccountOpeningSuccessModal = () => {
     const handleNavigateToDeposit = () => {
         reset();
         closeModal();
-        navigate('/cashier/deposit');
+        navigate('https://app.deriv.com/cashier/deposit');
     };
     return (
         <Modal
