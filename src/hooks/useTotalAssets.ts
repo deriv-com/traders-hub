@@ -11,14 +11,14 @@ import { usePlatformAssets } from './usePlatformAssets';
  * const { formattedTotalBalance } = useTotalAssets();
  */
 export const useTotalAssets = () => {
-    const { demo, real } = useCFDAssets();
+    const { calculatedDemoBalance, calculatedRealBalance } = useCFDAssets();
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const { totalDerivTradingAccountBalance, fiatCurrency } = usePlatformAssets();
     const { formatMoney } = FormatUtils;
 
-    const totalDemoBalance = demo + totalDerivTradingAccountBalance.demo;
+    const totalDemoBalance = calculatedDemoBalance + totalDerivTradingAccountBalance.demo;
 
-    const totalRealBalance = real + totalDerivTradingAccountBalance.real;
+    const totalRealBalance = calculatedRealBalance + totalDerivTradingAccountBalance.real;
 
     const totalBalance = activeTrading?.isVirtual ? totalDemoBalance : totalRealBalance;
 

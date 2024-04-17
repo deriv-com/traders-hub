@@ -28,3 +28,4 @@ export { usePlatformAssets } from './usePlatformAssets';
 export { useCFDAssets } from './useCFDAssets';
 export { useTotalAssets } from './useTotalAssets';
 export { useCtraderServiceToken } from './useCtraderServiceToken';
+export { useExchangeRates } from './useExchangeRates';

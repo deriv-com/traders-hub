@@ -54,6 +54,7 @@ describe('CFDProvider', () => {
                         platform: 'mt5',
                         display_balance: '1000',
                         display_login: 'MT512312',
+                        convertedBalance: 1000,
                         currencyConfig: {
                             isCrypto: false,
                             isFiat: true,
