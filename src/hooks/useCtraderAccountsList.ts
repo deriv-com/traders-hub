@@ -10,7 +10,9 @@ import { useExchangeRates } from './useExchangeRates';
 export const useCtraderAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({
         payload: { platform: 'ctrader' },
+        queryKey: ['ctrader'],
     });
+
     const { getExchangeRate } = useExchangeRates();
 
     const { formatMoney } = FormatUtils;

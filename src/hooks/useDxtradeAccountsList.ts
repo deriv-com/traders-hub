@@ -10,6 +10,7 @@ import { useExchangeRates } from './useExchangeRates';
 export const useDxtradeAccountsList = () => {
     const { data, ...rest } = useTradingPlatformAccounts({
         payload: { platform: 'dxtrade' },
+        queryKey: ['dxtrade'],
     });
 
     const { getExchangeRate } = useExchangeRates();
