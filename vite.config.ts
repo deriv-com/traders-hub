@@ -1,9 +1,12 @@
+import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 import react from '@vitejs/plugin-react';
+
+dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,8 +29,8 @@ export default defineConfig({
     },
     server: {
         https: {
-            key: fs.readFileSync(path.resolve(__dirname, './dev.pem')),
-            cert: fs.readFileSync(path.resolve(__dirname, './cert.pem')),
+            key: fs.readFileSync(path.resolve(process.env.DEV_PEM_PATH ?? '')),
+            cert: fs.readFileSync(path.resolve(process.env.CERT_PEM_PATH ?? '')),
         },
         port: 8443,
     },
