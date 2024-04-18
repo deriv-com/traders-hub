@@ -1,7 +1,7 @@
 import { ChangeEvent, Fragment } from 'react';
 
 import { Category, CFDPlatforms, MarketType, MarketTypeDetails, PlatformDetails } from '@cfd/constants';
-import { Modal, PasswordInput, Text } from '@deriv-com/ui';
+import { Modal, PasswordInput, Text, useDevice } from '@deriv-com/ui';
 
 import { useActiveDerivTradingAccount, useQueryParams, useRegulationFlags } from '@/hooks';
 import { useCFDContext } from '@/providers';
@@ -33,22 +33,25 @@ export const EnterPassword = ({ onPasswordChange, password }: TEnterPasswordProp
     const accountType = data?.is_virtual ? Category.DEMO : Category.REAL;
     const marketTypeTitle =
         platform === PlatformDetails.dxtrade.platform ? accountType : marketTypeDetails[marketType]?.title;
+    const { isDesktop } = useDevice();
 
     return (
         <Fragment>
             <Modal.Header onRequestClose={closeModal}>
-                <Text weight='bold'>{`Enter your ${title} password`}</Text>
+                {isDesktop && <Text weight='bold'>{`Enter your ${title} password`}</Text>}
             </Modal.Header>
             <Modal.Body>
-                <div className='flex flex-col gap-16 lg:w-[400px] lg:gap-8 lg:pt-24 lg:px-24'>
+                <div className='flex flex-col gap-16 lg:w-[400px] lg:gap-8 lg:pt-24 lg:px-24 items-center pt-24 '>
+                    {!isDesktop && <Text weight='bold'>{`Enter your ${title} password`}</Text>}
                     <Text size='sm'>
                         Enter your {title} password to add a {title} {marketTypeTitle} account.
                     </Text>
                     <PasswordInput
-                        isFullWidth
+                        isFullWidth={isDesktop}
                         label={`${title} password`}
                         onChange={onPasswordChange}
                         value={password}
+                        hidePasswordMeter
                     />
                 </div>
             </Modal.Body>
