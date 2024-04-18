@@ -5,7 +5,7 @@ import { useActiveDerivTradingAccount } from '@/hooks';
 
 import { Category, PlatformDetails } from '../../constants';
 
-const DxtradeSuccess = () => {
+export const DxtradeSuccess = () => {
     const { data: activeTrading } = useActiveDerivTradingAccount();
     const isDemo = activeTrading?.is_virtual;
 
@@ -21,5 +21,3 @@ const DxtradeSuccess = () => {
         />
     );
 };
-
-export default DxtradeSuccess;
