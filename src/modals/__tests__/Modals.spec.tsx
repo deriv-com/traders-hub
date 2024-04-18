@@ -62,6 +62,12 @@ jest.mock('@/cfd/modals/DxtradePasswordModal', () => {
     return { DxtradePasswordModal };
 });
 
+jest.mock('@/cfd/modals/DxtradeSuccessModal', () => {
+    const DxtradeSuccessModal = () => <div>DxtradeSuccessModal</div>;
+    DxtradeSuccessModal.displayName = 'DxtradeSuccessModal';
+    return { DxtradeSuccessModal };
+});
+
 describe('Modals', () => {
     it('should render all modals', () => {
         render(<Modals />);
@@ -74,5 +80,6 @@ describe('Modals', () => {
         expect(screen.getByText('JurisdictionModal')).toBeInTheDocument();
         expect(screen.getByText('TradeModal')).toBeInTheDocument();
         expect(screen.getByText('DxtradePasswordModal')).toBeInTheDocument();
+        expect(screen.getByText('DxtradeSuccessModal')).toBeInTheDocument();
     });
 });
