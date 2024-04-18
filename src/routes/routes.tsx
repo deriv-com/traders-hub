@@ -1,12 +1,13 @@
 import { createBrowserRouter, NavigateOptions } from 'react-router-dom';
 
-import { CompareAccounts, Homepage, Redirect, Signup } from '@/pages';
+import { CompareAccounts, Endpoint, Homepage, Redirect, Signup } from '@/pages';
 
 export const routes = {
     home: '/',
     signup: '/signup',
     compareAccounts: '/compare-accounts',
     redirect: '/redirect',
+    endpoint: '/endpoint',
 } as const;
 
 type TRoutes = (typeof routes)[keyof typeof routes];
@@ -31,5 +32,9 @@ export const router = createBrowserRouter([
     {
         path: routes.redirect,
         element: <Redirect />,
+    },
+    {
+        path: routes.endpoint,
+        element: <Endpoint />,
     },
 ]);
