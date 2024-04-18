@@ -106,19 +106,19 @@ export const Jurisdiction = {
 
 export const PlatformDetails = {
     ctrader: {
-        icon: (width?: number) => <IconComponent icon='CTrader' width={width} />,
+        icon: (width?: number, height?: number) => <IconComponent icon='CTrader' width={width} height={height} />,
         link: 'https://onelink.to/5jgj8z',
         platform: 'ctrader' as TPlatforms.OtherAccounts,
         title: 'Deriv cTrader',
     },
     dxtrade: {
-        icon: (width?: number) => <IconComponent icon='DerivX' width={width} />,
+        icon: (width?: number, height?: number) => <IconComponent icon='DerivX' width={width} height={height} />,
         link: 'https://onelink.to/grmtyx',
         platform: 'dxtrade' as TPlatforms.OtherAccounts,
         title: 'Deriv X',
     },
     mt5: {
-        icon: (width?: number) => <IconComponent icon='Derived' width={width} />,
+        icon: (width?: number, height?: number) => <IconComponent icon='Derived' width={width} height={height} />,
         link: 'https://onelink.to/grmtyx',
         platform: 'mt5' as TPlatforms.MT5,
         title: 'Deriv MT5',
