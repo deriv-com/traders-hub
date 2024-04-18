@@ -15,7 +15,18 @@ This template was generated using `create-deriv-v2`
 
 Setup SSL Certificates
 
-To run this project, you will need the dev.pem and cert.pem SSL certificate keys. You can obtain these keys from any member of the TradersHub team.
+To run this project, you will need the dev.pem and cert.pem SSL certificate keys.
+
+You can obtain these keys from any member of the TradersHub team.
+
+If you desire to use the default directory:
+
+-   In `cert` directory, copy `cert.example.pem` & `dev.example.pem` to `cert.pem` & `dev.pem` respectively
+-   Paste the respective certificate keys to `pem` files.
+-   Create a new `.env` from the `.env.example` file within the root directory
+
+If you prefer to use a different directory:
+
 Once you have these keys, add them to your local machine. You can place them in any directory, but remember the path where you placed them.
 Next, you need to include the paths to these keys in your .env file. Add the following lines to your .env file:
 
