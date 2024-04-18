@@ -11,7 +11,13 @@ export const Header = () => {
     return (
         <header className='border-solid border-b-1 border-b-system-light-hover-background flex px-20'>
             <div className='flex justify-between items-center w-full'>
-                <IconComponent icon='Deriv' />
+                <IconComponent
+                    icon='Deriv'
+                    onClick={() => {
+                        window.location.href = '/';
+                    }}
+                    className='cursor-pointer'
+                />
                 {!(isAuthorized || activeLoginid) ? (
                     <div className='flex gap-6'>
                         <Button
