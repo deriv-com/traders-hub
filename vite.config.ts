@@ -8,6 +8,17 @@ import react from '@vitejs/plugin-react';
 
 dotenv.config();
 
+const serverConfig: { port: number; https?: { key: Buffer; cert: Buffer } } = {
+    port: 8443,
+};
+
+if (process.env.DEV_PEM_PATH && process.env.CERT_PEM_PATH) {
+    serverConfig.https = {
+        key: fs.readFileSync(path.resolve(process.env.DEV_PEM_PATH)),
+        cert: fs.readFileSync(path.resolve(process.env.CERT_PEM_PATH)),
+    };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
@@ -27,11 +38,5 @@ export default defineConfig({
             '@cfd': path.resolve(__dirname, './src/cfd/'),
         },
     },
-    server: {
-        https: {
-            key: fs.readFileSync(path.resolve(process.env.DEV_PEM_PATH ?? '')),
-            cert: fs.readFileSync(path.resolve(process.env.CERT_PEM_PATH ?? '')),
-        },
-        port: 8443,
-    },
+    server: serverConfig,
 });
