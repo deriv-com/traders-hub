@@ -1,20 +1,22 @@
 import { Fragment } from 'react';
 
-import {
-    AppToContentMapper,
-    DesktopLinks,
-    PlatformDetails,
-    PlatformToLabelIconMapper,
-    PlatformUrls,
-} from '@cfd/constants';
 import { Button, Text } from '@deriv-com/ui';
 
 import { getPlatformFromUrl } from '@/helpers';
 import { useActiveDerivTradingAccount, useCtraderServiceToken } from '@/hooks';
 import { THooks, TPlatforms } from '@/types';
 
+import {
+    AppToContentMapper,
+    DesktopLinks,
+    PlatformDetails,
+    PlatformToLabelIconMapper,
+    PlatformUrls,
+} from '../../../constants';
+
 type TTradeLinkProps = {
     app: keyof typeof AppToContentMapper;
+    isDemo?: boolean;
     platform?: TPlatforms.All;
     webtraderUrl?: THooks.MT5AccountsList['webtrader_url'];
 };
