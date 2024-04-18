@@ -20,7 +20,8 @@ type ModalId =
     | 'Signup'
     | 'TopUpModal'
     | 'TradeModal'
-    | 'VerificationFailedModal';
+    | 'VerificationFailedModal'
+    | 'DxtradeSuccessModal';
 /**
  * @description A hook to manage query params for modals
  * @returns isOpen: (modalId: ModalId) => boolean

@@ -1,0 +1,1 @@
+export { DxtradeSuccessModal } from './DxtradeSuccessModal';
