@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-
 import { Button, Modal, Text, useDevice } from '@deriv-com/ui';
 
 import Checkmark from '@/assets/svgs/checkmark.svg?react';
 import { ButtonGroup, IconComponent } from '@/components';
 import { ActionScreen } from '@/components/ActionScreen';
+import { derivUrls } from '@/helpers';
 import { useQueryParams } from '@/hooks';
 import { useRealAccountCreationContext } from '@/providers';
 
@@ -41,13 +40,12 @@ export const AccountOpeningSuccessModal = () => {
     const { isSuccessModalOpen, reset } = useRealAccountCreationContext();
     const { isDesktop } = useDevice();
     const { state } = useRealAccountCreationContext();
-    const navigate = useNavigate();
     const { closeModal } = useQueryParams();
 
     const handleNavigateToDeposit = () => {
         reset();
         closeModal();
-        navigate('https://app.deriv.com/cashier/deposit');
+        window.location.href = `${derivUrls.DERIV_APP_PRODUCTION}/cashier/deposit`;
     };
     return (
         <Modal

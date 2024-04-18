@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-
 import { StandaloneChevronDownBoldIcon } from '@deriv/quill-icons';
 import { useAuthData, useTopupVirtual } from '@deriv-com/api-hooks';
 import { Button } from '@deriv-com/ui';
 
 import { CurrencySwitcherLoader } from '@/components';
 import { IconToCurrencyMapper } from '@/constants';
+import { derivUrls } from '@/helpers';
 import { useActiveDerivTradingAccount, useCurrencyConfig, useQueryParams, useRegulationFlags } from '@/hooks';
 import { THooks } from '@/types';
 import { startPerformanceEventTimer } from '@/utils';
@@ -21,7 +20,6 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
     const { mutate: resetVirtualBalance } = useTopupVirtual();
     const { activeLoginid } = useAuthData();
     const { data: currencyConfig } = useCurrencyConfig();
-    const navigate = useNavigate();
     let buttonText = 'Deposit';
     if (isDemo && balance !== 10000) {
         buttonText = 'Reset Balance';
@@ -41,7 +39,7 @@ const AccountActionButton = ({ balance, isDemo }: AccountActionButtonProps) => {
                     if (currencyConfig?.currency?.isCrypto)
                         startPerformanceEventTimer('load_crypto_deposit_cashier_time');
                     else startPerformanceEventTimer('load_fiat_deposit_cashier_time');
-                    navigate('https://app.deriv.com/cashier/deposit#deposit');
+                    window.location.href = `${derivUrls.DERIV_APP_PRODUCTION}/cashier/deposit#deposit`;
                 }
             }}
             variant='outlined'
