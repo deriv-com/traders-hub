@@ -4,6 +4,7 @@ import { useAuthData } from '@deriv-com/api-hooks';
 
 import { Regulation } from '@/constants';
 import { useUIContext } from '@/providers';
+import { startPerformanceEventTimer } from '@/utils';
 
 import {
     useActiveDerivTradingAccount,
@@ -67,6 +68,9 @@ export const useAccountSwitcher = () => {
 
             const loginId = account.value === accountTypes[0].value ? demoLoginId : firstRealLoginId;
             if (loginId) {
+                if (account.value === accountTypes[0].value)
+                    startPerformanceEventTimer('switch_from_real_to_demo_time');
+                else startPerformanceEventTimer('switch_from_demo_to_real_time');
                 switchAccount(loginId);
             }
 
