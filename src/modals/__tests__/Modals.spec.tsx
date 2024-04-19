@@ -68,6 +68,12 @@ jest.mock('@/cfd/modals/DxtradeSuccessModal', () => {
     return { DxtradeSuccessModal };
 });
 
+jest.mock('@/cfd/modals/CTraderSuccessModal', () => {
+    const CTraderSuccessModal = () => <div>CTraderSuccessModal</div>;
+    CTraderSuccessModal.displayName = 'CTraderSuccessModal';
+    return { CTraderSuccessModal };
+});
+
 describe('Modals', () => {
     it('should render all modals', () => {
         render(<Modals />);
@@ -81,5 +87,6 @@ describe('Modals', () => {
         expect(screen.getByText('TradeModal')).toBeInTheDocument();
         expect(screen.getByText('DxtradePasswordModal')).toBeInTheDocument();
         expect(screen.getByText('DxtradeSuccessModal')).toBeInTheDocument();
+        expect(screen.getByText('CTraderSuccessModal')).toBeInTheDocument();
     });
 });
