@@ -5,7 +5,7 @@ import { IconComponent } from '@/components';
 import { THooks } from '@/types';
 import { isSafariBrowser } from '@/utils';
 
-const MT5MobileRedirectOption = ({ details }: { details: THooks.MT5AccountsList }) => {
+export const MT5MobileRedirectOption = ({ details }: { details: THooks.MT5AccountsList }) => {
     const getMobileUrl = () => {
         window.location.replace(getDeeplinkUrl({ details }));
 
@@ -57,5 +57,3 @@ const MT5MobileRedirectOption = ({ details }: { details: THooks.MT5AccountsList 
         </div>
     );
 };
-
-export default MT5MobileRedirectOption;
