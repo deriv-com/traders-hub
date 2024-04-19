@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useQueryParams } from '@/hooks';
 
 export const Signup = () => {
-    return (
-        <>
-            <h1>Signup</h1>
-            <Link to='/'>Go to Homepage</Link>
-        </>
-    );
+    const { openModal, isModalOpen } = useQueryParams();
+
+    useEffect(() => {
+        openModal('Signup');
+    }, [isModalOpen, openModal]);
+
+    return null;
 };
