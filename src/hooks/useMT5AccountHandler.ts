@@ -2,6 +2,7 @@ import { Category, CFDPlatforms, Jurisdiction, MarketType } from '@cfd/constants
 import { useMT5NewAccount, useTradingPlatformPasswordChange } from '@deriv-com/api-hooks';
 
 import { useCFDContext } from '@/providers';
+import { setPerformanceValue, startPerformanceEventTimer } from '@/utils';
 
 import { useAccountStatus, useActiveDerivTradingAccount, useAvailableMT5Accounts, useSettings } from '.';
 
@@ -12,7 +13,7 @@ export const useMT5AccountHandler = () => {
         isPending: createMT5AccountLoading,
         isSuccess: isCreateMT5AccountSuccess,
         status: createMT5AccountStatus,
-        mutate: createMT5Account,
+        mutateAsync: createMT5Account,
     } = useMT5NewAccount();
     const { isPending: tradingPlatformPasswordChangeLoading, mutateAsync: tradingPasswordChange } =
         useTradingPlatformPasswordChange();
@@ -35,6 +36,7 @@ export const useMT5AccountHandler = () => {
     // in order to create account, we need to set a password through trading_platform_password_change endpoint first
     // then only mt5_create_account can be called, otherwise it will response an error for password required
     const handleSubmit = async (password: string) => {
+        startPerformanceEventTimer('create_mt5_account_time');
         if (isMT5PasswordNotSet) {
             await tradingPasswordChange({
                 new_password: password,
@@ -43,6 +45,7 @@ export const useMT5AccountHandler = () => {
         }
 
         await createPassword(password);
+        setPerformanceValue('create_mt5_account_time');
     };
 
     const createPassword = (password: string) =>
