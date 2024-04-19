@@ -38,7 +38,7 @@ export const MT5MobileRedirectOption = ({ details }: { details: THooks.MT5Accoun
                 </div>
             </a>
             <button
-                className='flex justify-between w-full gap-2 p-8 bg-blue-600 rounded-md fill-white align-center text-decoration-none'
+                className='flex justify-between w-full gap-2 p-8 bg-blue-600 rounded-md align-center text-decoration-none'
                 onClick={getMobileUrl}
             >
                 <div className='flex justify-between w-full gap-5 align-center'>

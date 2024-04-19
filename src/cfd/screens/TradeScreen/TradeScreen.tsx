@@ -13,7 +13,7 @@ import {
 import { useCFDContext } from '@/providers';
 import { THooks, TPlatforms } from '@/types';
 
-import MT5MobileRedirectOption from './MT5MobileRedirectOption';
+import { MT5MobileRedirectOption } from './MT5MobileRedirectOption';
 import { TradeDetailsItem } from './TradeDetailsItem';
 import { TradeLink } from './TradeLink';
 
@@ -159,11 +159,7 @@ export const TradeScreen = ({ account }: TradeScreenProps) => {
                     ))}
 
                 {platform === dxtradePlatform && (
-                    <TradeLink
-                        app={DesktopLinks.DXTRADE_WEB}
-                        // isDemo={activeAccount?.is_virtual}
-                        platform={dxtradePlatform}
-                    />
+                    <TradeLink app={DesktopLinks.DXTRADE_WEB} platform={dxtradePlatform} />
                 )}
                 {platform === ctraderPlatform && isDesktop && (
                     <Fragment>
