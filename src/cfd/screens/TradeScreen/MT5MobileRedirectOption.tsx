@@ -9,8 +9,8 @@ export const MT5MobileRedirectOption = ({ details }: { details: THooks.MT5Accoun
     const getMobileUrl = () => {
         window.location.replace(getDeeplinkUrl({ details }));
 
-        const timeout = setTimeout(() => {
-            const url = getMobileAppInstallerUrl({ details });
+        const timeout = setTimeout(async () => {
+            const url = await getMobileAppInstallerUrl({ details });
             if (url) window.location.replace(url);
         }, 1500);
 

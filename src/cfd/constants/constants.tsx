@@ -260,10 +260,11 @@ export const getDeeplinkUrl = ({ details }: { details: THooks.MT5AccountsList })
     return `metatrader5://account?login=${details?.display_login}&server=${details?.server_info?.environment}`;
 };
 
-export const getMobileAppInstallerUrl = ({ details }: { details: THooks.MT5AccountsList }) => {
-    if (mobileOsDetect() === 'iOS') {
+export const getMobileAppInstallerUrl = async ({ details }: { details: THooks.MT5AccountsList }) => {
+    const os = await mobileOsDetect();
+    if (os === 'iOS') {
         return details?.white_label_links?.ios;
-    } else if (mobileOsDetect() === 'huawei') {
+    } else if (os === 'huawei') {
         return 'https://appgallery.huawei.com/#/app/C102015329';
     }
     return details?.white_label_links?.android;
