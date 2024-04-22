@@ -8,7 +8,7 @@ import {
     MT5SuccessModal,
     TradeModal,
 } from '@/cfd/modals';
-import { RealAccountCreation, Signup } from '@/flows';
+import { RealAccountCreation } from '@/flows';
 
 import { JurisdictionModal } from './JurisdictionModal';
 import { RegulationModal } from './RegulationModal';
@@ -33,7 +33,6 @@ export const Modals = () => {
             <RealAccountCreation />
             <RegulationModal />
             <TradeModal />
-            <Signup />
         </Fragment>
     );
 };

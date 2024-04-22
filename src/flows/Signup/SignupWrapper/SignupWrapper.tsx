@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Form, Formik } from 'formik';
+import { Form, Formik, FormikHelpers, FormikValues } from 'formik';
 
 import { Modal } from '@deriv-com/ui';
 
-import { useQueryParams } from '@/hooks';
+import { useNewVirtualAccount, useQueryParams } from '@/hooks';
 import { signup } from '@/utils/validations';
 
 import { SignupScreens } from '../SignupScreens';
@@ -16,7 +16,8 @@ export type TSignupFormValues = {
 
 export const SignupWrapper = () => {
     const [step, setStep] = useState(1);
-    const { openModal, isModalOpen } = useQueryParams();
+    const { isModalOpen } = useQueryParams();
+    const { mutate } = useNewVirtualAccount();
 
     const initialValues = {
         country: '',
@@ -24,9 +25,10 @@ export const SignupWrapper = () => {
         password: '',
     };
 
-    const handleSubmit = () => {
-        // logic will be added later
-        openModal('RealAccountCreation');
+    const handleSubmit = (_: FormikValues, actions: FormikHelpers<typeof initialValues>) => {
+        actions.setSubmitting(true);
+        mutate();
+        actions.setSubmitting(false);
     };
 
     return (

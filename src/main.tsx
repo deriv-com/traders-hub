@@ -14,21 +14,26 @@ import './index.css';
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <AppDataProvider>
-                <UIProvider>
-                    <CFDProvider>
-                        <RealAccountCreationProvider>
-                            {/* Temporary Header */}
-                            <Header />
-                            <App />
-                        </RealAccountCreationProvider>
-                    </CFDProvider>
-                </UIProvider>
-            </AppDataProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-    </React.StrictMode>
-);
+const RootComponent = () => {
+    const isSignup = window.location.pathname === '/signup';
+    return (
+        <React.StrictMode>
+            <QueryClientProvider client={queryClient}>
+                <AppDataProvider>
+                    <UIProvider>
+                        <CFDProvider>
+                            <RealAccountCreationProvider>
+                                {/* Temporary Header */}
+                                {!isSignup && <Header />}
+                                <App />
+                            </RealAccountCreationProvider>
+                        </CFDProvider>
+                    </UIProvider>
+                </AppDataProvider>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+        </React.StrictMode>
+    );
+};
+
+ReactDOM.createRoot(document.getElementById('root')!).render(<RootComponent />);
