@@ -63,6 +63,8 @@ jobs:
           project_name: "traders-hub"
           branch_name: "pr-${{github.event.number}}"
           output_dir: dist
+        env:
+          RUDDERSTACK_KEY: ${{ vars.VITE_RUDDERSTACK_KEY }}
 
       - name: "Generate preview link comment"
         uses: "deriv-com/shared-actions/.github/actions/post_preview_link_comment@v1"
