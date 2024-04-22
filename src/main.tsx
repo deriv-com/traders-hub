@@ -45,8 +45,6 @@ const AnalyticsConfigurator = () => {
                     country: clientCountry,
                 };
                 Analytics.setAttributes(attributes);
-                // eslint-disable-next-line no-console
-                console.table(attributes);
             }
         }
     }, [activeTradingAccount, websiteStatusData]);
