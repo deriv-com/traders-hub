@@ -1,9 +1,9 @@
 import { Fragment, useMemo } from 'react';
 
-import { DesktopLinks, MarketType, MarketTypeDetails, PlatformDetails } from '@cfd/constants';
+import { DesktopLinks, getWebtraderUrl, MarketType, MarketTypeDetails, PlatformDetails } from '@cfd/constants';
 import { Text, useDevice } from '@deriv-com/ui';
 
-import ImportantIcon from '@/assets/svgs/ic-important.svg?react';
+import { IconComponent } from '@/components';
 import {
     useActiveDerivTradingAccount,
     useCtraderAccountsList,
@@ -13,6 +13,7 @@ import {
 import { useCFDContext } from '@/providers';
 import { THooks, TPlatforms } from '@/types';
 
+import { MT5MobileRedirectOption } from './MT5MobileRedirectOption';
 import { TradeDetailsItem } from './TradeDetailsItem';
 import { TradeLink } from './TradeLink';
 
@@ -129,7 +130,8 @@ export const TradeScreen = ({ account }: TradeScreenProps) => {
                     )}
                 </div>
                 <div className='flex items-center gap-8'>
-                    <ImportantIcon
+                    <IconComponent
+                        icon='ImportantIcon'
                         height={platform === mt5Platform ? 16 : 20}
                         width={platform === mt5Platform ? 16 : 20}
                     />
@@ -138,23 +140,24 @@ export const TradeScreen = ({ account }: TradeScreenProps) => {
                     </Text>
                 </div>
             </div>
-            <div className='w-full'>
-                {platform === mt5Platform && (
-                    <Fragment>
-                        <TradeLink
-                            app={DesktopLinks.MT5_WEB}
-                            platform={mt5Platform}
-                            webtraderUrl={(details as THooks.MT5AccountsList)?.webtrader_url}
-                        />
-                        {isDesktop && (
-                            <Fragment>
-                                <TradeLink app={DesktopLinks.MT5_WINDOWS} platform={mt5Platform} />
-                                <TradeLink app={DesktopLinks.MT5_MACOS} platform={mt5Platform} />
-                                <TradeLink app={DesktopLinks.MT5_LINUX} platform={mt5Platform} />
-                            </Fragment>
-                        )}
-                    </Fragment>
-                )}
+            <div className='w-full p-24'>
+                {platform === mt5Platform &&
+                    (isDesktop ? (
+                        <Fragment>
+                            <TradeLink
+                                app={DesktopLinks.MT5_WEB}
+                                platform={mt5Platform}
+                                webtraderUrl={getWebtraderUrl({ details } as { details: THooks.MT5AccountsList })}
+                            />
+
+                            <TradeLink app={DesktopLinks.MT5_WINDOWS} platform={mt5Platform} />
+                            <TradeLink app={DesktopLinks.MT5_MACOS} platform={mt5Platform} />
+                            <TradeLink app={DesktopLinks.MT5_LINUX} platform={mt5Platform} />
+                        </Fragment>
+                    ) : (
+                        <MT5MobileRedirectOption details={details as THooks.MT5AccountsList} />
+                    ))}
+
                 {platform === dxtradePlatform && (
                     <TradeLink app={DesktopLinks.DXTRADE_WEB} platform={dxtradePlatform} />
                 )}

@@ -21,6 +21,9 @@ import {
     DerivProductDerivGoBrandLightLogoHorizontalIcon,
     DerivProductDerivTraderBrandLightLogoHorizontalIcon,
     DerivProductDerivXBrandLightLogoIcon,
+    LabelPairedChevronRightXlFillIcon,
+    LabelPairedLaptopLgFillIcon,
+    LabelPairedMobileNotchLgBoldIcon,
     PartnersProductBinaryBotBrandLightLogoHorizontalIcon,
     PartnersProductDerivCtraderBrandLightLogoHorizontalIcon,
     PartnersProductSmarttraderBrandLightLogoIcon,
@@ -63,6 +66,9 @@ export const Icons: Record<string, ElementType> = {
     UST: CurrencyUsdtIcon,
     virtual: CurrencyDemoIcon,
     ImportantIcon,
+    ArrowRight: LabelPairedChevronRightXlFillIcon,
+    Laptop: LabelPairedLaptopLgFillIcon,
+    Mobile: LabelPairedMobileNotchLgBoldIcon,
 };
 
 export const IconComponent = ({ className, height = 48, icon, onClick, width = 48 }: IconProps<keyof typeof Icons>) => {

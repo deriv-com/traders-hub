@@ -10,7 +10,10 @@ import MacOSIcon from '@/assets/svgs/ic-macos-logo.svg?react';
 import MT5Icon from '@/assets/svgs/ic-mt5.svg?react';
 import WindowsIcon from '@/assets/svgs/ic-windows-logo.svg?react';
 import { IconComponent } from '@/components';
-import { TJurisdiction, TMarketTypes, TPlatforms } from '@/types';
+import { THooks, TJurisdiction, TMarketTypes, TPlatforms } from '@/types';
+import { mobileOsDetect } from '@/utils';
+
+import { ctrader_links, dxtrade_links, white_label_links } from './urlConfig';
 
 type TAppContent = {
     description: string;
@@ -163,29 +166,29 @@ export const companyNamesAndUrls: TcompanyNamesAndUrls = {
 
 export const LinksMapper: Record<TPlatforms.All, TAppLinks> = {
     ctrader: {
-        android: 'https://play.google.com/store/apps/details?id=com.deriv.ct',
-        ios: 'https://apps.apple.com/us/app/deriv-ctrader/id6466996509',
+        android: ctrader_links.android,
+        ios: ctrader_links.ios,
     },
     dxtrade: {
-        android: 'https://play.google.com/store/apps/details?id=com.deriv.dx',
-        huawei: 'https://appgallery.huawei.com/app/C104633219',
-        ios: 'https://apps.apple.com/us/app/deriv-x/id1563337503',
+        android: dxtrade_links.android,
+        huawei: dxtrade_links.huawei,
+        ios: dxtrade_links.ios,
     },
     mt5: {
-        android: 'https://download.mql5.com/cdn/mobile/mt5/android?server=Deriv-Demo,Deriv-Server,Deriv-Server-02',
-        huawei: 'https://appgallery.huawei.com/#/app/C102015329',
-        ios: 'https://download.mql5.com/cdn/mobile/mt5/ios?server=Deriv-Demo,Deriv-Server,Deriv-Server-02',
+        android: white_label_links.android,
+        huawei: white_label_links.huawei,
+        ios: white_label_links.ios,
     },
 };
 
 export const PlatformUrls: TPlatformUrls = {
     ctrader: {
-        live: 'https://ct.deriv.com',
-        staging: 'https://ct-uat.deriv.com',
+        live: ctrader_links.live,
+        staging: ctrader_links.staging,
     },
     dxtrade: {
-        demo: 'https://dx-demo.deriv.com',
-        live: 'https://dx.deriv.com',
+        demo: dxtrade_links.demo,
+        live: dxtrade_links.live,
     },
 };
 
@@ -209,25 +212,25 @@ export const AppToContentMapper: TAppToContentMapper = {
     },
     ctrader_windows: {
         icon: <WindowsIcon />,
-        link: 'https://getctrader.com/deriv/ctrader-deriv-setup.exe',
+        link: ctrader_links.windows,
         text: 'Download',
         title: 'cTrader Windows App',
     },
     ctrader_mac: {
         icon: <MacOSIcon />,
-        link: 'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg',
+        link: ctrader_links.mac,
         text: 'Download',
         title: 'cTrader MacOS App',
     },
     mt5_linux: {
         icon: <LinuxIcon />,
-        link: 'https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux',
+        link: white_label_links.linux,
         text: 'Learn more',
         title: 'MetaTrader 5 Linux app',
     },
     mt5_macos: {
         icon: <MacOSIcon />,
-        link: 'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg',
+        link: white_label_links.macos,
         text: 'Download',
         title: 'MetaTrader 5 MacOS app',
     },
@@ -239,7 +242,7 @@ export const AppToContentMapper: TAppToContentMapper = {
     },
     mt5_windows: {
         icon: <WindowsIcon />,
-        link: 'https://download.mql5.com/cdn/web/deriv.com.limited/mt5/deriv5setup.exe',
+        link: white_label_links.windows,
         text: 'Download',
         title: 'MetaTrader 5 Windows app',
     },
@@ -249,4 +252,22 @@ export const AppToIconMapper: Record<string, ComponentType<SVGAttributes<SVGElem
     android: InstallationGoogleIcon,
     huawei: InstallationHuaweiIcon,
     ios: InstallationAppleIcon,
+};
+
+export const getWebtraderUrl = ({ details }: { details: THooks.MT5AccountsList }) => {
+    return `${details?.white_label_links?.webtrader_url}?login=${details?.display_login}&server=${details?.server_info?.environment}`;
+};
+
+export const getDeeplinkUrl = ({ details }: { details: THooks.MT5AccountsList }) => {
+    return `metatrader5://account?login=${details?.display_login}&server=${details?.server_info?.environment}`;
+};
+
+export const getMobileAppInstallerUrl = async ({ details }: { details: THooks.MT5AccountsList }) => {
+    const os = await mobileOsDetect();
+    if (os === 'iOS') {
+        return details?.white_label_links?.ios;
+    } else if (os === 'huawei') {
+        return white_label_links.huawei;
+    }
+    return details?.white_label_links?.android;
 };
