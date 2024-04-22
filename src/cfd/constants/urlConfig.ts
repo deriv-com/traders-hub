@@ -13,7 +13,6 @@ export const ctrader_links = {
     staging: 'https://ct-uat.deriv.com',
     windows: 'https://getctrader.com/deriv/ctrader-deriv-setup.exe',
     mac: 'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg',
-    linux: 'https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux',
 };
 
 /**
