@@ -22,6 +22,7 @@ export const MT5Success = () => {
     const { platform, marketType: marketTypeState, selectedJurisdiction } = cfdState;
     const isDemo = activeTrading?.is_virtual;
     const marketType = marketTypeState ?? MarketType.ALL;
+    const account_type = activeTrading?.account_type;
 
     const marketTypeTitle =
         marketType === MarketType.ALL && platform && Object.keys(PlatformDetails).includes(platform)
@@ -31,7 +32,7 @@ export const MT5Success = () => {
     const landingCompanyName = `(${companyNamesAndUrls?.[selectedJurisdiction as TTM5FilterLandingCompany]?.shortcode})`;
 
     const SuccessDescription = isDemo
-        ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} account. To start trading, transfer funds from your Deriv account into this account.`
+        ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} ${account_type} ${selectedJurisdiction} account.`
         : `Congratulations, you have successfully created your ${Category.REAL} ${PlatformDetails.mt5.title} ${landingCompanyName} account. To start trading, top-up funds from your Deriv account into this account.`;
 
     const SuccessTitle = `Your ${marketTypeTitle} ${isDemo ? Category.DEMO : landingCompanyName} account is ready`;
