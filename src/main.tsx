@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { CFDProvider, RealAccountCreationProvider, UIProvider } from '@/providers';
+import { startInitPerformanceTimers } from '@/utils';
 
 import { Header } from './components/Header/Header';
 import { useActiveDerivTradingAccount } from './hooks/useActiveDerivTradingAccount';
@@ -54,6 +55,7 @@ const AnalyticsConfigurator = () => {
 
 const container = document.getElementById('root');
 const root = container ? ReactDOM.createRoot(container) : null;
+startInitPerformanceTimers();
 
 root?.render(
     <React.StrictMode>

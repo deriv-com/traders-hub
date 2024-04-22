@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 
+import { derivUrls } from '@/helpers';
 import { useQueryParams } from '@/hooks';
 import { useRealAccountCreationContext } from '@/providers';
 
@@ -13,10 +13,6 @@ jest.mock('@/providers', () => ({
 }));
 jest.mock('@/hooks', () => ({
     useQueryParams: jest.fn(),
-}));
-
-jest.mock('react-router-dom', () => ({
-    useNavigate: jest.fn(),
 }));
 
 jest.mock('@deriv-com/ui', () => ({
@@ -30,6 +26,21 @@ jest.mock('@deriv-com/ui', () => ({
 }));
 
 describe('AccountOpeningSuccessModal', () => {
+    const currentLocation = { ...window.location };
+
+    beforeEach(() => {
+        Object.defineProperty(window, 'location', {
+            value: {
+                href: '',
+            },
+            writable: true,
+        });
+    });
+
+    afterEach(() => {
+        Object.defineProperty(window, 'location', currentLocation);
+    });
+
     it('renders correctly', () => {
         (useRealAccountCreationContext as jest.Mock).mockReturnValue({
             isSuccessModalOpen: true,
@@ -52,14 +63,12 @@ describe('AccountOpeningSuccessModal', () => {
     it('calls reset, closeModal, and navigate when the Deposit button is clicked', () => {
         const reset = jest.fn();
         const closeModal = jest.fn();
-        const navigate = jest.fn();
         (useRealAccountCreationContext as jest.Mock).mockReturnValue({
             isSuccessModalOpen: true,
             reset,
             state: { currency: 'USD' },
         });
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal });
-        (useNavigate as jest.Mock).mockReturnValue(navigate);
 
         render(<AccountOpeningSuccessModal />);
 
@@ -67,7 +76,8 @@ describe('AccountOpeningSuccessModal', () => {
 
         expect(reset).toHaveBeenCalled();
         expect(closeModal).toHaveBeenCalled();
-        expect(navigate).toHaveBeenCalledWith('/cashier/deposit');
+
+        expect(window.location.href).toBe(`${derivUrls.DERIV_APP_PRODUCTION}/cashier/deposit`);
     });
 
     it('uses USD as the default currency if state.currency is undefined', () => {
@@ -78,7 +88,6 @@ describe('AccountOpeningSuccessModal', () => {
         };
         (useRealAccountCreationContext as jest.Mock).mockReturnValue(mockContext);
         (useQueryParams as jest.Mock).mockReturnValue({ closeModal: jest.fn() });
-        (useNavigate as jest.Mock).mockReturnValue(jest.fn());
 
         render(<AccountOpeningSuccessModal />);
 

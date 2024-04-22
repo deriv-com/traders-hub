@@ -13,6 +13,11 @@ jest.mock('@/hooks', () => ({
 
 jest.mock('@deriv-com/ui', () => ({
     Text: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+    useDevice: jest.fn(() => ({
+        isDesktop: true,
+        isMobile: false,
+        isTablet: false,
+    })),
 }));
 
 describe('TotalAssets', () => {

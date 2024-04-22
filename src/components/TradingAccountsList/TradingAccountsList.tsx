@@ -6,6 +6,7 @@ import { Text } from '@deriv-com/ui';
 import { IconComponent } from '@/components';
 import { IconToCurrencyMapper } from '@/constants';
 import { useActiveDerivTradingAccount, useDerivTradingAccountsList, useQueryParams, useRegulationFlags } from '@/hooks';
+import { startPerformanceEventTimer } from '@/utils';
 
 export const TradingAccountsList = () => {
     const { data: tradingAccountsList } = useDerivTradingAccountsList();
@@ -16,6 +17,7 @@ export const TradingAccountsList = () => {
     const { closeModal } = useQueryParams();
 
     const handleSwitchAccount = (loginid: string) => {
+        startPerformanceEventTimer('switch_currency_accounts_time');
         switchAccount(loginid);
         closeModal();
     };
