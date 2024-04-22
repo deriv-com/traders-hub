@@ -1,3 +1,11 @@
+/**
+ * This file contains the URLs for different platforms and environments.
+ * urlConfig will be sent as a proposal to the backend.
+ */
+
+/**
+ * URLs for the cTrader platform.
+ */
 export const ctrader_links = {
     android: 'https://play.google.com/store/apps/details?id=com.deriv.ct',
     ios: 'https://apps.apple.com/us/app/deriv-ctrader/id6466996509',
@@ -7,6 +15,10 @@ export const ctrader_links = {
     mac: 'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg',
     linux: 'https://www.metatrader5.com/en/terminal/help/start_advanced/install_linux',
 };
+
+/**
+ * URLs for the dxTrade platform.
+ */
 export const dxtrade_links = {
     android: 'https://play.google.com/store/apps/details?id=com.deriv.dx',
     huawei: 'https://appgallery.huawei.com/app/C104633219',
@@ -14,6 +26,10 @@ export const dxtrade_links = {
     demo: 'https://dx-demo.deriv.com',
     live: 'https://dx.deriv.com',
 };
+
+/**
+ * URLs for the mt5 platform.
+ */
 export const white_label_links = {
     android: 'https://download.mql5.com/cdn/mobile/mt5/android?server=Deriv-Demo,Deriv-Server,Deriv-Server-02',
     huawei: 'https://appgallery.huawei.com/#/app/C102015329',
