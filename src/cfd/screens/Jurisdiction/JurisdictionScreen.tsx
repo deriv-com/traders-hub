@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { Jurisdiction } from '@cfd/constants';
 
-import { useAvailableMT5Accounts, useMT5AccountsList } from '@/hooks';
+import { useAvailableMT5Accounts, useMT5AccountsList, useQueryParams } from '@/hooks';
 import { useCFDContext, useDynamicLeverageModalState } from '@/providers';
 
 import { JurisdictionCard } from './JurisdictionCard';
@@ -14,6 +14,7 @@ type TJurisdictionScreenProps = {
 
 export const JurisdictionScreen = ({ setIsCheckBoxChecked }: TJurisdictionScreenProps) => {
     const { cfdState, setCfdState } = useCFDContext();
+    const { closeModal } = useQueryParams();
     const { data: availableMT5Accounts } = useAvailableMT5Accounts();
     const { data: mt5AccountsList } = useMT5AccountsList();
     const { marketType, selectedJurisdiction } = cfdState;
@@ -36,6 +37,12 @@ export const JurisdictionScreen = ({ setIsCheckBoxChecked }: TJurisdictionScreen
     useEffect(() => {
         setIsCheckBoxChecked(false);
     }, [selectedJurisdiction, setIsCheckBoxChecked]);
+
+    useEffect(() => {
+        if (typeof closeModal === 'function') {
+            setCfdState({ selectedJurisdiction: '' });
+        }
+    }, [closeModal, setCfdState]);
 
     return (
         <div
