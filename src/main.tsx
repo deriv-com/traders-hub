@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -25,7 +25,7 @@ const AnalyticsConfigurator = () => {
     const { isDesktop, isMobile, isTablet } = useDevice();
     const { getAppId } = WebSocketUtils;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (websiteStatusData?.clients_country) {
             const accountType = activeTradingAccount?.is_virtual ? 'demo' : 'real';
             const clientCountry = websiteStatusData.clients_country;
@@ -54,7 +54,6 @@ const AnalyticsConfigurator = () => {
     return null;
 };
 
-// Manage the root rendering process
 const container = document.getElementById('root');
 const root = container ? ReactDOM.createRoot(container) : null;
 
