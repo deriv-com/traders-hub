@@ -25,7 +25,7 @@ export const SignupWrapper = () => {
         password: '',
     };
 
-    const handleSubmit = values => {
+    const handleSubmit = (values: TSignupFormValues) => {
         mutate(values);
     };
 

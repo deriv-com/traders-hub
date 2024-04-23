@@ -13,6 +13,7 @@ import {
     TradersHubMobileContent,
 } from '@/components';
 import { useActiveDerivTradingAccount, useIsDIELEnabled, useRegulationFlags } from '@/hooks';
+import { Modals } from '@/modals/Modals';
 
 export const Homepage = () => {
     const { isDesktop } = useDevice();
@@ -40,6 +41,7 @@ export const Homepage = () => {
                     {!isDesktop ? <TradersHubMobileContent /> : <TradersHubDesktopContent />}
                 </div>
             </AppContainer>
+            <Modals />
         </Fragment>
     );
 };
