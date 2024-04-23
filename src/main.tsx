@@ -30,6 +30,8 @@ const AnalyticsConfigurator = () => {
         if (websiteStatusData?.clients_country) {
             const accountType = activeTradingAccount?.is_virtual ? 'demo' : 'real';
             const clientCountry = websiteStatusData.clients_country;
+            // eslint-disable-next-line no-console
+            console.log('RudderStack Key:', import.meta.env.VITE_RUDDERSTACK_KEY);
 
             if (import.meta.env.VITE_RUDDERSTACK_KEY) {
                 const config = {
