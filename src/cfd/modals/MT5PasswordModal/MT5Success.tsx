@@ -23,16 +23,18 @@ export const MT5Success = () => {
     const isDemo = activeTrading?.is_virtual;
     const marketType = marketTypeState ?? MarketType.ALL;
 
+    const isSwapFree = marketType === MarketType.ALL && platform === 'mt5';
+
     const marketTypeTitle =
-        marketType === MarketType.ALL && platform && Object.keys(PlatformDetails).includes(platform)
+        !isSwapFree && marketType === MarketType.ALL && platform
             ? PlatformDetails[platform].title
             : MarketTypeDetails(isEU)[marketType].title;
 
     const landingCompanyName = `(${companyNamesAndUrls?.[selectedJurisdiction as TTM5FilterLandingCompany]?.shortcode})`;
 
     const SuccessDescription = isDemo
-        ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} account. To start trading, transfer funds from your Deriv account into this account.`
-        : `Congratulations, you have successfully created your ${Category.REAL} ${PlatformDetails.mt5.title} ${landingCompanyName} account. To start trading, top-up funds from your Deriv account into this account.`;
+        ? `Congratulations, you have successfully created your ${Category.DEMO} ${PlatformDetails.mt5.title} ${marketTypeTitle} account.`
+        : `Congratulations, you have successfully created your ${Category.REAL} ${PlatformDetails.mt5.title} ${marketTypeTitle} ${selectedJurisdiction?.toUpperCase()} account. To start trading, transfer funds from your Deriv account into this account.`;
 
     const SuccessTitle = `Your ${marketTypeTitle} ${isDemo ? Category.DEMO : landingCompanyName} account is ready`;
 
