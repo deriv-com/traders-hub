@@ -48,7 +48,7 @@ const AnalyticsConfigurator = () => {
                 Analytics.setAttributes(attributes);
             }
         }
-    }, [activeTradingAccount, websiteStatusData]);
+    }, [activeTradingAccount, getAppId, isDesktop, isMobile, isTablet, websiteStatusData]);
 
     return null;
 };
@@ -57,6 +57,8 @@ const container = document.getElementById('root');
 const root = container ? ReactDOM.createRoot(container) : null;
 startInitPerformanceTimers();
 
+const signupRoute = window.location.pathname === '/signup';
+
 root?.render(
     <React.StrictMode>
         <QueryClientProvider client={queryClient}>
@@ -64,7 +66,7 @@ root?.render(
                 <UIProvider>
                     <CFDProvider>
                         <RealAccountCreationProvider>
-                            <Header />
+                            {!signupRoute && <Header />}
                             <App />
                             <AnalyticsConfigurator />
                         </RealAccountCreationProvider>
