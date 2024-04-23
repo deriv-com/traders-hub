@@ -19,10 +19,6 @@ jest.mock('@cfd/components', () => ({
     DxtradePlatformList: () => <div data-testid='dxtrade-platform-list' />,
 }));
 
-jest.mock('@/components', () => ({
-    TradingAppCardLoader: () => <div data-testid='trading-app-card-loader' />,
-}));
-
 describe('CFDContent', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -111,21 +107,5 @@ describe('CFDContent', () => {
         render(<CFDContent />);
 
         expect(screen.queryByTestId('ctrader-list')).not.toBeInTheDocument();
-    });
-
-    it('should render TradingAppCardLoader when isSuccess is false', () => {
-        (useRegulationFlags as jest.Mock).mockReturnValue({
-            regulationFlags: {
-                isSuccess: false,
-            },
-        });
-
-        (useAuthData as jest.Mock).mockReturnValue({
-            isAuthorized: true,
-        });
-
-        render(<CFDContent />);
-
-        expect(screen.getByTestId('trading-app-card-loader')).toBeInTheDocument();
     });
 });

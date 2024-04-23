@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, Text, useDevice } from '@deriv-com/ui';
 
-import { StaticLink, TitleDescriptionLoader } from '@/components';
+import { StaticLink } from '@/components';
 import { useRegulationFlags } from '@/hooks';
 
 const CompareAccountsButton = () => {
@@ -32,11 +32,6 @@ const CompareAccountsButton = () => {
 
 const CFDHeading = () => {
     const { isDesktop } = useDevice();
-    const { regulationFlags } = useRegulationFlags();
-    const { isSuccess } = regulationFlags;
-    const { isAuthorized } = useAuthData();
-
-    if (!isSuccess && isAuthorized) return <TitleDescriptionLoader />;
 
     return (
         <div className='flex flex-col'>
