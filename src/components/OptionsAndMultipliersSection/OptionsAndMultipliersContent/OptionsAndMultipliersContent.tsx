@@ -1,11 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuthData } from '@deriv-com/api-hooks';
 import { Button, useDevice } from '@deriv-com/ui';
 import { URLUtils } from '@deriv-com/utils';
 
-import { TradingAccountCard, TradingAccountCardContent, TradingAppCardLoader } from '@/components';
+import { TradingAccountCard, TradingAccountCardContent } from '@/components';
 import { optionsAndMultipliersContent } from '@/constants';
 import { getUrlBinaryBot, getUrlDerivTrader, getUrlSmartTrader } from '@/helpers';
 import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
@@ -101,21 +100,13 @@ export const OptionsAndMultipliersContent = () => {
     const { isDesktop } = useDevice();
     const { data } = useActiveDerivTradingAccount();
     const { regulationFlags } = useRegulationFlags();
-    const { isEU, isSuccess: isRegulationAccessible } = regulationFlags;
-    const { isAuthorized } = useAuthData();
+    const { isEU } = regulationFlags;
 
     const getoptionsAndMultipliersContent = optionsAndMultipliersContent(isEU ?? false);
 
     const filteredContent = isEU
         ? getoptionsAndMultipliersContent.filter(account => account.title === 'Deriv Trader')
         : getoptionsAndMultipliersContent;
-
-    if (!isRegulationAccessible && isAuthorized)
-        return (
-            <div className='pt-40'>
-                <TradingAppCardLoader />
-            </div>
-        );
 
     return (
         <div className='grid w-full grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-x-24 lg:gap-y-4'>

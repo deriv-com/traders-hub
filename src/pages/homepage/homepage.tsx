@@ -18,6 +18,7 @@ import { Modals } from '@/modals/Modals';
 export const Homepage = () => {
     const { isDesktop } = useDevice();
     const { isAuthorized } = useAuthData();
+
     const { regulationFlags } = useRegulationFlags();
     const { hasActiveDerivAccount } = regulationFlags;
     const { data: activeTrading } = useActiveDerivTradingAccount();
