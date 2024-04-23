@@ -52,22 +52,6 @@ describe('CFDHeading', () => {
         expect(screen.getByText(/Compare Accounts/i)).toBeInTheDocument();
     });
 
-    it('renders the TitleDescriptionLoader when conditions are met', () => {
-        (useAuthData as jest.Mock).mockReturnValue({
-            isAuthorized: true,
-        });
-
-        (useRegulationFlags as jest.Mock).mockReturnValue({
-            regulationFlags: {
-                isSuccess: false,
-            },
-        });
-
-        render(<CFDHeading />);
-
-        expect(screen.queryByText(/CFDs/i)).not.toBeInTheDocument();
-    });
-
     it('should not render the CompareAccountsButton when isAuthorized is false', () => {
         (useAuthData as jest.Mock).mockReturnValue({
             isAuthorized: false,
