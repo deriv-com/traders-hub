@@ -28,6 +28,8 @@ jobs:
 
             - name: Build staging
               run: npm run build
+              env:
+                VITE_RUDDERSTACK_KEY: ${{ secrets.VITE_RUDDERSTACK_KEY }}
 
             - name: Run tests for Eslint
               run: npm run test:lint

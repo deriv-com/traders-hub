@@ -50,6 +50,8 @@ jobs:
       - name: Build
         run: npm run build
         shell: bash
+        env:
+          VITE_RUDDERSTACK_KEY: ${{ secrets.VITE_RUDDERSTACK_KEY }}
 
       - name: "Run Tests"
         run: npm run test:report
