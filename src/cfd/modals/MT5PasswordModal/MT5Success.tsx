@@ -23,8 +23,10 @@ export const MT5Success = () => {
     const isDemo = activeTrading?.is_virtual;
     const marketType = marketTypeState ?? MarketType.ALL;
 
+    const isSwapFree = marketType === MarketType.ALL && platform === 'mt5';
+
     const marketTypeTitle =
-        marketType === MarketType.ALL && platform && Object.keys(PlatformDetails).includes(platform)
+        !isSwapFree && marketType === MarketType.ALL && platform
             ? PlatformDetails[platform].title
             : MarketTypeDetails(isEU)[marketType].title;
 
