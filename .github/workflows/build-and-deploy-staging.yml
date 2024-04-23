@@ -47,4 +47,4 @@ jobs:
                 branch_name: staging
                 output_dir: dist
               env:
-                RUDDERSTACK_KEY: ${{ secrets.VITE_RUDDERSTACK_KEY }}
+                VITE_RUDDERSTACK_KEY: ${{ secrets.VITE_RUDDERSTACK_KEY }}
