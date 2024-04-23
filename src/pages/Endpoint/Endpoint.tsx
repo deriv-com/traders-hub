@@ -56,6 +56,7 @@ export const Endpoint = () => {
                 localStorage.setItem('config.app_id', values.app_id);
                 localStorage.setItem('config.server_url', values.server);
                 setSubmitting(false);
+                location.reload();
             }}
         >
             {({ errors, isSubmitting }) => (
