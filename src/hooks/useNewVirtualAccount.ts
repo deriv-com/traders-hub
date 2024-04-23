@@ -1,6 +1,9 @@
 import { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthData, useNewAccountVirtual } from '@deriv-com/api-hooks';
+
+import { useQueryParams } from './useQueryParams';
 
 /**
  * @name useNewVirtualAccount
@@ -8,9 +11,24 @@ import { useAuthData, useNewAccountVirtual } from '@deriv-com/api-hooks';
  * @returns {Object} Submit handler function, the new virtual account data and the status of the request.
  */
 export const useNewVirtualAccount = () => {
-    const { data: newTradingAccountData, mutate: createAccount, status, ...rest } = useNewAccountVirtual();
+    const navigate = useNavigate();
+    const { openModal } = useQueryParams();
+    const {
+        data: newTradingAccountData,
+        mutate: createAccount,
+        status,
+        ...rest
+    } = useNewAccountVirtual({
+        bypassAuth: true,
+        onSuccess: () => {
+            navigate('/');
+            openModal('RealAccountCreation');
+        },
+    });
 
     const { appendAccountCookie } = useAuthData();
+
+    const verificationCode = localStorage.getItem('verification_code');
 
     useEffect(() => {
         if (status === 'success') {
@@ -26,13 +44,16 @@ export const useNewVirtualAccount = () => {
      * @name handleSubmit
      * @description A function that handles the form submission and calls the mutation.
      */
-    const mutate = useCallback(() => {
-        createAccount({
-            client_password: 'test',
-            residence: 'af',
-            verification_code: '123123123',
-        });
-    }, [createAccount]);
+    const mutate = useCallback(
+        values => {
+            createAccount({
+                client_password: values.password,
+                residence: values.country,
+                verification_code: verificationCode ?? '',
+            });
+        },
+        [createAccount, verificationCode]
+    );
 
     return {
         mutate,

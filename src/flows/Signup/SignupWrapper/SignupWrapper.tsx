@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Formik, FormikHelpers, FormikValues } from 'formik';
+import { Form, Formik } from 'formik';
 
 import { Modal } from '@deriv-com/ui';
 
@@ -25,10 +25,8 @@ export const SignupWrapper = () => {
         password: '',
     };
 
-    const handleSubmit = (_: FormikValues, actions: FormikHelpers<typeof initialValues>) => {
-        actions.setSubmitting(true);
-        mutate();
-        actions.setSubmitting(false);
+    const handleSubmit = values => {
+        mutate(values);
     };
 
     return (
