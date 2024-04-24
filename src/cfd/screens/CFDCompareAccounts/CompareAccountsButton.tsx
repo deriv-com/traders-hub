@@ -79,7 +79,7 @@ const CompareAccountsButton = ({ isAccountAdded, platform, shortCode }: TCompare
         restrictVanuatuAccountCreation,
         hasSubmittedPersonalDetails,
         authenticationInfo,
-        isDemo
+        !!isDemo
     );
 
     useEffect(() => {
