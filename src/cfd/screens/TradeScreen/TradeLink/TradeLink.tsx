@@ -16,7 +16,6 @@ import {
 
 type TTradeLinkProps = {
     app: keyof typeof AppToContentMapper;
-    isDemo?: boolean;
     platform?: TPlatforms.All;
     webtraderUrl?: THooks.MT5AccountsList['webtrader_url'];
 };
@@ -50,7 +49,7 @@ export const TradeLink = ({ app, platform, webtraderUrl = '' }: TTradeLinkProps)
     };
 
     return (
-        <div className='flex items-center justify-between px-16 py-24 border-solid border-t-1 border-system-light-secondary-background'>
+        <div className='flex items-center justify-between px-24 py-16 border-solid border-t-1 border-system-light-secondary-background'>
             <div className='flex items-center gap-16'>
                 {platform === mt5Platform && (
                     <Fragment>
@@ -61,7 +60,12 @@ export const TradeLink = ({ app, platform, webtraderUrl = '' }: TTradeLinkProps)
                 {platform === dxtradePlatform && (
                     <Text size='sm'>Run {PlatformDetails[platform].title} on your browser</Text>
                 )}
-                {platform === ctraderPlatform && <Text size='sm'>{content.title}</Text>}
+                {platform === ctraderPlatform && (
+                    <Fragment>
+                        <div className='w-1600 h-1600'>{content.icon}</div>
+                        <Text size='sm'>{content.title}</Text>
+                    </Fragment>
+                )}
             </div>
             {platform === mt5Platform && (
                 <Button
@@ -87,14 +91,14 @@ export const TradeLink = ({ app, platform, webtraderUrl = '' }: TTradeLinkProps)
             )}
             {platform === ctraderPlatform && app === DesktopLinks.CTRADER_WEB && (
                 <Button
-                    className='flex items-center justify-center gap-8 p-8 border-none rounded-md cursor-pointer bg-system-dark-primary-background'
+                    className='flex items-center justify-center gap-8 px-8 border-none rounded-sm cursor-pointer bg-system-dark-primary-background'
                     color='white'
                     onClick={onClickWebTerminal}
                     variant='outlined'
                 >
                     <span className='flex items-center justify-center gap-8'>
                         {PlatformToLabelIconMapper[platform ?? ctraderPlatform]}
-                        <Text className='text-system-light-primary-background' size='sm' weight='bold'>
+                        <Text className='text-system-light-primary-background' size='xs' weight='bold'>
                             Web terminal
                         </Text>
                     </span>
@@ -102,14 +106,14 @@ export const TradeLink = ({ app, platform, webtraderUrl = '' }: TTradeLinkProps)
             )}
             {platform === dxtradePlatform && (
                 <Button
-                    className='flex items-center justify-center gap-8 p-8 border-none rounded-md cursor-pointer bg-system-dark-primary-background'
+                    className='flex items-center justify-center gap-8 px-8 border-none rounded-sm cursor-pointer bg-system-dark-primary-background'
                     color='white'
                     onClick={onClickWebTerminal}
                     variant='outlined'
                 >
                     <span className='flex items-center justify-center gap-8'>
                         {PlatformToLabelIconMapper[platform ?? dxtradePlatform]}
-                        <Text className='text-system-light-primary-background' size='sm' weight='bold'>
+                        <Text className='text-system-light-primary-background' size='xs' weight='bold'>
                             Web terminal
                         </Text>
                     </span>
