@@ -202,7 +202,7 @@ export const AppToContentMapper: TAppToContentMapper = {
         icon: '',
         link: '',
         text: 'Open',
-        title: 'cTrader web',
+        title: 'Run cTrader on your browser',
     },
     dxtrade_web: {
         icon: '',
