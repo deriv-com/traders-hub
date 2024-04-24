@@ -18,7 +18,7 @@ const CompareAccountsButton = () => {
     if (!isAuthorized) return null;
 
     return (
-        <Button color='primary' onClick={() => navigate('/compare-accounts')} size='sm' variant='ghost' hideHoverStyles>
+        <Button color='primary' onClick={() => navigate('/compare-accounts')} size='sm' variant='ghost'>
             {title}
         </Button>
     );
