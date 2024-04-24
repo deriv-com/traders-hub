@@ -3,7 +3,7 @@ import { Fragment, useRef } from 'react';
 import { CFDPlatforms } from '@cfd/constants';
 import { Divider, Text, Tooltip, useDevice } from '@deriv-com/ui';
 
-import InfoIcon from '@/assets/svgs/ic-info-outline.svg';
+import InfoIcon from '@/assets/svgs/ic-info-outline.svg?react';
 import { IconComponent } from '@/components';
 import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
 import { THooks, TPlatforms } from '@/types';
