@@ -1,5 +1,3 @@
-import { twMerge } from 'tailwind-merge';
-
 import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
 import { THooks, TPlatforms } from '@/types';
 
@@ -21,7 +19,7 @@ const InstrumentsLabelHighlighted = ({ marketType, platform, shortCode }: TInstr
 
     return (
         <div
-            className={twMerge('flex flex-col pt-20 px-14 lg:px-18 gap-4', isDemo && 'pt-16')}
+            className={`flex flex-col px-14 lg:px-18 gap-4 ${isDemo ? 'pt-16' : 'pt-20'}`}
             data-testid='dt_compare_cfd_account_outline__container'
         >
             {iconData.map(item => (
