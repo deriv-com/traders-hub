@@ -123,6 +123,6 @@ describe('CFDHeading', () => {
         const button = screen.getByText(/Compare Accounts/i);
         fireEvent.click(button);
 
-        expect(navigate).toHaveBeenCalledWith('/traders-hub/compare-accounts');
+        expect(navigate).toHaveBeenCalledWith('/compare-accounts');
     });
 });
