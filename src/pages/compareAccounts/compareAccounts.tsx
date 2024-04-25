@@ -5,10 +5,7 @@ import CompareAccountsScreen from '../../cfd/screens/CFDCompareAccounts/CompareA
 export const CompareAccounts = () => {
     return (
         <>
-            <div>
-                <h1>Compare Accounts</h1>
-                <Link to='/'>Go to Homepage</Link>
-            </div>
+            <Link to='/'>Go to Homepage</Link>
             <CompareAccountsScreen />
         </>
     );

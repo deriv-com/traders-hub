@@ -21,7 +21,7 @@ const InstrumentsIconWithLabel: FC<TInstrumentsIcon> = ({ highlighted, icon, isA
                 opacity: highlighted ? '' : '0.2',
             }}
         >
-            <InstrumentIcon />
+            <InstrumentIcon className='w-30 h-30' />
             <div className='ml-5'>
                 <Text className='text-xs lg:text-sm' weight='bold'>
                     {text}
