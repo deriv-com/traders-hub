@@ -15,11 +15,8 @@ const InstrumentsIconWithLabel: FC<TInstrumentsIcon> = ({ highlighted, icon, isA
     const InstrumentIcon = InstrumentsIcons[icon];
     return (
         <div
-            className='flex items-center m-2 cursor-not-allowed'
+            className={`flex items-center m-2 cursor-not-allowed ${highlighted ? '' : 'opacity-20'}`}
             data-testid='dt_instruments_icon_container'
-            style={{
-                opacity: highlighted ? '' : '0.2',
-            }}
         >
             <InstrumentIcon className='w-30 h-30' />
             <div className='ml-5'>
