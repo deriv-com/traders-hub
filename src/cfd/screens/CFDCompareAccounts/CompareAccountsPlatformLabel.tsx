@@ -25,14 +25,14 @@ const CompareAccountsPlatformLabel = ({ platform }: TCompareAccountsPlatformLabe
             className={twMerge(
                 CompareAccountsPlatformLabelClass({
                     background: platformType,
-                } as unknown as TCompareAccountsPlatformLabelClassProps)
+                } as TCompareAccountsPlatformLabelClassProps)
             )}
         >
             <Text
                 className={twMerge(
                     CompareAccountsPlatformLabelTextColorClass({
                         label: platformType,
-                    } as unknown as TCompareAccountsPlatformLabelTextClassProps)
+                    } as TCompareAccountsPlatformLabelTextClassProps)
                 )}
                 size='sm'
                 weight='bold'
