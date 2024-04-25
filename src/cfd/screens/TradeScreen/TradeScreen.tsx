@@ -68,11 +68,11 @@ export const TradeScreen = ({ account }: TradeScreenProps) => {
     const platformIcon =
         platform === mt5Platform
             ? marketTypeDetails[marketType ?? MarketType.ALL]?.iconWithWidth?.(24)
-            : PlatformDetails[platform as keyof typeof PlatformDetails]?.icon?.(24);
+            : PlatformDetails[platform as keyof typeof PlatformDetails]?.icon?.(24, 24);
 
     return (
         <div className='lg:w-[45vw] lg:min-w-[512px] lg:max-w-[600px] w-full min-w-full h-auto'>
-            <div className='flex flex-col gap-16 p-24 border-b-3 border-system-light-secondary-background'>
+            <div className='flex flex-col gap-16 px-24 py-12'>
                 <div className='flex items-center justify-between w-full'>
                     <div className='flex items-center'>
                         <div className='mr-8'>{platformIcon}</div>
@@ -140,7 +140,7 @@ export const TradeScreen = ({ account }: TradeScreenProps) => {
                     </Text>
                 </div>
             </div>
-            <div className='w-full p-24'>
+            <div className='w-full p-8'>
                 {platform === mt5Platform &&
                     (isDesktop ? (
                         <Fragment>
