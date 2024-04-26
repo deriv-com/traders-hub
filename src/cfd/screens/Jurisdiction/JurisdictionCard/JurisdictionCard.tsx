@@ -121,8 +121,7 @@ export const JurisdictionCard = ({
         row?.titleIndicators?.displayText && (
             <div
                 className={JurisdictionCardTagClass({
-                    displayTextSkinColor: row?.titleIndicators
-                        ?.displayTextSkinColor as unknown as TDisplayTextSkinColor,
+                    displayTextSkinColor: row?.titleIndicators?.displayTextSkinColor as TDisplayTextSkinColor,
                 })}
             >
                 <Text className='leading-2 text-system-light-primary-background' size='xs' weight='bold'>

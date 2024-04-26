@@ -3,6 +3,8 @@ export { useActiveDerivTradingAccount } from './useActiveDerivTradingAccount';
 export { useAvailableMT5Accounts } from './useAvailableMT5Accounts';
 export { useBalance } from './useBalance';
 export { useCreateOtherCFDAccount } from './useCreateOtherCFDAccount';
+export { useCFDAccountsList } from './useCFDAccountsList';
+export { useCFDCompareAccounts } from './useCFDCompareAccounts';
 export { useCtraderAccountsList } from './useCtraderAccountsList';
 export { useCurrencyConfig } from './useCurrencyConfig';
 export { useDerivTradingAccountsList } from './useDerivTradingAccountsList';

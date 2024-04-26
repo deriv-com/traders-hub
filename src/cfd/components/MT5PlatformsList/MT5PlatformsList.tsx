@@ -37,7 +37,7 @@ export const MT5PlatformsList = () => {
 
                     return (
                         <AvailableMT5AccountsList
-                            account={MT5Account as unknown as THooks.MT5AccountsList}
+                            account={MT5Account as THooks.MT5AccountsList}
                             key={`available-mt5-list-${MT5Account.market_type}-${MT5Account.leverage}`}
                         />
                     );
