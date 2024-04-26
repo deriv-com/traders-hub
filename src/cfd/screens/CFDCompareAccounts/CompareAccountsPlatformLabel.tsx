@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 
 import { Text } from '@deriv-com/ui';
 
@@ -22,14 +22,14 @@ const CompareAccountsPlatformLabel = ({ platform }: TCompareAccountsPlatformLabe
 
     return (
         <div
-            className={twMerge(
+            className={twJoin(
                 CompareAccountsPlatformLabelClass({
                     background: platformType,
                 } as TCompareAccountsPlatformLabelClassProps)
             )}
         >
             <Text
-                className={twMerge(
+                className={twJoin(
                     CompareAccountsPlatformLabelTextColorClass({
                         label: platformType,
                     } as TCompareAccountsPlatformLabelTextClassProps)
