@@ -9,7 +9,7 @@ export const Header = () => {
     const { getOauthURL, getDerivStaticURL } = URLUtils;
 
     return (
-        <header className='border-solid border-b-1 border-b-system-light-hover-background flex px-20'>
+        <header className='border-solid border-b-1 border-b-system-light-hover-background flex px-20 sticky top-0 bg-system-light-primary-background z-50'>
             <div className='flex justify-between items-center w-full'>
                 <IconComponent
                     icon='Deriv'
