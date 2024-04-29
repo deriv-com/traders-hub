@@ -27,12 +27,12 @@ export const CitizenshipModal = ({ onClickNext }: TCitizenshipModal) => {
         }
     }, [clientCountry, setFieldValue, residenceList, values.country]);
 
-    // Add <Loading /> here later when it's created
-
     return (
-        <div className='h-full rounded-default max-w-[328px] lg:max-w-[440px] bg-system-light-primary-background'>
+        <div className='bg-system-light-primary-background rounded-xl'>
             <div className='flex flex-col p-16 space-y-16 lg:space-y-24 lg:p-24'>
-                <Text weight='bold'>Select your country and citizenship:</Text>
+                <Text className='text-default lg:text-lg' weight='bold'>
+                    Select your country and citizenship:
+                </Text>
                 <Dropdown
                     dropdownIcon={<LabelPairedChevronDownMdRegularIcon />}
                     errorMessage='Country of residence is where you currently live.'

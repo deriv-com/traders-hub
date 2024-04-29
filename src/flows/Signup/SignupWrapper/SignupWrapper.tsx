@@ -30,7 +30,12 @@ export const SignupWrapper = () => {
     };
 
     return (
-        <Modal ariaHideApp={false} isOpen={isModalOpen('Signup')} shouldCloseOnOverlayClick={false}>
+        <Modal
+            ariaHideApp={false}
+            isOpen={isModalOpen('Signup')}
+            shouldCloseOnOverlayClick={false}
+            className='max-w-[328px] lg:max-w-[440px] h-auto rounded-xl'
+        >
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={signup}>
                 <Form>
                     <SignupScreens setStep={setStep} step={step} />

@@ -5,6 +5,7 @@ type TUIState = {
     accountType?: string;
     isSignupWizardOpen?: boolean;
     regulation?: string;
+    errorMessage?: string;
 };
 
 type TUIContext = {
