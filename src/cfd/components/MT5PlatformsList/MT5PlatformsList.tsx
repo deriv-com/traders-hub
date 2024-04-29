@@ -18,7 +18,7 @@ export const MT5PlatformsList = () => {
     return (
         <CFDPlatformLayout title={PlatformDetails.mt5.title}>
             {!isAuthorized && <LoggedOutMT5AccountsList />}
-            {!isFetchedAfterMount && (
+            {!isFetchedAfterMount && isAuthorized && (
                 <div className='pt-8 lg:pt-18'>
                     <TradingAppCardLoader />
                 </div>
