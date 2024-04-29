@@ -13,7 +13,7 @@ const CompareAccountsScreen = () => {
     const { mt5Accounts } = compareAccounts;
 
     return (
-        <div className='m-0 overflow-x-auto lg:w-full lg:h-full'>
+        <div className='mt-10 overflow-x-auto lg:w-full lg:h-full'>
             <CompareAccountsHeader />
             <div className='flex justify-center lg:my-0 lg:mx-auto max-w-[1232px] px-10 py-16 lg:py-24'>
                 <CompareAccountsCarousel>

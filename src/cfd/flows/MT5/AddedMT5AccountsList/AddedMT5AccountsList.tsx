@@ -2,7 +2,7 @@ import { CFDPlatforms, MarketType, MarketTypeDetails } from '@cfd/constants';
 import { Button, Text } from '@deriv-com/ui';
 
 import { TradingAccountCard } from '@/components';
-import { getCfdsAccountTitle } from '@/helpers';
+import { derivUrls, getCfdsAccountTitle } from '@/helpers';
 import { useActiveDerivTradingAccount, useQueryParams, useRegulationFlags } from '@/hooks';
 import { useCFDContext } from '@/providers';
 import { THooks } from '@/types';
@@ -35,7 +35,7 @@ export const AddedMT5AccountsList = ({ account }: { account: THooks.MT5AccountsL
                                 });
                                 openModal('TopUpModal');
                             }
-                            // else transferModal;
+                            window.location.href = `${derivUrls.DERIV_APP_PRODUCTION}/cashier/account-transfer`;
                         }}
                         variant='outlined'
                         size='sm'

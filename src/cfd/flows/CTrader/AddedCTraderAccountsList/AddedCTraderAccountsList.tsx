@@ -5,6 +5,7 @@ import { Button, Text } from '@deriv-com/ui';
 import { URLUtils } from '@deriv-com/utils';
 
 import { IconComponent, TradingAccountCard } from '@/components';
+import { derivUrls } from '@/helpers';
 import { getCfdsAccountTitle } from '@/helpers/cfdsAccountHelpers';
 import { useActiveDerivTradingAccount, useCtraderAccountsList, useQueryParams } from '@/hooks';
 import { useCFDContext } from '@/providers';
@@ -43,7 +44,7 @@ export const AddedCTraderAccountsList = () => {
                         openModal('TopUpModal');
                     }
 
-                    // else transferModal;
+                    window.location.href = `${derivUrls.DERIV_APP_PRODUCTION}/cashier/account-transfer`;
                 }}
                 variant='outlined'
                 size='sm'

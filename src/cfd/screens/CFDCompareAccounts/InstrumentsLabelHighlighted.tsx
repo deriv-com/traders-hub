@@ -1,4 +1,4 @@
-import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
+import { useRegulationFlags } from '@/hooks';
 import { THooks, TPlatforms } from '@/types';
 
 import { getHighlightedIconLabel } from './CompareAccountsConfig';
@@ -11,15 +11,13 @@ type TInstrumentsLabelHighlighted = {
 };
 
 const InstrumentsLabelHighlighted = ({ marketType, platform, shortCode }: TInstrumentsLabelHighlighted) => {
-    const { data: activeDerivTrading } = useActiveDerivTradingAccount();
     const { regulationFlags } = useRegulationFlags();
     const { isEU: isEuRegion } = regulationFlags;
-    const isDemo = activeDerivTrading?.is_virtual;
     const iconData = [...getHighlightedIconLabel(platform, isEuRegion, marketType, shortCode)];
 
     return (
         <div
-            className={`flex flex-col px-14 lg:px-18 gap-4 ${isDemo ? 'pt-16' : 'pt-20'}`}
+            className='flex flex-col px-14 lg:px-18 gap-4 py-16'
             data-testid='dt_compare_cfd_account_outline__container'
         >
             {iconData.map(item => (

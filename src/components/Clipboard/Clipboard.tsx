@@ -47,13 +47,15 @@ export const Clipboard = ({ textCopy, tooltip }: TClipboardProps) => {
 
     return (
         <Tooltip
-            message={isCopied ? 'Copied!' : 'Copy'}
+            message={isHovered && isCopied ? 'Copied!' : 'Copy'}
             position={tooltip ?? 'bottom'}
-            triggerAction={isHovered && isDesktop ? 'hover' : 'click'}
+            triggerAction={isDesktop ? 'hover' : 'click'}
         >
-            <Button color='white' onClick={onClick} size='sm' variant='ghost'>
-                {isCopied ? <CheckmarkCircle /> : <ClipboardIcon />}
-            </Button>
+            <div ref={hoverRef}>
+                <Button color='white' onClick={onClick} size='sm' variant='ghost'>
+                    {isCopied ? <CheckmarkCircle /> : <ClipboardIcon />}
+                </Button>
+            </div>
         </Tooltip>
     );
 };
