@@ -21,7 +21,19 @@ export const useNewVirtualAccount = () => {
     const navigate = useNavigate();
     const { openModal } = useQueryParams();
     const { setUIState } = useUIContext();
-    const { data: newTradingAccountData, mutate: createAccount, status, ...rest } = useNewAccountVirtual();
+    const {
+        data: newTradingAccountData,
+        mutate: createAccount,
+        status,
+        error: newAccountError,
+        ...rest
+    } = useNewAccountVirtual();
+
+    useEffect(() => {
+        if (newAccountError) {
+            setUIState({ errorMessage: newAccountError.error.message });
+        }
+    }, [newAccountError, setUIState, status]);
 
     const { appendAccountCookie } = useAuthData();
 
