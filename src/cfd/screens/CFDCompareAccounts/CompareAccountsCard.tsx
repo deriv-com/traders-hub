@@ -5,7 +5,6 @@ import { THooks, TPlatforms } from '@/types';
 
 import { CFDPlatforms } from '../../constants';
 
-import CompareAccountsButton from './CompareAccountsButton';
 import CompareAccountsDescription from './CompareAccountsDescription';
 import CompareAccountsPlatformLabel from './CompareAccountsPlatformLabel';
 import CompareAccountsTitleIcon from './CompareAccountsTitleIcon';
@@ -18,7 +17,7 @@ type TCompareAccountsCard = {
     shortCode: THooks.AvailableMT5Accounts['shortcode'];
 };
 
-const CompareAccountsCard = ({ isAccountAdded, marketType, platform, shortCode }: TCompareAccountsCard) => {
+const CompareAccountsCard = ({ marketType, platform, shortCode }: TCompareAccountsCard) => {
     const { regulationFlags } = useRegulationFlags();
     const { isEU } = regulationFlags;
 
@@ -43,13 +42,6 @@ const CompareAccountsCard = ({ isAccountAdded, marketType, platform, shortCode }
                         </Text>
                     </div>
                 )}
-                <CompareAccountsButton
-                    isAccountAdded={isAccountAdded}
-                    //Removed for now as it is needed by Verification flow
-                    // marketType={marketType}
-                    platform={platform}
-                    shortCode={shortCode}
-                />
             </div>
         </div>
     );

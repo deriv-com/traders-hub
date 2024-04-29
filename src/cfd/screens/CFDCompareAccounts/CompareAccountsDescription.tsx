@@ -33,7 +33,7 @@ const CompareAccountsDescription = ({ marketType, shortCode }: TCompareAccountsD
     } = getJurisdictionDescription(marketTypeShortCode ?? '');
 
     return (
-        <div className='flex flex-col items-center gap-5 px-16 pt-16 lg:px-0'>
+        <div className='flex flex-col items-center gap-5 p-16 lg:px-0'>
             <Text as='p' className='text-default lg:text-xl' weight='bold'>
                 {'Up to'} {leverage}
             </Text>
