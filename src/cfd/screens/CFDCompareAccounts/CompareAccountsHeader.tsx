@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { LabelPairedArrowLeftMdFillIcon, LabelPairedXmarkLgRegularIcon } from '@deriv/quill-icons';
 import { Text } from '@deriv-com/ui';
 
-import { IconComponent } from '@/components';
 import { useActiveDerivTradingAccount, useRegulationFlags } from '@/hooks';
 
 const CompareAccountsHeader = () => {
@@ -19,18 +19,22 @@ const CompareAccountsHeader = () => {
 
     return (
         <div className='sticky flex items-center border-solid z-[999] border-b-1 py-0 px-16 top-0 h-50 border-system-light-secondary-background'>
-            <div className='flex justify-center w-full'>
+            <div className='flex justify-start lg:justify-center w-full items-center'>
+                <div className='absolute left-30 lg:block d-none'>
+                    <div className='flex items-center gap-8'>
+                        <LabelPairedArrowLeftMdFillIcon />
+                        <Link to='/'>
+                            <Text weight='bold'>Trader&apos;s Hub</Text>
+                        </Link>
+                    </div>
+                </div>
                 <Text size='xl' weight='bold'>
                     {headerTitle}
                 </Text>
+                <div className='absolute right-30 block lg:d-none'>
+                    <LabelPairedXmarkLgRegularIcon onClick={() => navigate('/')} className='cursor-pointer' />
+                </div>
             </div>
-            <IconComponent
-                icon='Close'
-                className='cursor-pointer'
-                onClick={() => {
-                    navigate('/traders-hub');
-                }}
-            />
         </div>
     );
 };
