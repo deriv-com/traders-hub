@@ -33,3 +33,6 @@ lerna-debug.log*
 
 cert.pem
 dev.pem
+
+*.env
+.env.*
