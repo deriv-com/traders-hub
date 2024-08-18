@@ -7,7 +7,7 @@
         "dev": "vite --open",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "test:lint": "prettier --log-level silent --write . && eslint \"./src/**/*.?(js|jsx|ts|tsx)\"",
+        "test:lint": "prettier --log-level silent --write . && eslint \"./src/**/*.?(js|jsx|ts|tsx)\" && eslint \"./src/**\"",
         "test": "jest --passWithNoTests",
         "test:coverage": "jest --coverage --passWithNoTests",
         "test:report": "jest --collectCoverage",
